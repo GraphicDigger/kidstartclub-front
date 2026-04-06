@@ -1,0 +1,37 @@
+@use '../../styles/typography' as *;
+@use '../../styles/colors' as *;
+
+.text {
+    margin: 0;
+    padding: 0;
+}
+
+.text-small {
+    font-size: $fs-1;
+    font-weight: $fw-regular;
+    line-height: $lh-5;
+}
+
+.text-medium {
+    font-size: $fs-2;
+    font-weight: $fw-regular;
+    line-height: $lh-5;
+}
+
+.text-large {
+    font-size: $fs-8;
+    font-weight: $fw-regular;
+    line-height: $lh-5;
+}
+
+.text-color-primary {
+    color: $text-primary;
+}
+
+.text-color-secondary {
+    color: $text-secondary;
+}
+
+.text-color-disabled {
+    color: $text-disabled;
+}

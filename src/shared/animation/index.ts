@@ -1,0 +1,1 @@
+export { createFollowMouseAnimation, createSingleFollowMouseAnimation } from './followTheMouse';

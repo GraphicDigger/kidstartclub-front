@@ -1,0 +1,11 @@
+export { CodeStarIcon } from './CodeStarIcon';
+export { OpenSidebarIcon } from './OpenSidebarIcon';
+export { CloseSidebarIcon } from './CloseSidebarIcon';
+export { SettingsIcon } from './SettingsIcon';
+export { ResetGameIcon } from './ResetGameIcon';
+export { ShareIcon } from './ShareIcon';
+export { CrossIcon } from './CrossIcon';
+export { ArrowLeftIcon } from './ArrowLeftIcon';
+export { ArrowLeftCloseIcon } from './ArrowLeftCloseIcon';
+export { ArrowRightCloseIcon } from './ArrowRightCloseIcon';
+export { HomeIcon } from './HomeIcon';

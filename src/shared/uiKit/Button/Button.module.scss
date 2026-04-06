@@ -1,0 +1,172 @@
+@use '../../styles' as number;
+@use '../../styles' as typography;
+@use '../../styles' as colors;
+
+
+.content {
+    display: flex;
+    align-items: center;
+    gap: number.$space-2;
+    flex-wrap: nowrap;
+}
+
+
+@mixin button-size (
+    $name,
+    $size,
+    $space,
+    $fontsize,
+    $fontweight ) {
+
+    .button-#{$name} {
+        display: flex;
+        align-items: center;
+        gap: number.$space-2;
+        height: $size;
+        font-size: $fontsize;
+        font-weight: $fontweight;
+        padding: 0 $space;
+        border: none;
+    }
+
+    .button-icon {
+        aspect-ratio: 1/1;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+    }
+}
+
+@mixin button-style (
+    $style, $color,
+    $colorBackground, $hoverBackground,
+    $colorBorder, $hoverBorder,
+    $colorIcon, $hoverIcon,
+    $colorFont, $hoverFont ) {
+
+    .button-#{$style}-#{$color} {
+        background-color: $colorBackground;
+        color: $colorFont;
+        border-radius: number.$br-1;
+        cursor: pointer;
+
+        & :first-child {
+            fill: $colorIcon;
+        }
+
+        & :last-child {
+            fill: $colorIcon;
+        }
+
+        @if $style ==outlined {
+            outline: 2px solid $colorBorder;
+            outline-offset: -1px;
+        }
+
+    }
+
+    .button-#{$style}-#{$color}:hover {
+        background-color: $hoverBackground;
+        color: $hoverFont;
+
+        & :first-child {
+            fill: $hoverIcon;
+        }
+
+        & :last-child {
+            fill: $hoverIcon;
+        }
+
+        @if $style ==outlined {
+            outline: 2px solid $hoverBorder;
+            outline-offset: -1px;
+        }
+    }
+}
+
+@include button-size(
+    "large",
+    number.$size-12,
+    number.$space-5,
+    typography.$fs-2,
+    typography.$fw-medium
+    );
+@include button-size(
+    "medium",
+    number.$size-10,
+    number.$space-4,
+    typography.$fs-2,
+    typography.$fw-medium
+    );
+@include button-size(
+    "small",
+    number.$size-8,
+    number.$space-3,
+    typography.$fs-1,
+    typography.$fw-medium
+    );
+@include button-style (
+    'filled', 'default',
+    colors.$secondary-light-2, colors.$secondary-light-1,
+    transparent, transparent,
+    colors.$icon-dark, colors.$icon-dark,
+    colors.$text-primary, colors.$text-primary
+    );
+@include button-style (
+    'filled', 'primary',
+    colors.$primary-main, colors.$primary-dark-1,
+    transparent, transparent,
+    colors.$white-100, colors.$white-100,
+    colors.$white-100, colors.$white-100
+    );
+@include button-style (
+    'filled', 'secondary',
+    colors.$secondary-main, colors.$secondary-dark-1,
+    transparent, transparent,
+    colors.$white-100, colors.$white-100,
+    colors.$white-100, colors.$white-100
+    );
+@include button-style (
+    'outlined', 'default',
+    transparent, colors.$grey-90,
+    colors.$secondary-light-1, colors.$secondary-light-1,
+    colors.$icon-dark, colors.$icon-dark,
+    colors.$text-primary, colors.$text-primary
+    );
+@include button-style (
+    'outlined', 'primary',
+    transparent, colors.$grey-90,
+    colors.$primary-main, colors.$primary-main,
+    colors.$primary-main, colors.$primary-main,
+    colors.$primary-main, colors.$primary-main
+    );
+@include button-style (
+    'outlined', 'secondary',
+    transparent, colors.$grey-90,
+    colors.$secondary-main, colors.$secondary-main,
+    colors.$icon-light, colors.$icon-dark,
+    colors.$text-secondary, colors.$text-primary
+    );
+@include button-style (
+    'blank', 'default',
+    transparent, colors.$secondary-light-2,
+    transparent, transparent,
+    colors.$icon-dark, colors.$icon-dark,
+    colors.$text-primary, colors.$text-primary
+    );
+@include button-style (
+    'blank', 'primary',
+    transparent, colors.$secondary-light-2,
+    transparent, transparent,
+    colors.$icon-primary, colors.$icon-primary,
+    colors.$text-link, colors.$text-link
+    );
+@include button-style (
+    'blank', 'secondary',
+    transparent, colors.$secondary-light-2,
+    transparent, transparent,
+    colors.$icon-light, colors.$icon-dark,
+    colors.$text-secondary, colors.$text-primary
+    );

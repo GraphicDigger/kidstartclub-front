@@ -1,0 +1,25 @@
+@use '../../styles' as colors;
+
+.divider {
+   display: flex;
+}
+
+.divider-color-default {
+    background-color: colors.$grey-70;
+}
+
+.divider-color-light1 {
+    background-color: colors.$grey-80;
+}
+
+.divider-color-light2 {
+    background-color: colors.$grey-90;
+}
+
+.divider-color-dark1 {
+    background-color: colors.$grey-60;
+}
+
+.divider-color-dark2 {
+    background-color: colors.$grey-40;
+}

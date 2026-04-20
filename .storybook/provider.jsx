@@ -1,11 +1,11 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { ThemeProvider } from '../src/shared/providers/theme';
+import { ThemeProvider } from '../src/shared/theme';
 import { store } from '../src/app/store';
 
 export const withProviders = (Story, context) => {
-  const isDark = context.globals.theme === 'dark';
-  const backgroundColor = isDark ? '#111' : '#FFFFFF';
+  const mode = context.globals.theme === 'dark' ? 'dark' : 'light';
+  const backgroundColor = mode === 'dark' ? '#111' : '#FFFFFF';
 
   const storyElement = React.createElement(Story);
 
@@ -23,7 +23,7 @@ export const withProviders = (Story, context) => {
   );
 
   const themeProviderElement = React.createElement(ThemeProvider, {
-    forceDark: isDark,
+    mode,
     children: divWrapperElement
   });
 

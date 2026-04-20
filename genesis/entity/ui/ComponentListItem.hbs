@@ -1,0 +1,47 @@
+import { ListItem, ListItemButton, ListItemText } from '../../../shared/uiKit/List';
+import { use{{titleCase name}} } from '../model';
+import { forwardRef } from 'react';
+
+export const {{titleCase name}}ListItem = forwardRef(({ onClick, {{snakeCase name}} }, ref) => {
+
+    const name = {{snakeCase name}}.name;
+    
+    const {
+        is{{titleCase name}}Focused,
+        is{{titleCase name}}Selected,
+        handle{{titleCase name}}Hover,
+        handle{{titleCase name}}Focus,
+        handle{{titleCase name}}Select,
+    } = use{{titleCase name}}({{snakeCase name}}.id);
+
+    const handleClick = (id) => {
+        handle{{titleCase name}}Select(id);
+        onClick && onClick();
+    };
+
+    return (
+        <ListItem>
+            <ListItemButton
+                ref={ref}
+                isSelected={is{{titleCase name}}Selected}
+                isFocused={is{{titleCase name}}Focused}
+                onClick={() => handleClick({{snakeCase name}}.id)}
+                onMouseEnter={() => handle{{titleCase name}}Hover({{snakeCase name}}.id)}
+                onMouseLeave={() => handle{{titleCase name}}Hover(null)}
+                onFocus={() => handle{{titleCase name}}Focus({{snakeCase name}}.id)}
+                onBlur={() => handle{{titleCase name}}Focus(null)}
+            >
+                <ListItemText>{name}</ListItemText>
+            </ListItemButton>
+        </ListItem>
+    );
+});
+
+
+
+
+
+
+
+
+

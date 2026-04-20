@@ -82,7 +82,7 @@ const StyledSpecification = styled.div`
         right: 0;
         width: 100%;
         height: 100dvh;
-        z-index: ${({ theme }) => theme.ref.zIndex.layers.baseUI};
+        z-index: ${({ theme }) => theme.sys.zIndex.layers.baseUI};
     }
 
 `;
@@ -93,7 +93,7 @@ const StyledCloseButtonMobile = styled.div`
     bottom: calc(20px + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
-    z-index: ${({ theme }) => theme.ref.zIndex.layers.floating};
+    z-index: ${({ theme }) => theme.sys.zIndex.layers.floating};
     ${({ theme }) => theme.media.max.medium} {
         display: block;
     }
@@ -104,7 +104,7 @@ const StyledSlotBar = styled(SlotBar)`
     top: 20px;
     left: 0;
     right: 0;
-    z-index: ${({ theme }) => theme.ref.zIndex.layers.floating};
+    z-index: ${({ theme }) => theme.sys.zIndex.layers.floating};
     ${({ theme }) => theme.media.max.medium} {
         display: none;
     }

@@ -1,0 +1,245 @@
+/* Design tokens: ref (primitives) + sys (semantic, theme-aware). */
+
+/* --- ref — primitives (shared light/dark); align with sys.js layout tokens --- */
+:root {
+  /* ref.color */
+  --ref-color-white100: #ffffff;
+  --ref-color-white90: #ffffffe5;
+  --ref-color-white80: #ffffffcc;
+  --ref-color-white70: #ffffffb2;
+  --ref-color-white60: #ffffff99;
+  --ref-color-white50: #ffffff80;
+  --ref-color-white40: #ffffff66;
+  --ref-color-white30: #ffffff4d;
+  --ref-color-white25: #ffffff40;
+  --ref-color-white20: #ffffff33;
+  --ref-color-white15: #ffffff26;
+  --ref-color-white10: #ffffff1a;
+  --ref-color-white5: #ffffff0d;
+  --ref-color-white3: #ffffff08;
+  --ref-color-white0: #ffffff00;
+
+  --ref-color-black100: #000000;
+  --ref-color-black90: #000000e5;
+  --ref-color-black80: #000000cc;
+  --ref-color-black70: #000000b2;
+  --ref-color-black60: #00000099;
+  --ref-color-black50: #00000080;
+  --ref-color-black40: #00000066;
+  --ref-color-black30: #0000004d;
+  --ref-color-black20: #00000033;
+  --ref-color-black10: #0000001a;
+  --ref-color-black5: #0000000d;
+  --ref-color-black3: #00000008;
+  --ref-color-black0: #00000000;
+
+  --ref-color-grey5: #0d0d0d;
+  --ref-color-grey10: #141414;
+  --ref-color-grey15: #202021;
+  --ref-color-grey20: #303133;
+  --ref-color-grey30: #454647;
+  --ref-color-grey40: #6e6f70;
+  --ref-color-grey45: #808182;
+  --ref-color-grey50: #929394;
+  --ref-color-grey55: #abacad;
+  --ref-color-grey60: #c2c3c4;
+  --ref-color-grey65: #cfd0d1;
+  --ref-color-grey70: #dedede;
+  --ref-color-grey80: #e8e8e8;
+  --ref-color-grey90: #f2f2f2;
+  --ref-color-grey95: #fafafa;
+
+  --ref-color-blue5: #001129;
+  --ref-color-blue10: #001b3b;
+  --ref-color-blue15: #00264d;
+  --ref-color-blue20: #003060;
+  --ref-color-blue25: #003b74;
+  --ref-color-blue30: #004788;
+  --ref-color-blue35: #00529d;
+  --ref-color-blue40: #005eb2;
+  --ref-color-blue50: #007be5;
+  --ref-color-blue60: #0d99ff;
+  --ref-color-blue70: #75adff;
+  --ref-color-blue80: #a7c8ff;
+  --ref-color-blue90: #d5e3ff;
+  --ref-color-blue95: #ebf1ff;
+  --ref-color-blue98: #f9f9ff;
+  --ref-color-blue99: #fdfbff;
+
+  --ref-color-purple50: #9747FF;
+
+
+  --ref-color-mint10: #002019;
+  --ref-color-mint20: #00382c;
+  --ref-color-mint25: #004436;
+  --ref-color-mint30: #005141;
+  --ref-color-mint35: #005e4c;
+  --ref-color-mint40: #006b57;
+  --ref-color-mint50: #00876e;
+  --ref-color-mint60: #00a486;
+  --ref-color-mint70: #2fc09f;
+  --ref-color-mint80: #5bd9b9;
+  --ref-color-mint90: #87edd1;
+  --ref-color-mint95: #b9ffe8;
+  --ref-color-mint98: #e6fff5;
+  --ref-color-mint99: #f3fff9;
+
+  --ref-color-orange10: #261903;
+  --ref-color-orange20: #4c3105;
+  --ref-color-orange25: #724a08;
+  --ref-color-orange30: #99620b;
+  --ref-color-orange35: #bf7b0d;
+  --ref-color-orange40: #e59310;
+  --ref-color-orange50: #f0a62d;
+  --ref-color-orange60: #f3b653;
+  --ref-color-orange70: #f8d6a0;
+  --ref-color-orange80: #fadeb3;
+  --ref-color-orange90: #fbe7c6;
+  --ref-color-orange95: #fcefd9;
+  --ref-color-orange98: #fef7ec;
+  --ref-color-orange99: #fefbf6;
+
+  --ref-color-red10: #40000b;
+  --ref-color-red20: #680018;
+  --ref-color-red25: #7c001f;
+  --ref-color-red30: #920026;
+  --ref-color-red35: #a50e2f;
+  --ref-color-red40: #b61f39;
+  --ref-color-red50: #d93b50;
+  --ref-color-red60: #fc5567;
+  --ref-color-red70: #ff888e;
+  --ref-color-red80: #ffb3b5;
+  --ref-color-red90: #ffdada;
+  --ref-color-red95: #ffedec;
+  --ref-color-red98: #fff8f7;
+  --ref-color-red99: #fffbff;
+
+  /* ref.palette */
+  --ref-palette-primary10: var(--ref-color-blue10);
+  --ref-palette-primary20: var(--ref-color-blue20);
+  --ref-palette-primary30: var(--ref-color-blue30);
+  --ref-palette-primary40: var(--ref-color-blue40);
+  --ref-palette-primary50: var(--ref-color-purple50);
+  --ref-palette-primary60: var(--ref-color-blue60);
+  --ref-palette-primary70: var(--ref-color-blue70);
+  --ref-palette-primary80: var(--ref-color-blue80);
+  --ref-palette-primary90: var(--ref-color-blue90);
+  --ref-palette-primary95: var(--ref-color-blue95);
+  --ref-palette-primary98: var(--ref-color-blue98);
+
+  --ref-palette-success50: var(--ref-color-mint50);
+  --ref-palette-success60: var(--ref-color-mint60);
+  --ref-palette-success70: var(--ref-color-mint70);
+  --ref-palette-success95: var(--ref-color-mint95);
+
+  --ref-palette-warning50: var(--ref-color-orange50);
+  --ref-palette-warning60: var(--ref-color-orange60);
+  --ref-palette-warning70: var(--ref-color-orange70);
+  --ref-palette-warning95: var(--ref-color-orange95);
+
+  --ref-palette-error50: var(--ref-color-red50);
+  --ref-palette-error60: var(--ref-color-red60);
+  --ref-palette-error70: var(--ref-color-red70);
+  --ref-palette-error95: var(--ref-color-red95);
+
+  --ref-palette-black: var(--ref-color-black100);
+  --ref-palette-white: var(--ref-color-white100);
+}
+
+
+:root,
+[data-theme='light'] {
+  --sys-primary: var(--ref-palette-primary50);
+  --sys-onPrimary: var(--ref-palette-white);
+  --sys-primaryContainer: var(--ref-palette-primary95);
+  --sys-onPrimaryContainer: var(--ref-palette-primary50);
+
+  --sys-success: var(--ref-palette-success50);
+  --sys-onSuccess: var(--ref-palette-white);
+  --sys-successContainer: var(--ref-palette-success95);
+  --sys-onSuccessContainer: var(--ref-palette-success50);
+
+  --sys-warning: var(--ref-palette-warning50);
+  --sys-onWarning: var(--ref-palette-white);
+  --sys-warningContainer: var(--ref-palette-warning95);
+  --sys-onWarningContainer: var(--ref-palette-warning50);
+
+  --sys-error: var(--ref-palette-error50);
+  --sys-onError: var(--ref-palette-white);
+  --sys-errorContainer: var(--ref-palette-error95);
+  --sys-onErrorContainer: var(--ref-palette-error50);
+
+  --sys-surface: var(--ref-palette-white);
+  --sys-onSurface: var(--ref-color-grey10);
+  --sys-onSurfaceVariant: var(--ref-color-grey40);
+
+  --sys-surfaceContainer-lowest: var(--ref-color-grey95);
+  --sys-surfaceContainer-low: var(--ref-color-grey80);
+  --sys-surfaceContainer-default: var(--ref-color-grey70);
+  --sys-surfaceContainer-high: var(--ref-color-grey60);
+  --sys-surfaceContainer-highest: var(--ref-color-grey50);
+
+  --sys-typography-primary: var(--ref-color-grey10);
+  --sys-typography-secondary: var(--ref-color-grey40);
+
+  --sys-outline-lowest: var(--ref-color-grey90);
+  --sys-outline-low: var(--ref-color-grey80);
+  --sys-outline-default: var(--ref-color-grey70);
+  --sys-outline-high: var(--ref-color-grey60);
+  --sys-outline-highest: var(--ref-color-grey50);
+
+  --sys-state-hover: 0.08;
+  --sys-state-focus: 0.12;
+  --sys-state-selected: 0.12;
+  --sys-state-dragged: 0.16;
+}
+
+/* --- sys — dark --- */
+[data-theme='dark'] {
+  --background: var(--ref-color-grey5);
+  --foreground: var(--ref-color-grey95);
+
+  --sys-primary: var(--ref-palette-primary50);
+  --sys-onPrimary: var(--ref-palette-white);
+  --sys-primaryContainer: var(--ref-palette-primary95);
+  --sys-onPrimaryContainer: var(--ref-palette-primary50);
+
+  --sys-success: var(--ref-palette-success50);
+  --sys-onSuccess: var(--ref-palette-white);
+  --sys-successContainer: var(--ref-palette-success95);
+  --sys-onSuccessContainer: var(--ref-palette-success50);
+
+  --sys-warning: var(--ref-palette-warning50);
+  --sys-onWarning: var(--ref-palette-white);
+  --sys-warningContainer: var(--ref-palette-warning95);
+  --sys-onWarningContainer: var(--ref-palette-warning50);
+
+  --sys-error: var(--ref-palette-error50);
+  --sys-onError: var(--ref-palette-white);
+  --sys-errorContainer: var(--ref-palette-error95);
+  --sys-onErrorContainer: var(--ref-palette-error50);
+
+  --sys-surface: var(--ref-color-grey5);
+  --sys-onSurface: var(--ref-palette-white);
+  --sys-onSurfaceVariant: var(--ref-color-grey40);
+
+  --sys-surfaceContainer-lowest: var(--ref-color-grey10);
+  --sys-surfaceContainer-low: var(--ref-color-grey15);
+  --sys-surfaceContainer-default: var(--ref-color-grey30);
+  --sys-surfaceContainer-high: var(--ref-color-grey40);
+  --sys-surfaceContainer-highest: var(--ref-color-grey50);
+
+  --sys-typography-primary: var(--ref-palette-white);
+  --sys-typography-secondary: var(--ref-color-grey60);
+
+  --sys-outline-lowest: var(--ref-color-white5);
+  --sys-outline-low: var(--ref-color-white10);
+  --sys-outline-default: var(--ref-color-white15);
+  --sys-outline-high: var(--ref-color-white20);
+  --sys-outline-highest: var(--ref-color-white25);
+
+  --sys-state-hover: 0.2;
+  --sys-state-focus: 0.12;
+  --sys-state-selected: 0.12;
+  --sys-state-dragged: 0.16;
+}

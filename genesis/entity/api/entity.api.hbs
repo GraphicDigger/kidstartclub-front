@@ -1,0 +1,63 @@
+import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
+import type { {{titleCase name}} } from '../types';
+import { {{snakeCase name}}s as mock{{titleCase name}}s } from './{{snakeCase name}}.data';
+import { set{{titleCase name}}s } from '../model/store/slice';
+
+// после создания
+// 1. добавить selectors и redusers в shared/services/dataAccess/repositories
+// 2. init
+// - через провайдер app/providers/DataInitProvider
+// - в app/store
+
+// RTK Query API для {{snakeCase name}}s
+export const {{snakeCase name}}Api = createApi({
+  reducerPath: '{{snakeCase name}}Api',
+  baseQuery: fakeBaseQuery(),
+  tagTypes: ['{{titleCase name}}'],
+  endpoints: (builder) => ({
+    // GET все {{snakeCase name}}s
+    get{{titleCase name}}s: builder.query<{{titleCase name}}[], void>({
+      queryFn: async () => {
+        await new Promise(res => setTimeout(res, 100));
+        return { data: mock{{titleCase name}}s };
+      },
+      providesTags: (result) =>
+        result
+          ? [
+              ...result.map(({ id }) => ({ type: '{{titleCase name}}' as const, id })),
+              { type: '{{titleCase name}}', id: 'LIST' },
+            ]
+          : [{ type: '{{titleCase name}}', id: 'LIST' }],
+      // Синхронизация с Redux slice после успешной загрузки
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(set{{titleCase name}}s(data));
+        } catch {
+          // Ошибка обрабатывается в RTK Query
+        }
+      },
+    }),
+
+    // GET один {{snakeCase name}} по id
+    get{{titleCase name}}ById: builder.query<{{titleCase name}}, string>({
+      queryFn: async (id) => {
+        await new Promise(res => setTimeout(res, 50));
+        const item = mock{{titleCase name}}s.find(c => c.id === id);
+        if (item) {
+          return { data: item };
+        }
+        return { error: { status: 404, data: '{{titleCase name}} not found' } };
+      },
+      providesTags: (_result, _error, id) => [{ type: '{{titleCase name}}', id }],
+    }),
+  }),
+});
+
+// Автоматически сгенерированные хуки
+export const {
+  useGet{{titleCase name}}sQuery,
+  useGet{{titleCase name}}ByIdQuery,
+  useLazyGet{{titleCase name}}sQuery,
+  usePrefetch,
+} = {{snakeCase name}}Api;

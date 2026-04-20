@@ -1,14 +1,13 @@
-'use client'
-/** @jsxImportSource @emotion/react */
+
 import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import styles from './Grid.module.scss';
 
 export const Grid = ({
-    
     width,
     gap = 0,
     autoFill = false,
+    autoFit = false,
     minCol = 320,
     // grid container
     container = false,
@@ -33,6 +32,8 @@ export const Grid = ({
         if (container && !item) {
             if (autoFill) {
                 return `repeat(auto-fill, minmax(${minCol}px, 1fr))`;
+            } else if (autoFit) {
+                return `repeat(auto-fit, minmax(${minCol}px, 1fr))`;
             } else {
                 return `repeat(${columns}, 1fr)`;
             }
@@ -41,7 +42,7 @@ export const Grid = ({
     };
 
     const style = {
-        width: typeof width === 'number' ? `${width}px` : width,
+        width: typeof width === 'number' ? `${width}px` : "100%",
         gridTemplateColumns: getGridTemplate(),
         gap: gap > 0 && typeof gap === 'number' ? `${gap * 4}px` : undefined,
         gridColumn: span && item ? `span ${span}` : undefined,

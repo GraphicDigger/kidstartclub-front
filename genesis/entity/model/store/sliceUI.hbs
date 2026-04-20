@@ -1,0 +1,33 @@
+// entities/{{snakeCase name}}/model/store/sliceUI.ts
+import { createSlice, type PayloadAction } from '@reduxjs/toolkit';
+import type { {{titleCase name}}UIState } from '../../types';
+
+const initialState: {{titleCase name}}UIState = {
+    hoveredId: null,
+    focusedId: null,
+    selectedId: null,
+};
+
+const {{snakeCase name}}UiStateSlice = createSlice({
+    name: '{{snakeCase name}}UIState',
+    initialState,
+    reducers: {
+        setHovered{{titleCase name}}Id(state, action: PayloadAction<string | null>) {
+            state.hoveredId = action.payload;
+        },
+        setSelected{{titleCase name}}Id(state, action: PayloadAction<string | null>) {
+            state.selectedId = action.payload;
+        },
+        setFocused{{titleCase name}}Id(state, action: PayloadAction<string | null>) {
+            state.focusedId = action.payload;
+        },
+    },
+});
+
+export const {
+    setHovered{{titleCase name}}Id,
+    setSelected{{titleCase name}}Id,
+    setFocused{{titleCase name}}Id,
+} = {{snakeCase name}}UiStateSlice.actions;
+
+export default {{snakeCase name}}UiStateSlice.reducer;

@@ -1,0 +1,8 @@
+// entities/{{snakeCase name}}/model/store/factory.ts
+import { v4 as uuidv4 } from 'uuid';
+import type { {{titleCase name}} } from '../../types';
+
+export const create{{titleCase name}} = (input: Partial<{{titleCase name}}>): {{titleCase name}} => ({
+  id: input.id ?? uuidv4(),
+  name: input.name ?? 'New {{titleCase name}}',
+});

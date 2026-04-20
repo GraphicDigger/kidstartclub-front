@@ -1,0 +1,62 @@
+// entities/{{snakeCase name}}/model/store/slice.ts
+import { createSlice, createEntityAdapter } from '@reduxjs/toolkit';
+import type { {{titleCase name}} } from '../../types';
+import type { PayloadAction } from '@reduxjs/toolkit';
+
+export const {{snakeCase name}}Adapter = createEntityAdapter<{{titleCase name}}>();
+
+type {{titleCase name}}ExtraState = {
+  loading: boolean;
+  error: string | null;
+};
+
+export const initialState = {{snakeCase name}}Adapter.getInitialState<{{titleCase name}}ExtraState>({
+  loading: false,
+  error: null,
+});
+
+const {{snakeCase name}}Slice = createSlice({
+  name: '{{snakeCase name}}',
+  initialState,
+  reducers: {
+
+    {{snakeCase name}}sLoading(state) {
+      state.loading = true;
+      state.error = null;
+    },
+
+    {{snakeCase name}}sError(state, action: PayloadAction<string>) {
+      state.loading = false;
+      state.error = action.payload;
+    },
+
+    set{{titleCase name}}s(state, action: PayloadAction<{{titleCase name}}[]>) {
+      {{snakeCase name}}Adapter.setAll(state, action.payload);
+    },
+    add{{titleCase name}}(state, action: PayloadAction<{{titleCase name}}>) {
+      {{snakeCase name}}Adapter.addOne(state, action.payload);
+    },
+
+    update{{titleCase name}}(state, action: PayloadAction<{{titleCase name}}>) {
+      {{snakeCase name}}Adapter.updateOne(state, {
+        id: action.payload.id,
+        changes: action.payload,
+      });
+    },
+
+    remove{{titleCase name}}(state, action: PayloadAction<string>) {
+      {{snakeCase name}}Adapter.removeOne(state, action.payload);
+    },
+  },
+});
+
+export const {
+  set{{titleCase name}}s,
+  {{snakeCase name}}sLoading,
+  {{snakeCase name}}sError,
+  add{{titleCase name}},
+  update{{titleCase name}},
+  remove{{titleCase name}},
+} = {{snakeCase name}}Slice.actions;
+
+export default {{snakeCase name}}Slice.reducer;

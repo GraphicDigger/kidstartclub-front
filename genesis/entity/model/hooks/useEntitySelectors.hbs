@@ -1,0 +1,23 @@
+import { useSelector } from 'react-redux';
+import { useRepository } from '@/shared/services/dataAccess';
+
+interface Props {
+  id?: string;
+  ids?: string[];
+}
+
+export const use{{titleCase name}}Selectors = (params: Props = {}) => {
+  const repo = useRepository();
+
+  const all{{titleCase name}}s = useSelector(repo.{{snakeCase name}}s.queries.all{{titleCase name}}s());
+  const selected{{titleCase name}} = useSelector(repo.{{snakeCase name}}s.queries.selected{{titleCase name}}());
+  const {{snakeCase name}}ById = params.id ? useSelector(repo.{{snakeCase name}}s.queries.byId(params.id)) : undefined;
+  const {{snakeCase name}}ByIds = params.ids ? useSelector(repo.{{snakeCase name}}s.queries.byIds(params.ids)) : [];
+
+  return {
+    all{{titleCase name}}s,
+    selected{{titleCase name}},
+    {{snakeCase name}}ById,
+    {{snakeCase name}}ByIds,
+  };
+};

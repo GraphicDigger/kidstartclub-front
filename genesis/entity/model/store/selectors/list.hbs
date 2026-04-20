@@ -1,0 +1,9 @@
+// entities/{{snakeCase name}}/model/store/selectors/list.ts
+import type { RootState } from '@/app/store';
+import { createSelector } from '@reduxjs/toolkit';
+import { selectAll{{titleCase name}}s, select{{titleCase name}}Entities } from './base';
+
+export const select{{titleCase name}}sByIds = createSelector(
+    [select{{titleCase name}}Entities, (_: RootState, ids: string[]) => ids],
+    (entities, ids) => ids.map((id) => entities[id]!),
+);

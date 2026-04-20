@@ -1,0 +1,26 @@
+import { {{titleCase name}} } from '../../types';
+import { useRepository } from '@/shared/services/dataAccess';
+import { create{{titleCase name}} } from '../store/factory';
+
+export const use{{titleCase name}}Mutation = () => {
+  const repo = useRepository();
+
+  const add{{titleCase name}} = (input: Partial<{{titleCase name}}>) => {
+    const {{snakeCase name}} = create{{titleCase name}}(input);
+    repo.{{snakeCase name}}s.add{{titleCase name}}({{snakeCase name}});
+  };
+
+  const update{{titleCase name}} = ({{snakeCase name}}: {{titleCase name}}) => {
+    repo.{{snakeCase name}}s.update{{titleCase name}}({{snakeCase name}});
+  };
+
+  const delete{{titleCase name}} = ({{snakeCase name}}Id: {{titleCase name}}['id']) => {
+    repo.{{snakeCase name}}s.remove{{titleCase name}}({{snakeCase name}}Id);
+  };
+
+  return {
+    add{{titleCase name}},
+    update{{titleCase name}},
+    delete{{titleCase name}},
+  };
+};

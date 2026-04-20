@@ -3,7 +3,7 @@ import { useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
-import { ThemeProvider } from '@/shared/providers/theme';
+import { ThemeProvider } from '@/shared/theme';
 import { Scrolling } from '@/shared/uiKit/Scrolling';
 import { Confetti } from '@/shared/assets';
 import { Dialog, DialogContent } from '@/shared/uiKit/Dialog';

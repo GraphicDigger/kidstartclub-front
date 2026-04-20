@@ -1,0 +1,24 @@
+// entities/{{snakeCase name}}/model/store/index.ts
+import { combineReducers } from '@reduxjs/toolkit';
+import {{snakeCase name}}Slice from './slice';
+import {{snakeCase name}}UiStateSlice from './sliceUI';
+import * as reducers from './slice';
+import * as uiStateReducers from './sliceUI';
+import * as selectors from './selectors';
+
+export const {{snakeCase name}}Reducer = combineReducers({
+    {{snakeCase name}}: {{snakeCase name}}Slice,
+    {{snakeCase name}}UIState: {{snakeCase name}}UiStateSlice,
+});
+
+export const {{snakeCase name}}Selectors = {
+    ...selectors,
+};
+
+export const {{snakeCase name}}Reducers = {
+    ...reducers,
+};
+
+export const {{snakeCase name}}UIStateReducers = {
+    ...uiStateReducers,
+};

@@ -21,10 +21,11 @@
   },
   "include": [
     "next-env.d.ts",
+    "src/emotion.d.ts",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
-  ],
+],
   "exclude": ["node_modules"]
 }

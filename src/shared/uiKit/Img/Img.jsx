@@ -37,8 +37,6 @@ export const Img = memo(({
         objectPosition: objectPosition,
     }
 
-
-
     if (fill) {
         return (
             <div

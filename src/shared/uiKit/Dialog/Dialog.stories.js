@@ -18,7 +18,6 @@ const Template = (args) => {
                 </DialogTrigger>
                 <DialogContent>
                     <Typography variant="body.small">Dialog</Typography>
-                    <Button>Close</Button>
                 </DialogContent>
             </Dialog>
         </StyledContainer>

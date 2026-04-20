@@ -1,0 +1,27 @@
+// entities/{{snakeCase name}}/model/store/selectors/base.ts
+import type { RootState } from '@/app/store';
+import { {{snakeCase name}}Adapter } from '../slice';
+
+const select{{titleCase name}}AdapterState = (state: RootState) =>
+  state.{{snakeCase name}}?.{{snakeCase name}} ?? {{snakeCase name}}Adapter.getInitialState();
+
+export const select{{titleCase name}}State = (state: RootState) => state.{{snakeCase name}};
+
+export const {
+    selectEntities: select{{titleCase name}}Entities,
+    selectIds: select{{titleCase name}}Ids,
+    selectAll: selectAll{{titleCase name}}s,
+    selectById: select{{titleCase name}}ById,
+    selectTotal: selectTotal{{titleCase name}}s,
+} = {{snakeCase name}}Adapter.getSelectors<RootState>(select{{titleCase name}}AdapterState);
+
+export const selectHovered{{titleCase name}}Id = (state: RootState) =>
+  (select{{titleCase name}}State(state) as any)?.{{snakeCase name}}UIState?.hoveredId;
+export const selectFocused{{titleCase name}}Id = (state: RootState) =>
+  (select{{titleCase name}}State(state) as any)?.{{snakeCase name}}UIState?.focusedId;
+export const selectSelected{{titleCase name}}Id = (state: RootState) =>
+  (select{{titleCase name}}State(state) as any)?.{{snakeCase name}}UIState?.selectedId;
+
+export const selectIs{{titleCase name}}Selected = (state: RootState, id: string) => selectSelected{{titleCase name}}Id(state) === id;
+export const selectIs{{titleCase name}}Focused = (state: RootState, id: string) => selectFocused{{titleCase name}}Id(state) === id;
+export const selectIs{{titleCase name}}Hovered = (state: RootState, id: string) => selectHovered{{titleCase name}}Id(state) === id;

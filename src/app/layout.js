@@ -5,7 +5,7 @@ export default function RootLayout({ children }) {
   // console.log('Рендерится на:', typeof window === 'undefined' ? 'сервере' : 'клиенте');
 
   return (
-    <html lang="en">
+    <html lang="en" data-theme="light">
       <head>
         <meta name="description" content="Описание вашего приложения" />
         <meta name="keywords" content="ключевые слова, для поиска" />

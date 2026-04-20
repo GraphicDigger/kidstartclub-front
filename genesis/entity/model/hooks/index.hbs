@@ -1,0 +1,23 @@
+import { use{{titleCase name}}Selectors } from './use{{titleCase name}}Selectors';
+import { useUIStates } from './useUIStates';
+import { use{{titleCase name}}Mutation } from './use{{titleCase name}}Mutation';
+
+export { use{{titleCase name}}Selectors, use{{titleCase name}}Mutation, useUIStates };
+
+export interface Use{{titleCase name}}Params {
+  id?: string;
+  ids?: string[];
+  {{snakeCase name}}Id?: string;
+}
+
+export const use{{titleCase name}} = (params: Use{{titleCase name}}Params = {}) => {
+  const selectors = use{{titleCase name}}Selectors({ id: params.id, ids: params.ids });
+  const uiStates = useUIStates({ {{snakeCase name}}Id: params.{{snakeCase name}}Id ?? params.id });
+  const mutation = use{{titleCase name}}Mutation();
+
+  return {
+    ...selectors,
+    ...uiStates,
+    ...mutation,
+  };
+};

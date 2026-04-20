@@ -1,9 +1,13 @@
+'use client';
 import React, { forwardRef } from "react";
 import styled from "@emotion/styled";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { Button } from "../Button"
 import { CrossIcon } from "../../icons"
+
+export const Dialog = DialogPrimitive.Root;
+export const DialogTrigger = DialogPrimitive.Trigger;
 
 export const DialogContent = forwardRef(({
     children,
@@ -31,19 +35,9 @@ export const DialogContent = forwardRef(({
                     </Button>
                 </StyledDialogClose>
             }
-            <Button
-                size="large"
-                color="primary"
-                onClick={onClose}
-            >
-                Повторить тренировку
-            </Button>
         </StyledDialogContent>
     </DialogPrimitive.Portal>
 ));
-
-export const Dialog = DialogPrimitive.Root;
-export const DialogTrigger = DialogPrimitive.Trigger;
 
 const StyledDialogOverlay = styled(DialogPrimitive.Overlay)`
     background-color: rgba(0, 0, 0, 0.8);

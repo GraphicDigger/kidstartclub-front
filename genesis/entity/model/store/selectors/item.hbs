@@ -1,0 +1,7 @@
+import type { RootState } from '@/app/store';
+import { selectSelected{{titleCase name}}Id, select{{titleCase name}}ById } from './base';
+
+export const selectSelected{{titleCase name}} = (state: RootState) => {
+  const selectedId = selectSelected{{titleCase name}}Id(state);
+  return selectedId ? select{{titleCase name}}ById(state, selectedId) ?? null : null;
+};

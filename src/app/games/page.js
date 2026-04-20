@@ -2,11 +2,11 @@
 
 import styled from "@emotion/styled";
 import Link from "next/link";
-import { Header } from "@/shared/uiKit/Header";
+import { Header } from "@/widgets/Header";
 import { Stack } from "@/shared/uiKit/Stack";
 import { Logo, Play } from "@/games/dotByDot";
 import { Bubbles } from "@/games/dotByDot";
-import { ThemeProvider } from "@/shared/providers/theme";
+import { ThemeProvider } from "@/shared/theme";
 
 export default function GamesHome() {
 

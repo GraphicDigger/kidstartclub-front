@@ -2,6 +2,8 @@ import React from 'react';
 import { Grid } from './Grid';
 import { Box } from '../Box';
 import styled from '@emotion/styled';
+import { Card } from '../Card';
+import { lessons } from '../../../entities/lesson/api/lesson.data';
 
 export default {
     title: 'uiKit/Grid',
@@ -22,22 +24,91 @@ const Item = styled(Box)`
     color: #333;
 `;
 
-export const BasicGrid = () => (
-    <Grid container spacing={2}>
-        <Grid item size={8}>
-            <Item>size=8</Item>
+export const GridFill = () => {
+    const lessonsFill = lessons.slice(0, 3);
+    return (
+
+        <Grid
+            container
+            spacing={4}
+            columns={3}
+            gap={6}
+            minCol={280}
+            autoFill={true}
+        >
+            {lessonsFill.map((lesson) => (
+                <Grid item size={20}>
+                    <Card
+                        key={lesson.id}
+                        imageSrc={lesson.image}
+                        imageAlt={lesson.name}
+                        description={lesson.description}
+                        detail={lesson.date + ' - ' + lesson.time}
+                        actionLabel="Action"
+                        height="fill"
+                    />
+                </Grid>
+            ))}
         </Grid>
-        <Grid item size={4}>
-            <Item>size=4</Item>
+    );
+};
+
+export const GridFit = () => {
+    const lessonsFit = lessons.slice(0, 3);
+    return (
+        <Grid
+            container
+            spacing={4}
+            columns={3}
+            gap={6}
+            minCol={280}
+            autoFit={true}
+        >
+            {lessonsFit.map((lesson) => (
+                <Grid item size={20}>
+                    <Card
+                        key={lesson.id}
+                        imageSrc={lesson.image}
+                        imageAlt={lesson.name}
+                        title={lesson.name}
+                        description={lesson.description}
+                        detail={lesson.date + ' - ' + lesson.time}
+                        actionLabel="Action"
+                    />
+                </Grid>
+            ))}
         </Grid>
-        <Grid item size={4}>
-            <Item>size=4</Item>
+    );
+};
+
+export const GridColumns = () => {
+
+    return (
+        <Grid
+            container
+            spacing={6}
+            columns={4}
+            gap={6}
+            minCol={230}
+        >
+            {lessons.map((lesson) => (
+                <Grid item size={20}>
+                    <Card
+                        key={lesson.id}
+                        imageSrc={lesson.image}
+                        imageAlt={lesson.name}
+                        description={lesson.description}
+                        detail={lesson.date + ' - ' + lesson.time}
+                        actionLabel="Action"
+                        frame
+                        // frame={false}
+
+                    />
+                </Grid>
+            ))}
         </Grid>
-        <Grid item size={8}>
-            <Item>size=8</Item>
-        </Grid>
-    </Grid>
-);
+    );
+};
 
 export const DifferentColumns = () => (
     <Grid container spacing={2} columns={16}>
@@ -78,7 +149,7 @@ export const SpacingGrid = () => (
                 <Item>spacing=1</Item>
             </Grid>
         </Grid>
-        
+
         <Grid container spacing={2} css={{ marginTop: '20px' }}>
             <Grid item size={3}>
                 <Item>spacing=2</Item>
@@ -93,7 +164,7 @@ export const SpacingGrid = () => (
                 <Item>spacing=2</Item>
             </Grid>
         </Grid>
-        
+
         <Grid container spacing={3} css={{ marginTop: '20px' }}>
             <Grid item size={3}>
                 <Item>spacing=3</Item>

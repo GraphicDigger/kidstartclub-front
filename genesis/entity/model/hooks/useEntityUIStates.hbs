@@ -1,0 +1,35 @@
+import { useSelector } from 'react-redux';
+import { useRepository } from '@/shared/services/dataAccess';
+
+interface Props {
+  {{snakeCase name}}Id?: string;
+}
+
+export const useUIStates = (params: Props = {}) => {
+  const repo = useRepository();
+
+  const is{{titleCase name}}Selected = useSelector(repo.{{snakeCase name}}s.queries.is{{titleCase name}}Selected(params.{{snakeCase name}}Id ?? ''));
+  const is{{titleCase name}}Focused = useSelector(repo.{{snakeCase name}}s.queries.is{{titleCase name}}Focused(params.{{snakeCase name}}Id ?? ''));
+  const is{{titleCase name}}Hovered = useSelector(repo.{{snakeCase name}}s.queries.is{{titleCase name}}Hovered(params.{{snakeCase name}}Id ?? ''));
+
+  const handle{{titleCase name}}Hover = (id: string | null) => {
+    repo.{{snakeCase name}}s.setHovered{{titleCase name}}Id(id);
+  };
+
+  const handle{{titleCase name}}Focus = (id: string | null) => {
+    repo.{{snakeCase name}}s.setFocused{{titleCase name}}Id(id);
+  };
+
+  const handle{{titleCase name}}Select = (id: string | null) => {
+    repo.{{snakeCase name}}s.setSelected{{titleCase name}}Id(id);
+  };
+
+  return {
+    is{{titleCase name}}Hovered,
+    is{{titleCase name}}Focused,
+    is{{titleCase name}}Selected,
+    handle{{titleCase name}}Hover,
+    handle{{titleCase name}}Focus,
+    handle{{titleCase name}}Select,
+  };
+};

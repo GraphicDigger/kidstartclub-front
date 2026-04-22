@@ -23,7 +23,6 @@ export const Box = ({
     );
 };
 
-
 Box.propTypes = {
     children: PropTypes.node.isRequired,
     css: PropTypes.object,

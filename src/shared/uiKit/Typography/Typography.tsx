@@ -5,18 +5,26 @@ import styled from '@emotion/styled';
 import { shouldForwardProp } from './lib/shouldForwardProp';
 
 
-interface TypographyProps {
-  color?: 'default' | 'muted' | 'inverse' | 'primary' | 'secondary' | 'disabled' | 'link' | 'success' | 'warning' | 'error';
+interface TypographyProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color'> {
+  color?: 'default' | 'muted' | 'inverse' | 'primary' | 'secondary' | 'disabled' | 'link' | 'success' | 'warning' | 'error' | (string & {});
   tag?: 'p' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   className?: string;
   variant?:
-  'body.xsmall' |
+  'display.small' |
+  'display.medium' |
+  'display.large' |
+  'headline.small' |
+  'headline.medium' |
+  'headline.large' |
+  'title.large' |
+  'title.medium' |
+  'title.small' |
+  'label.small' |
+  'label.medium' |
   'body.small' |
   'body.medium' |
-  'heading.xsmall' |
-  'heading.small' |
-  'heading.medium' |
-  'heading.large' |
+  'body.large' |
+  'label.large' |
   'caps.small' |
   'caps.medium' |
   'caps.large';
@@ -67,8 +75,10 @@ const StyledTypography = styled('span', { shouldForwardProp })<
 >(
   ({ theme, variant = 'body.small', color = 'primary', size, lineHeight, weight }) => {
     const [group, variantSize] = variant.split('.')
-    const category = group as 'body' | 'heading'
-    const variantStyle = theme.sys.typography?.[category]?.[variantSize]
+    const typo = theme.sys.typography as Record<string, unknown>
+    const variantStyle = variantSize
+      ? (typo[group] as Record<string, Record<string, string | number>> | undefined)?.[variantSize]
+      : typo[group] as Record<string, string | number> | undefined
 
     const raw = theme.sys.typography.color[color];
     const tc = typeof color === 'string' && color.startsWith('#') ? color : raw;
@@ -95,7 +105,7 @@ const StyledTypography = styled('span', { shouldForwardProp })<
         : lineHeight
       : variantStyle?.lineHeight
 
-    const tt = variantStyle?.textTransform ?? 'none'
+    const tt = (variantStyle?.textTransform ?? 'none') as React.CSSProperties['textTransform']
 
     const ls = variantStyle?.letterSpacing ?? 0
 

@@ -12,10 +12,10 @@ interface StackProps {
 
     gap?: number;
     padding?: number;
-    paddingTop?: number;
-    paddingBottom?: number;
-    paddingLeft?: number;
-    paddingRight?: number;
+    paddingTop?: number | string;
+    paddingBottom?: number | string;
+    paddingLeft?: number | string;
+    paddingRight?: number | string;
 
     backgroundColor?: string;
     width?: 'fill' | 'fit' | number | 'full';

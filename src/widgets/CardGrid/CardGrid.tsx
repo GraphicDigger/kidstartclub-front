@@ -1,8 +1,9 @@
+'use client'
 import { Card } from "@/shared/uiKit/Card";
 import { lessons } from "@/entities/lesson/api/lesson.data";
 import { Stack } from "@/shared/uiKit/Stack";
 import { Grid } from "@/shared/uiKit/Grid";
-import { BottomSlot } from "@/shared/uiKit/Card/BottomSlot";
+import { BottomSlot, TopSlot } from "@/shared/uiKit/Card";
 import { Button } from "@/shared/uiKit/Button";
 import { Typography } from "@/shared/uiKit/Typography";
 
@@ -36,8 +37,6 @@ export const CardGrid = () => {
                             subtitle={lesson.author}
                             title={lesson.name}
                             description={lesson.description}
-                            detail={lesson.date + ' - ' + lesson.time}
-                            actionLabel="Записаться"
                         >
                             <BottomSlot>
                                 <Stack

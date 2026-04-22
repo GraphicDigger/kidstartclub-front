@@ -84,6 +84,27 @@ body, h1, h2, h3, h4, p, figure, blockquote, dl, dd {
   margin: 0;
 }
 
+h2 {
+  font-size: var(--ref-typography-headline-small-fontSize);
+  line-height: var(--ref-typography-headline-small-lineHeight);
+  font-weight: var(--ref-typography-headline-small-fontWeight);
+  letter-spacing: var(--ref-typography-headline-small-letterSpacing);
+}
+
+h3 {
+  font-size: var(--ref-typography-title-medium-fontSize);
+  line-height: var(--ref-typography-title-medium-lineHeight);
+  font-weight: var(--ref-typography-title-medium-fontWeight);
+  letter-spacing: var(--ref-typography-title-medium-letterSpacing);
+}
+
+p, li {
+  font-size: var(--ref-typography-body-medium-fontSize);
+  line-height: var(--ref-typography-body-medium-lineHeight);
+  font-weight: var(--ref-typography-body-medium-fontWeight);
+  letter-spacing: var(--ref-typography-body-medium-letterSpacing);
+}
+
 .btn {
   cursor: pointer;
   border: none;

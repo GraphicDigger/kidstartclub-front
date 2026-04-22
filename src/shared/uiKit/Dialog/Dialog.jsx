@@ -14,12 +14,13 @@ export const DialogContent = forwardRef(({
     title,
     hasOverlay = true,
     hasCloseButton = true,
+    fullscreen = false,
     onClose,
     ...props
 }, ref) => (
     <DialogPrimitive.Portal>
         {hasOverlay && <StyledDialogOverlay />}
-        <StyledDialogContent {...props} ref={ref}>
+        <StyledDialogContent $fullscreen={fullscreen} {...props} ref={ref}>
             <VisuallyHidden asChild>
                 <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
             </VisuallyHidden>
@@ -28,7 +29,7 @@ export const DialogContent = forwardRef(({
                 <StyledDialogClose asChild>
                     <Button
                         size="small"
-                        style="blank"
+                        variant="blank"
                         color="default"
                     >
                         <CrossIcon />
@@ -46,7 +47,7 @@ const StyledDialogOverlay = styled(DialogPrimitive.Overlay)`
     z-index: 9999;
 `;
 
-const StyledDialogContent = styled(DialogPrimitive.Content)`
+const StyledDialogContent = styled(DialogPrimitive.Content, { shouldForwardProp: (prop) => prop !== '$fullscreen' })`
     background-color: #FFFFFF;
     border-radius: 12px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -58,12 +59,23 @@ const StyledDialogContent = styled(DialogPrimitive.Content)`
     width: 90vw;
     max-width: 500px;
     max-height: 85vh;
-    padding: 24px;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 16px;
+
+    ${({ $fullscreen }) => $fullscreen && `
+        border-radius: 12px 12px 0 0;
+        top: 44px;
+        left: 0;
+        transform: none;
+        width: 100vw;
+        max-width: 100vw;
+        height: calc(100vh - 44px);
+        max-height: calc(100vh - 44px);
+        overflow: hidden;
+    `}
 `;
 
 const StyledDialogClose = styled(DialogPrimitive.Close)`

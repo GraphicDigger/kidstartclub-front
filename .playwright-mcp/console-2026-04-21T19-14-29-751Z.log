@@ -1,0 +1,165 @@
+[     842ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:24503
+[    1016ms] [ERROR] Invalid attribute name: `%s` $lines @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:55
+[    1022ms] [ERROR] A tree hydrated but some attributes of the server rendered HTML didn't match the client properties. This won't be patched up. This can happen if a SSR-ed Client Component used:
+
+- A server/client branch `if (typeof window !== 'undefined')`.
+- Variable input such as `Date.now()` or `Math.random()` which changes each time it's called.
+- Date formatting in a user's locale which doesn't match the server.
+- External changing data without sending a snapshot of it along with the HTML.
+- Invalid HTML tag nesting.
+
+It can also happen if the client has a browser extension installed which messes with the HTML before React loaded.
+
+%s%s https://react.dev/link/hydration-mismatch 
+
+  ...
+    <Home>
+      <Header>
+      ...
+        <Styled(Component) direction="column" width={undefined} height="fit" maxWidth={520} alignX="start" alignY="start" ...>
+          <Insertion>
+          <_c direction="column" width={undefined} height="fit" maxWidth={520} alignX="start" alignY="start" ...>
+            <div ref={null} className="Stack_stac..." style={{gap:"0px", ...}} onClick={undefined}>
+              <CardCover>
+              <Styled(div) frame={true}>
+                <Insertion>
+                <div className="css-160ah08">
+                  <CardText subheadline="Жюль Верн" headline="Дети капит..." description="Это истори..." ...>
+                    <Styled(div) frame={true}>
+                      <Insertion>
+                      <div className="css-uwwqev">
+                        <_c direction="column" gap={2} alignX="start" alignY="start">
+                          <div ref={null} className="Stack_stac..." style={{gap:"8px", ...}} onClick={undefined}>
+                            <_c>
+                            <Styled(Typography)>
+                            <Styled(Typography) tag="p" $lines={4}>
+                              <Insertion>
+                              <_c tag="p" $lines={4} className="css-1qm7mwe">
+                                <Styled(span) variant="body.small" color="default" size={undefined} ...>
+                                  <Insertion>
+                                  <p
+                                    className="css-ywjook"
++                                   $lines={4}
+-                                   $lines={undefined}
+                                  >
++                                   Это история, в которой приключение соединяется с вопросами о выборе, ответственност...
+      ...
+        <div className="Grid_grid_..." style={{width:"100%", ...}}>
+          ...
+            <div ref={null} className="Stack_stac..." style={{gap:"0px", ...}} onClick={undefined}>
+              <CardCover>
+              <Styled(div) frame={true}>
+                <Insertion>
+                <div className="css-160ah08">
+                  <TopSlot>
+                  <CardText subheadline="Жюль Верн" headline="Дети капит..." description="Это истори..." ...>
+                    <Styled(div) frame={true}>
+                      <Insertion>
+                      <div className="css-uwwqev">
+                        <_c direction="column" gap={2} alignX="start" alignY="start">
+                          <div ref={null} className="Stack_stac..." style={{gap:"8px", ...}} onClick={undefined}>
+                            <_c>
+                            <Styled(Typography)>
+                            <Styled(Typography) tag="p" $lines={4}>
+                              <Insertion>
+                              <_c tag="p" $lines={4} className="css-1qm7mwe">
+                                <Styled(span) variant="body.small" color="default" size={undefined} ...>
+                                  <Insertion>
+                                  <p
+                                    className="css-ywjook"
++                                   $lines={4}
+-                                   $lines={undefined}
+                                  >
++                                   Это история, в которой приключение соединяется с вопросами о выборе, ответственност...
+                  ...
+          ...
+            <div ref={null} className="Stack_stac..." style={{gap:"0px", ...}} onClick={undefined}>
+              <CardCover>
+              <Styled(div) frame={true}>
+                <Insertion>
+                <div className="css-160ah08">
+                  <TopSlot>
+                  <CardText subheadline="Licinda Roy" headline="The Bird T..." description="Это приклю..." ...>
+                    <Styled(div) frame={true}>
+                      <Insertion>
+                      <div className="css-uwwqev">
+                        <_c direction="column" gap={2} alignX="start" alignY="start">
+                          <div ref={null} className="Stack_stac..." style={{gap:"8px", ...}} onClick={undefined}>
+                            <_c>
+                            <Styled(Typography)>
+                            <Styled(Typography) tag="p" $lines={4}>
+                              <Insertion>
+                              <_c tag="p" $lines={4} className="css-1qm7mwe">
+                                <Styled(span) variant="body.small" color="default" size={undefined} ...>
+                                  <Insertion>
+                                  <p
+                                    className="css-ywjook"
++                                   $lines={4}
+-                                   $lines={undefined}
+                                  >
++                                   Это приключение о силе природы, боли и том, как доброта может изменить даже самого ...
+                  ...
+          ...
+            <div ref={null} className="Stack_stac..." style={{gap:"0px", ...}} onClick={undefined}>
+              <CardCover>
+              <Styled(div) frame={true}>
+                <Insertion>
+                <div className="css-160ah08">
+                  <TopSlot>
+                  <CardText subheadline="Джек Лондон" headline="Повелитель..." description={"История ..."} ...>
+                    <Styled(div) frame={true}>
+                      <Insertion>
+                      <div className="css-uwwqev">
+                        <_c direction="column" gap={2} alignX="start" alignY="start">
+                          <div ref={null} className="Stack_stac..." style={{gap:"8px", ...}} onClick={undefined}>
+                            <_c>
+                            <Styled(Typography)>
+                            <Styled(Typography) tag="p" $lines={4}>
+                              <Insertion>
+                              <_c tag="p" $lines={4} className="css-1qm7mwe">
+                                <Styled(span) variant="body.small" color="default" size={undefined} ...>
+                                  <Insertion>
+                                  <p
+                                    className="css-ywjook"
++                                   $lines={4}
+-                                   $lines={undefined}
+                                  >
++                                   {"История дикого волчонка, который проходит путь от жестокого мира выживания к д..."}
+                  ...
+          ...
+            <div ref={null} className="Stack_stac..." style={{gap:"0px", ...}} onClick={undefined}>
+              <CardCover>
+              <Styled(div) frame={true}>
+                <Insertion>
+                <div className="css-160ah08">
+                  <TopSlot>
+                  <CardText subheadline="Джек Лондон" headline="Белый клык" description={"История ..."} ...>
+                    <Styled(div) frame={true}>
+                      <Insertion>
+                      <div className="css-uwwqev">
+                        <_c direction="column" gap={2} alignX="start" alignY="start">
+                          <div ref={null} className="Stack_stac..." style={{gap:"8px", ...}} onClick={undefined}>
+                            <_c>
+                            <Styled(Typography)>
+                            <Styled(Typography) tag="p" $lines={4}>
+                              <Insertion>
+                              <_c tag="p" $lines={4} className="css-1qm7mwe">
+                                <Styled(span) variant="body.small" color="default" size={undefined} ...>
+                                  <Insertion>
+                                  <p
+                                    className="css-ywjook"
++                                   $lines={4}
+-                                   $lines={undefined}
+                                  >
++                                   {"История дикого волчонка, который проходит путь от жестокого мира выживания к д..."}
+                  ...
+ @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/globals/intercept-console-error.js:55
+[    2575ms] [WARNING] Image with src "/cover-example-1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.
+Read more: https://nextjs.org/docs/api-reference/next/image#priority @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[    4515ms] [WARNING] The resource http://localhost:3000/_next/image?url=%2Fguillermo-ferla-Oze6U2m1oYU-unsplash.jpg&w=3840&q=75 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0
+[   39985ms] [LOG] [Fast Refresh] rebuilding @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:240
+[   40316ms] [LOG] [Fast Refresh] done in 331ms @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:67
+[   47521ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:24503
+[   47682ms] [WARNING] Image with src "/cover-example-1.jpg" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.
+Read more: https://nextjs.org/docs/api-reference/next/image#priority @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[   50638ms] [WARNING] The resource http://localhost:3000/_next/image?url=%2Fguillermo-ferla-Oze6U2m1oYU-unsplash.jpg&w=3840&q=75 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ http://localhost:3000/:0

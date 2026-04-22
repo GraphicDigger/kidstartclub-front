@@ -1,0 +1,62 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "logo" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "logo" [ref=e7]
+      - generic [ref=e9]:
+        - link "Книжный клуб" [ref=e10] [cursor=pointer]:
+          - /url: /book-club
+          - paragraph [ref=e11]: Книжный клуб
+        - link "Игры" [ref=e12] [cursor=pointer]:
+          - /url: /games
+          - paragraph [ref=e13]: Игры
+        - link "Профориентация" [ref=e14] [cursor=pointer]:
+          - /url: /proforentation
+          - paragraph [ref=e15]: Профориентация
+  - generic [ref=e16]:
+    - heading "Клуб Читателей" [level=1] [ref=e18]
+    - paragraph [ref=e19]: Где подростки пытаются понять и осмыслить себя через книги
+    - generic [ref=e20]:
+      - paragraph [ref=e21]: "Ближайшая встреча:"
+      - generic [ref=e26]:
+        - paragraph [ref=e27]: Жюль Верн
+        - heading "Дети капитана Гранта" [level=3] [ref=e28]
+        - paragraph [ref=e29]: "Это история, в которой приключение соединяется с вопросами о выборе, ответственности и том, как формируется личность. Эту книгу часто выбирают для подростков, потому что она показывает: даже в сложных и опасных обстоятельствах человек продолжает принимать решения и именно они определяют его путь."
+  - generic [ref=e32]:
+    - generic [ref=e35]:
+      - generic [ref=e38]:
+        - paragraph [ref=e39]: Жюль Верн
+        - heading "Дети капитана Гранта" [level=3] [ref=e40]
+        - paragraph [ref=e41]: "Это история, в которой приключение соединяется с вопросами о выборе, ответственности и том, как формируется личность. Эту книгу часто выбирают для подростков, потому что она показывает: даже в сложных и опасных обстоятельствах человек продолжает принимать решения и именно они определяют его путь."
+      - generic [ref=e42]:
+        - paragraph [ref=e43]: 6 авг (ВС) - 17:00 (МСК)
+        - button "Записаться" [ref=e44] [cursor=pointer]:
+          - generic [ref=e45]: Записаться
+    - generic [ref=e48]:
+      - generic [ref=e51]:
+        - paragraph [ref=e52]: Licinda Roy
+        - heading "The Bird Tribe" [level=3] [ref=e53]
+        - paragraph [ref=e54]: Это приключение о силе природы, боли и том, как доброта может изменить даже самого дикого зверя.
+      - generic [ref=e55]:
+        - paragraph [ref=e56]: 6 авг (ВС) - 17:00 (МСК)
+        - button "Записаться" [ref=e57] [cursor=pointer]:
+          - generic [ref=e58]: Записаться
+    - generic [ref=e61]:
+      - generic [ref=e64]:
+        - paragraph [ref=e65]: Джек Лондон
+        - heading "Повелитель мух" [level=3] [ref=e66]
+        - paragraph [ref=e67]: История дикого волчонка, который проходит путь от жестокого мира выживания к доверию человеку.
+      - generic [ref=e68]:
+        - paragraph [ref=e69]: 6 авг (ВС) - 17:00 (МСК)
+        - button "Записаться" [ref=e70] [cursor=pointer]:
+          - generic [ref=e71]: Записаться
+    - generic [ref=e74]:
+      - generic [ref=e77]:
+        - paragraph [ref=e78]: Джек Лондон
+        - heading "Белый клык" [level=3] [ref=e79]
+        - paragraph [ref=e80]: История дикого волчонка, который проходит путь от жестокого мира выживания к доверию человеку.
+      - generic [ref=e81]:
+        - paragraph [ref=e82]: 6 авг (ВС) - 17:00 (МСК)
+        - button "Записаться" [ref=e83] [cursor=pointer]:
+          - generic [ref=e84]: Записаться

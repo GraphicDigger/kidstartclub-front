@@ -1,0 +1,18 @@
+
+/* Логика: отступ ставится не на сам блок, а контекстно — только когда рядом есть сосед. */
+
+/* у любого элемента после h2 — отступ */
+
+    /* .root h2 + * { margin-top: 12px; }
+    .root h3 + * { margin-top: 8px; } */
+
+/* у h2, если перед ним что-то есть — отступ */
+
+.root * + h2  { margin-top: 30px; }
+.root * + h3  { margin-top: 20px; }
+.root * + p   { margin-top: 5px; }
+.root * + ul  { margin-top: 5px; }
+
+.root ul { padding-left: 30px; }
+.root li + li { margin-top: 5px; }
+.root li { list-style: disc; }

@@ -24,14 +24,30 @@ const Template = (args) => {
     );
 };
 
+const FullscreenTemplate = (args) => {
+    return (
+        <StyledContainer>
+            <Dialog>
+                <DialogTrigger>
+                    <Button color="primary" variant="lite" size="small">Open Dialog</Button>
+                </DialogTrigger>
+                <DialogContent fullscreen>
+                    <Typography variant="body.small">Fullscreen Dialog</Typography>
+                </DialogContent>
+            </Dialog>
+        </StyledContainer>
+    );
+};
+
 const StyledContainer = styled.div`
     width: 400px;
     height: 400px;
 `;
 
 export const Default = Template.bind({});
-Default.args = {
+Default.args = {};
 
-};
+export const Fullscreen = FullscreenTemplate.bind({});
+Fullscreen.args = {};
 
 

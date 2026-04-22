@@ -5,11 +5,17 @@ declare module '@emotion/react' {
   export interface Theme {
     sys: {
       typography: {
-        body?: Record<string, { fontSize?: string; lineHeight?: string; fontWeight?: number }>
-        heading?: Record<string, { fontSize?: string; lineHeight?: string; fontWeight?: number }>
+        title?: Record<string, { fontSize?: string; lineHeight?: string; fontWeight?: number; letterSpacing?: string | number; textTransform?: string }>
+        display?: Record<string, { fontSize?: string; lineHeight?: string; fontWeight?: number; letterSpacing?: string | number; textTransform?: string }>
+        label?: Record<string, { fontSize?: string; lineHeight?: string; fontWeight?: number; letterSpacing?: string | number; textTransform?: string }>
+        body?: Record<string, { fontSize?: string; lineHeight?: string; fontWeight?: number; letterSpacing?: string | number; textTransform?: string }>
+        headline?: Record<string, { fontSize?: string; lineHeight?: string; fontWeight?: number; letterSpacing?: string | number; textTransform?: string }>
+        caps?: Record<string, { fontSize?: string; lineHeight?: string; fontWeight?: number; letterSpacing?: string | number; textTransform?: string }>
         color: Record<string, string>
         fontWeight: Record<string, number>
       }
+      color: Record<string, string>
+      outline: Record<string, string>
       spacing: Record<string, string>
       size: Record<string, string>
       borderRadius: Record<string, string>

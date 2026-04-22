@@ -9,6 +9,10 @@ export interface Lesson {
     date: string;
     time: string;
     image: string;
+    about?: string;
+    lesson?: string;
+    mood?: string;
+    color?: string;
 }
 
 // Redux State Schemas

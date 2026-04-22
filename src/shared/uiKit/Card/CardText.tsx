@@ -1,134 +1,70 @@
 'use client'
 
-import React, { useMemo } from 'react'
-import Image from 'next/image'
+import React from 'react'
 import styled from '@emotion/styled'
-import { Box } from '../Box'
+
 import { Typography } from '../Typography'
 import { Stack } from '../Stack'
-import { Button } from '../Button'
-import { TopSlot } from './TopSlot'
-import { BottomSlot } from './BottomSlot'
-
-/** Плоский список валидных элементов; Fragment разворачивается (иначе слоты внутри <> не находятся). */
-function flattenValidElements(nodes: React.ReactNode): React.ReactElement[] {
-    const out: React.ReactElement[] = []
-    React.Children.forEach(nodes, (child) => {
-        if (!React.isValidElement(child)) return
-        if (child.type === React.Fragment) {
-            const fragmentProps = (child as React.ReactElement<{ children?: React.ReactNode }>).props
-            out.push(...flattenValidElements(fragmentProps.children))
-            return
-        }
-        out.push(child)
-    })
-    return out
-}
-
-function isTopSlot(el: React.ReactElement) {
-    return el.type === TopSlot || (el.type as { displayName?: string }).displayName === TopSlot.displayName
-}
-
-function isBottomSlot(el: React.ReactElement) {
-    return el.type === BottomSlot || (el.type as { displayName?: string }).displayName === BottomSlot.displayName
-}
 
 interface CardTextProps {
-    subtitle?: React.ReactNode;
-    title?: React.ReactNode;
+    subheadline?: React.ReactNode;
+    headline?: React.ReactNode;
     description?: React.ReactNode;
     detail?: React.ReactNode;
     actionLabel?: React.ReactNode;
     onAction?: () => void;
     frame?: boolean;
-    children?: React.ReactNode;
+    descriptionLines?: number;
 }
+
 export const CardText = ({
-    subtitle,
-    title,
+    subheadline,
+    headline,
     description,
-    detail,
-    actionLabel,
-    onAction,
     frame,
-    children,
+    descriptionLines = 4,
 }: CardTextProps) => {
-
-    const slots = useMemo(() => {
-        const result = {
-            TopSlot: null as React.ReactElement | null,
-            BottomSlot: null as React.ReactElement | null,
-        }
-
-        for (const child of flattenValidElements(children)) {
-            if (isTopSlot(child)) result.TopSlot = child
-            else if (isBottomSlot(child)) result.BottomSlot = child
-        }
-
-        return result
-    }, [children])
-
-
     return (
-        <ContainerStyled
-            frame={frame}
-        >
+        <ContainerStyled frame={frame}>
             <Stack
                 direction="column"
                 gap={2}
                 alignX="start"
                 alignY="start"
             >
-                {slots.TopSlot}
-                {subtitle && (
-                    <Typography
-                        variant="body.small"
-                        tag="p"
-                    >{subtitle}
-                    </Typography>
+                {subheadline && (
+                    <Typography variant="body.small" tag="p">{subheadline}</Typography>
                 )}
-                {title && (
-                    <TitleStyled
-                        variant="heading.small"
-                        tag="h3"
-                    > {title}
-                    </TitleStyled>
+                {headline && (
+                    <TitleStyled tag="h3">{headline}</TitleStyled>
                 )}
                 {description && (
-                    <DescriptionStyled
-                        variant="body.medium"
-                        tag="p"
-                    > {description}
-                    </DescriptionStyled>
+                    <DescriptionStyled tag="p" $lines={descriptionLines}>{description}</DescriptionStyled>
                 )}
             </Stack>
-            {slots.BottomSlot}
         </ContainerStyled>
     )
 }
 
-const ContainerStyled = styled(Box, {
-    shouldForwardProp: (prop) => prop !== 'frame',
-  })(({ theme, frame }) => ({
+const ContainerStyled = styled('div')<{ frame?: boolean }>(({ theme, frame }) => ({
     width: '100%',
     height: '100%',
-  
-    padding: frame ? theme.sys.spacing.large : '20px 0 0 0',
-  
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    gap: '20px',
-  }));
+}));
 
 const TitleStyled = styled(Typography)(({ theme }) => ({
+     ... theme.sys.typography.headline?.medium,
     '@container (max-width: 400px)': {
-        fontSize: theme.sys.typography.heading?.xsmall?.fontSize,
+        ... theme.sys.typography.headline?.small,
     },
 }));
 
-const DescriptionStyled = styled(Typography)(({ theme }) => ({
+const DescriptionStyled = styled(Typography, { shouldForwardProp: (prop) => prop !== '$lines' })<{ $lines: number }>(({ theme, $lines }) => ({
+    ... theme.sys.typography.body?.medium,
+    display: '-webkit-box',
+    WebkitLineClamp: $lines,
+    WebkitBoxOrient: 'vertical',
+    overflow: 'hidden',
     '@container (max-width: 400px)': {
-        fontSize: theme.sys.typography.body?.small?.fontSize,
+        ... theme.sys.typography.body?.small,
     },
 }));

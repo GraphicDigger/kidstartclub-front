@@ -109,13 +109,9 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
             $isFocused={isFocused}
             $isSelected={isSelected}
         >
-            {startIcon && (
-                <StyledIcon $colors={btn?.default?.icon}>{startIcon}</StyledIcon>
-            )}
+            {startIcon && <StyledIcon $colors={btn?.default?.icon}>{startIcon}</StyledIcon>}
             {children && <StyledText>{children}</StyledText>}
-            {endIcon && (
-                <StyledIcon $colors={btn?.default?.icon}>{endIcon}</StyledIcon>
-            )}
+            {endIcon && <StyledIcon $colors={btn?.default?.icon}>{endIcon}</StyledIcon>}
         </StyledButton>
     );
 }));

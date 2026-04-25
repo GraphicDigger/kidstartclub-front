@@ -52,4 +52,5 @@ src/
 - **Экспорты** — каждый компонент/сущность имеет `index.ts`/`index.js` с публичным API.
 - **Storybook** — stories рядом с компонентом (`Component.stories.js`).
 - **Кодогенерация** — новые сущности через `npm run gen` (Plop + шаблоны в `genesis/`).
+- **Intercepting Routes (модалка + standalone URL)** — в клиентском `@modal/(.)[id]/page.js` обязательно `useEffect(() => router.refresh(), [])` при mount. Без этого Next router cache возвращает stale RSC и повторный клик открывает standalone вместо модалки. Подробнее — `src/app/book-club/README.md`.
 

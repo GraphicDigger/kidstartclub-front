@@ -18,8 +18,8 @@ interface CardTextProps {
 }
 
 export const CardText = ({
-    subheadline,
     headline,
+    subheadline,
     description,
     frame,
     descriptionLines = 4,
@@ -33,7 +33,7 @@ export const CardText = ({
                 alignY="start"
             >
                 {subheadline && (
-                    <Typography variant="body.small" tag="p">{subheadline}</Typography>
+                    <SubheadlineStyled tag="p">{subheadline}</SubheadlineStyled>
                 )}
                 {headline && (
                     <TitleStyled tag="h3">{headline}</TitleStyled>
@@ -58,9 +58,18 @@ const TitleStyled = styled(Typography)(({ theme }) => ({
     },
 }));
 
+const SubheadlineStyled = styled(Typography)(({ theme }) => ({
+    width: '100%',
+    ... theme.sys.typography.body?.medium,
+    '@container (max-width: 400px)': {
+        ... theme.sys.typography.body?.small,
+    },
+}));
+
 const DescriptionStyled = styled(Typography, { shouldForwardProp: (prop) => prop !== '$lines' })<{ $lines: number }>(({ theme, $lines }) => ({
     ... theme.sys.typography.body?.medium,
     display: '-webkit-box',
+    color: theme.sys.color.onSurfaceVariant,
     WebkitLineClamp: $lines,
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',

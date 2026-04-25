@@ -1,0 +1,26 @@
+[     820ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-dom/cjs/react-dom-client.development.js:24503
+[    1048ms] [WARNING] ./src/shared/uiKit/ButtonTool/ButtonTool.jsx
+Attempted import error: 'PlusIcon' is not exported from '@/shared/icons' (imported as 'PlusIcon'). @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/react-dev-overlay/app/hot-reloader-client.js:281
+[    1077ms] [WARNING] Image with src "/img-rozhdestvo-v-proze-cover.jpg" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.
+Read more: https://nextjs.org/docs/api-reference/next/image#priority @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[    1077ms] [WARNING] Image with src "/img-nesishestvyushii-prichal-cover.jpg" was detected as the Largest Contentful Paint (LCP). Please add the "priority" property if this image is above the fold.
+Read more: https://nextjs.org/docs/api-reference/next/image#priority @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/shared/lib/utils/warn-once.js:15
+[    6424ms] [WARNING] %c%s%c  background: #e6e6e6;background: light-dark(rgba(0,0,0,0.1), rgba(255,255,255,0.25));color: #000000;color: light-dark(#000000, #ffffff);border-radius: 2px  Server   Error: Route "/book-club/(.)[id]" used `params.id`. `params` should be awaited before using its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at eval (rsc://React/Server/webpack-internal:///(rsc)/./src/app/book-club/@modal/(.)%5Bid%5D/page.js?0:15:116)
+    at InterceptedLessonPage (rsc://React/Server/webpack-internal:///(rsc)/./src/app/book-club/@modal/(.)%5Bid%5D/page.js?1:15:90)
+    at resolveErrorDev (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:1799:63)
+    at getOutlinedModel (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:1290:22)
+    at parseModelString (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:1430:15)
+    at Array.eval (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:2126:18)
+    at JSON.parse (<anonymous>)
+    at resolveConsoleEntry (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:1962:28)
+    at processFullStringRow (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:2102:11)
+    at processFullBinaryRow (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:2066:7)
+    at progress (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/compiled/react-server-dom-webpack/cjs/react-server-dom-webpack-client.browser.development.js:2269:17) @ rsc://React/Server/webpack-internal:///(rsc)/./src/app/book-club/@modal/(.)%5Bid%5D/page.js?0:14
+[    6433ms] [ERROR] %o
+
+%s TypeError: initialTree is not iterable
+    at applyPatch (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/router-reducer/apply-router-state-patch-to-tree.js:18:53)
+    at applyRouterStatePatchToTree (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/router-reducer/apply-router-state-patch-to-tree.js:75:30)
+    at applyRouterStatePatchToTree (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/router-reducer/apply-router-state-patch-to-tree.js:77:30)
+    at eval (webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/components/router-reducer/reducers/navigate-reducer.js:166:88) The above error occurred in the <Router> component. It was handled by the <ErrorBoundaryHandler> error boundary. @ webpack-internal:///(app-pages-browser)/./node_modules/next/dist/client/react-client-callbacks/app-router.js:51

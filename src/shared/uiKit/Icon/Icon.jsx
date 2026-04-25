@@ -3,23 +3,22 @@ import styles from './Icon.module.scss';
 
 
 const SIZE_MAP = {
-    xxs: 12,
-    xs: 16,
-    s: 20,
-    m: 24,
-    l: 28,
-    xl: 32
+    xs: 12,
+    s: 16,
+    m: 20,
+    l: 24,
+    xl: 28,
 };
 
 export const Icon = ({
-    size = 'xs',
+    size = 'm',
     children,
     color,
     fill = 'none'
 }) => {
-    const sizeValue = SIZE_MAP[size] || SIZE_MAP.xs
+    const sizeValue = SIZE_MAP[size] || SIZE_MAP.m
     const viewBox = `0 0 ${sizeValue} ${sizeValue}`
-    
+
     return (
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -30,10 +29,10 @@ export const Icon = ({
             className={styles.icon}
             style={{
                 color: color || 'currentColor',
-                // display: 'flex',
-                // alignItems: 'center',
-                // justifyContent: 'center',
-                // flexShrink: 0
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0
             }}
         >
             {children}

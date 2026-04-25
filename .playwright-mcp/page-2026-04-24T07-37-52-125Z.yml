@@ -1,0 +1,53 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "logo" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "logo" [ref=e7]
+      - generic [ref=e10]:
+        - link "Книжный клуб" [ref=e11] [cursor=pointer]:
+          - /url: /book-club
+          - paragraph [ref=e12]: Книжный клуб
+        - link "Игры" [ref=e13] [cursor=pointer]:
+          - /url: /games
+          - paragraph [ref=e14]: Игры
+        - link "Профориентация" [ref=e15] [cursor=pointer]:
+          - /url: /proforentation
+          - paragraph [ref=e16]: Профориентация
+  - generic [ref=e17]:
+    - heading "Клуб Читателей" [level=1] [ref=e19]
+    - paragraph [ref=e20]: Где подростки пытаются понять и осмыслить себя через книги
+    - link "Уильям Голдинг 12+ Повелитель мух Повелитель мух — это не просто история про детей на острове. Это текст, в котором автор исследует природу человека, страх и поведение в группе. Подросток читает не только сюжет — он учится видеть, что скрыто под ним. 6 авг (ВС) - 17:00 (МСК) Записаться" [ref=e22] [cursor=pointer]:
+      - /url: /book-club/lesson-3
+      - generic [ref=e25]:
+        - generic [ref=e28]:
+          - paragraph [ref=e29]:
+            - generic [ref=e30]:
+              - generic [ref=e31]: Уильям Голдинг
+              - generic [ref=e32]: 12+
+          - heading "Повелитель мух" [level=3] [ref=e33]
+          - paragraph [ref=e34]: Повелитель мух — это не просто история про детей на острове. Это текст, в котором автор исследует природу человека, страх и поведение в группе. Подросток читает не только сюжет — он учится видеть, что скрыто под ним.
+        - generic [ref=e36]:
+          - paragraph [ref=e37]: 6 авг (ВС) - 17:00 (МСК)
+          - button "Записаться" [ref=e38]:
+            - generic [ref=e39]: Записаться
+  - generic [ref=e40]:
+    - heading [level=1]
+    - paragraph
+    - link "О.Генри 12+ Дары волхвов Короткая история о выборе, ценности подарка и том, как проявляется любовь в действиях. 6 авг (ВС) - 17:00 (МСК) Записаться" [ref=e43] [cursor=pointer]:
+      - /url: /book-club/lesson-6
+      - generic [ref=e46]:
+        - generic [ref=e49]:
+          - paragraph [ref=e50]:
+            - generic [ref=e51]:
+              - generic [ref=e52]: О.Генри
+              - generic [ref=e53]: 12+
+          - heading "Дары волхвов" [level=3] [ref=e54]
+          - paragraph [ref=e55]: Короткая история о выборе, ценности подарка и том, как проявляется любовь в действиях.
+        - generic [ref=e57]:
+          - paragraph [ref=e58]: 6 авг (ВС) - 17:00 (МСК)
+          - button "Записаться" [ref=e59]:
+            - generic [ref=e60]: Записаться
+  - button "Open Next.js Dev Tools" [ref=e66] [cursor=pointer]:
+    - img [ref=e67]
+  - alert [ref=e70]

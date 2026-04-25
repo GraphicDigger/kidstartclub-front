@@ -9,3 +9,4 @@ export { ArrowLeftIcon } from './ArrowLeftIcon';
 export { ArrowLeftCloseIcon } from './ArrowLeftCloseIcon';
 export { ArrowRightCloseIcon } from './ArrowRightCloseIcon';
 export { HomeIcon } from './HomeIcon';
+export { BurgerIcon } from './BurgerIcon';

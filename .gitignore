@@ -16,6 +16,8 @@
 /.next/
 /out/
 
+.playwright-mcp
+
 # production
 /build
 

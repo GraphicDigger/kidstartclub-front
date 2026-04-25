@@ -3,8 +3,8 @@ import React, { forwardRef } from "react";
 import styled from "@emotion/styled";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { Button } from "../Button"
-import { CrossIcon } from "../../icons"
+import { ButtonTool } from "../ButtonTool"
+import { CrossIcon } from "@/shared/icons"
 
 export const Dialog = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;
@@ -27,13 +27,9 @@ export const DialogContent = forwardRef(({
             {children}
             {hasCloseButton &&
                 <StyledDialogClose asChild>
-                    <Button
-                        size="small"
-                        variant="blank"
-                        color="default"
-                    >
-                        <CrossIcon />
-                    </Button>
+                    <ButtonTool color="primary">
+                        <CrossIcon size="m" />
+                    </ButtonTool>
                 </StyledDialogClose>
             }
         </StyledDialogContent>

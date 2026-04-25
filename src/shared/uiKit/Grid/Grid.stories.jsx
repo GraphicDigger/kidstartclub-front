@@ -3,7 +3,7 @@ import { Grid } from './Grid';
 import { Box } from '../Box';
 import styled from '@emotion/styled';
 import { Card } from '../Card';
-import { lessons } from '../../../entities/lesson/api/lesson.data';
+import { courses } from '../../../entities/course/api/course.data';
 
 export default {
     title: 'uiKit/Grid',
@@ -25,7 +25,7 @@ const Item = styled(Box)`
 `;
 
 export const GridFill = () => {
-    const lessonsFill = lessons.slice(0, 3);
+    const coursesFill = courses.slice(0, 3);
     return (
 
         <Grid
@@ -36,14 +36,14 @@ export const GridFill = () => {
             minCol={280}
             autoFill={true}
         >
-            {lessonsFill.map((lesson) => (
+            {coursesFill.map((course) => (
                 <Grid item size={20}>
                     <Card
-                        key={lesson.id}
-                        imageSrc={lesson.image}
-                        imageAlt={lesson.name}
-                        description={lesson.description}
-                        detail={lesson.date + ' - ' + lesson.time}
+                        key={course.id}
+                        imageSrc={course.image}
+                        imageAlt={course.name}
+                        description={course.description}
+                        detail={course.date + ' - ' + course.time}
                         actionLabel="Action"
                         height="fill"
                     />
@@ -54,7 +54,7 @@ export const GridFill = () => {
 };
 
 export const GridFit = () => {
-    const lessonsFit = lessons.slice(0, 3);
+    const coursesFit = courses.slice(0, 3);
     return (
         <Grid
             container
@@ -64,15 +64,15 @@ export const GridFit = () => {
             minCol={280}
             autoFit={true}
         >
-            {lessonsFit.map((lesson) => (
+            {coursesFit.map((course) => (
                 <Grid item size={20}>
                     <Card
-                        key={lesson.id}
-                        imageSrc={lesson.image}
-                        imageAlt={lesson.name}
-                        title={lesson.name}
-                        description={lesson.description}
-                        detail={lesson.date + ' - ' + lesson.time}
+                        key={course.id}
+                        imageSrc={course.image}
+                        imageAlt={course.name}
+                        title={course.name}
+                        description={course.description}
+                        detail={course.date + ' - ' + course.time}
                         actionLabel="Action"
                     />
                 </Grid>
@@ -91,14 +91,14 @@ export const GridColumns = () => {
             gap={6}
             minCol={230}
         >
-            {lessons.map((lesson) => (
+            {courses.map((course) => (
                 <Grid item size={20}>
                     <Card
-                        key={lesson.id}
-                        imageSrc={lesson.image}
-                        imageAlt={lesson.name}
-                        description={lesson.description}
-                        detail={lesson.date + ' - ' + lesson.time}
+                        key={course.id}
+                        imageSrc={course.image}
+                        imageAlt={course.name}
+                        description={course.description}
+                        detail={course.date + ' - ' + course.time}
                         actionLabel="Action"
                         frame
                         // frame={false}

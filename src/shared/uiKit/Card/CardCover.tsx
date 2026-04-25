@@ -1,8 +1,8 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Image from 'next/image'
 import styled from '@emotion/styled'
+import { Image } from '../Image'
 
 /**
  * «Узкая по высоте» (слишком широкий кадр): w/h > порога — авто-fixed ячейка WIDE_SLOT_ASPECT.
@@ -34,7 +34,7 @@ function parseAspectRatio(value: number | string | undefined, fallback: number) 
 export const CardCover = ({
   src,
   alt,
-  imageBgColor = '#F9F9F9',
+  imageBgColor = '#f2f2f2',
   fixed = true,
   aspectRatio,
 }: CardCoverProps) => {

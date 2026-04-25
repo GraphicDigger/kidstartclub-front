@@ -69,8 +69,6 @@ export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
   imageBgColor,
   imageAlt = '',
 
-  detail,
-  actionLabel,
   onClick,
   className,
   ...props
@@ -117,16 +115,18 @@ export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
             headline={title}
             description={description}
             descriptionLines={descriptionLines}
-            detail={detail}
-            actionLabel={actionLabel}
             frame={frame}
           />
         </Area>
-        {slots.BottomSlot}
+        {slots.BottomSlot && <BottomSlotArea>{slots.BottomSlot}</BottomSlotArea>}
       </ContentArea>
     </StyledCard>
   );
 }));
+
+const BottomSlotArea = styled('div')`
+  padding-top: 20px;
+`;
 
 const ContentArea = styled('div', { shouldForwardProp: (prop) => prop !== 'frame' })<{ frame?: boolean }>(({ theme, frame }) => ({
   flex: 1,
@@ -142,7 +142,6 @@ const Area = styled('div')({
   display: 'flex',
   flexDirection: 'column',
   gap: 8,
-  paddingBottom: 20,
 });
 
 const StyledCard = styled(Stack, { shouldForwardProp: (prop) => prop !== 'frame' })<{ frame?: boolean }>(({ theme, frame }) => ({

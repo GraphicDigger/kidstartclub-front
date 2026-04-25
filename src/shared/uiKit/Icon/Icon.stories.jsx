@@ -48,7 +48,7 @@ export const IconGallery = () => {
           gap: '8px',
           minHeight: '80px'
         }}>
-          <Icon size="M" />
+          <Icon size="m" />
           <div style={{ 
             fontSize: '12px',
             wordBreak: 'break-word',

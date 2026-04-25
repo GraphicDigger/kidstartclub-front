@@ -1,4 +1,6 @@
-import { useEffect, useCallback } from 'react';
+"use client"
+ 
+import { useEffect, useCallback, use } from 'react';
 
 type KeyHandler = (event: KeyboardEvent) => void;
 

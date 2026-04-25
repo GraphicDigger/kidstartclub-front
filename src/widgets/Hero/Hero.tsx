@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useRef } from 'react'
-import Image from 'next/image'
 import { Stack } from '../../shared/uiKit/Stack'
+import { Image } from '../../shared/uiKit/Image'
 import { gsap } from 'gsap'
 import { Typography } from '../../shared/uiKit/Typography'
 

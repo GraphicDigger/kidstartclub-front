@@ -1,0 +1,84 @@
+- generic:
+  - generic [active]:
+    - generic [ref=e3]:
+      - generic [ref=e4]:
+        - generic [ref=e5]:
+          - navigation [ref=e6]:
+            - button "previous" [disabled] [ref=e7]:
+              - img "previous" [ref=e8]
+            - generic [ref=e10]:
+              - generic [ref=e11]: 1/
+              - text: "1"
+            - button "next" [disabled] [ref=e12]:
+              - img "next" [ref=e13]
+          - img
+        - generic [ref=e15]:
+          - generic [ref=e16]:
+            - img [ref=e17]
+            - generic "Latest available version is detected (16.2.4)." [ref=e19]: Next.js 16.2.4
+            - generic [ref=e20]: Turbopack
+          - img
+      - dialog "Build Error" [ref=e22]:
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e29]: Build Error
+              - generic [ref=e30]:
+                - button "Copy Error Info" [ref=e31] [cursor=pointer]:
+                  - img [ref=e32]
+                - button "No related documentation found" [disabled] [ref=e34]:
+                  - img [ref=e35]
+                - button "Attach Node.js inspector" [ref=e37] [cursor=pointer]:
+                  - img [ref=e38]
+            - generic [ref=e47]: Export PlusIcon doesn't exist in target module
+          - generic [ref=e49]:
+            - generic [ref=e51]:
+              - img [ref=e53]
+              - generic [ref=e56]: ./src/shared/uiKit/ButtonTool/ButtonTool.jsx (6:1)
+              - button "Open in editor" [ref=e57] [cursor=pointer]:
+                - img [ref=e59]
+            - generic [ref=e62]:
+              - generic [ref=e63]: Export
+              - text: PlusIcon
+              - generic [ref=e64]: doesn't exist in target module
+              - generic [ref=e65]: 4 |
+              - text: import PropTypes from 'prop-types'
+              - generic [ref=e66]: ;
+              - generic [ref=e67]: 5 |
+              - text: import
+              - generic [ref=e68]: "{ useTheme }"
+              - text: from '@emotion/react'
+              - generic [ref=e69]: ;
+              - text: ">"
+              - generic [ref=e70]: 6 |
+              - text: import
+              - generic [ref=e71]: "{"
+              - text: PlusIcon
+              - generic [ref=e72]: "}"
+              - text: from '@/shared/icons'
+              - generic [ref=e73]: ;
+              - generic [ref=e74]: "|"
+              - text: ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+              - generic [ref=e75]: 7 |
+              - generic [ref=e76]: 8 |
+              - text: export const ButtonTool
+              - generic [ref=e77]: = memo(
+              - generic [ref=e78]: 9 |
+              - generic [ref=e79]: forwardRef( The export
+              - text: PlusIcon
+              - generic [ref=e80]: was not found in module
+              - generic [ref=e81]: "[project]/src/shared/icons/index.js [app-client] (ecmascript)"
+              - generic [ref=e82]: . Did you mean to import
+              - text: CrossIcon
+              - generic [ref=e83]: "? All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist. Import traces: #1 [Client Component Browser]: ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser] ./src/widgets/Header/Header.jsx [Client Component Browser] ./src/widgets/Header/Header.jsx [Server Component] ./src/app/page.js [Server Component] #2 [Client Component SSR]: ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR] ./src/widgets/Header/Header.jsx [Client Component SSR] ./src/widgets/Header/Header.jsx [Server Component] ./src/app/page.js [Server Component] #3 [Client Component Browser]: ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser] ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component Browser] ./src/games/dotByDot/ui/Playground.jsx [Client Component Browser] ./src/games/dotByDot/index.ts [Client Component Browser] ./src/app/store/index.js [Client Component Browser] ./src/shared/providers/store/index.js [Client Component Browser] ./src/shared/providers/store/index.js [Server Component] ./src/shared/providers/providers.jsx [Server Component] ./src/app/layout.js [Server Component] #4 [Client Component SSR]: ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR] ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component SSR] ./src/games/dotByDot/ui/Playground.jsx [Client Component SSR] ./src/games/dotByDot/index.ts [Client Component SSR] ./src/app/store/index.js [Client Component SSR] ./src/shared/providers/store/index.js [Client Component SSR] ./src/shared/providers/store/index.js [Server Component] ./src/shared/providers/providers.jsx [Server Component] ./src/app/layout.js [Server Component]"
+        - generic [ref=e84]: "1"
+        - generic [ref=e85]: "2"
+    - generic [ref=e90] [cursor=pointer]:
+      - button "Open Next.js Dev Tools" [ref=e91]:
+        - img [ref=e92]
+      - button "Open issues overlay" [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e98]: "0"
+          - generic [ref=e99]: "1"
+        - generic [ref=e100]: Issue
+  - alert [ref=e101]

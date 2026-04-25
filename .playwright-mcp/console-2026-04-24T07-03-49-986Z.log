@@ -1,0 +1,353 @@
+[     233ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://localhost:3000/book-club:0
+[     293ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_react-dom_0bruynb._.js:13920
+[     340ms] Error: ./src/shared/uiKit/ButtonTool/ButtonTool.jsx:6:1
+Export PlusIcon doesn't exist in target module
+  4 | import PropTypes from 'prop-types';
+  5 | import { useTheme } from '@emotion/react';
+> 6 | import { PlusIcon } from '@/shared/icons';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const ButtonTool = memo(
+  9 |   forwardRef(
+
+The export PlusIcon was not found in module [project]/src/shared/icons/index.js [app-client] (ecmascript).
+Did you mean to import CrossIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #2 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #3 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component Browser]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component Browser]
+    ./src/games/dotByDot/index.ts [Client Component Browser]
+    ./src/app/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component SSR]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component SSR]
+    ./src/games/dotByDot/index.ts [Client Component SSR]
+    ./src/app/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component]
+
+
+    at <unknown> (Error: ./src/shared/uiKit/ButtonTool/ButtonTool.jsx:6:1)
+    at Object.getCompilationErrors (file:///Users/ilmirsultanov/Projects/kidstartclub/front/node_modules/next/dist/server/dev/hot-reloader-turbopack.js:1186:59)
+    at DevBundlerService.getCompilationError (file:///Users/ilmirsultanov/Projects/kidstartclub/front/node_modules/next/dist/server/lib/dev-bundler-service.js:44:55)
+    at DevServer.getCompilationError (file:///Users/ilmirsultanov/Projects/kidstartclub/front/node_modules/next/dist/server/dev/next-dev-server.js:719:42)
+    at DevServer.findPageComponents (file:///Users/ilmirsultanov/Projects/kidstartclub/front/node_modules/next/dist/server/dev/next-dev-server.js:689:43)
+    at async DevServer.renderErrorToResponseImpl (file:///Users/ilmirsultanov/Projects/kidstartclub/front/node_modules/next/dist/server/base-server.js:1745:26)
+[     326ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[     335ms] [ERROR] ./src/shared/uiKit/ButtonTool/ButtonTool.jsx:6:1
+Export PlusIcon doesn't exist in target module
+  4 | import PropTypes from 'prop-types';
+  5 | import { useTheme } from '@emotion/react';
+> 6 | import { PlusIcon } from '@/shared/icons';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const ButtonTool = memo(
+  9 |   forwardRef(
+
+The export PlusIcon was not found in module [project]/src/shared/icons/index.js [app-client] (ecmascript).
+Did you mean to import CrossIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #2 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #3 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component Browser]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component Browser]
+    ./src/games/dotByDot/index.ts [Client Component Browser]
+    ./src/app/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component SSR]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component SSR]
+    ./src/games/dotByDot/index.ts [Client Component SSR]
+    ./src/app/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[     335ms] [ERROR] ./src/shared/uiKit/ButtonTool/ButtonTool.jsx:6:1
+Export PlusIcon doesn't exist in target module
+  4 | import PropTypes from 'prop-types';
+  5 | import { useTheme } from '@emotion/react';
+> 6 | import { PlusIcon } from '@/shared/icons';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const ButtonTool = memo(
+  9 |   forwardRef(
+
+The export PlusIcon was not found in module [project]/src/shared/icons/index.js [app-ssr] (ecmascript).
+Did you mean to import CrossIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #2 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #3 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component Browser]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component Browser]
+    ./src/games/dotByDot/index.ts [Client Component Browser]
+    ./src/app/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component SSR]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component SSR]
+    ./src/games/dotByDot/index.ts [Client Component SSR]
+    ./src/app/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[     335ms] [ERROR] ./src/shared/uiKit/ButtonTool/ButtonTool.jsx:6:1
+Export PlusIcon doesn't exist in target module
+  4 | import PropTypes from 'prop-types';
+  5 | import { useTheme } from '@emotion/react';
+> 6 | import { PlusIcon } from '@/shared/icons';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const ButtonTool = memo(
+  9 |   forwardRef(
+
+The export PlusIcon was not found in module [project]/src/shared/icons/index.js [app-client] (ecmascript).
+Did you mean to import CrossIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/book-club/page.js [Server Component]
+
+  #2 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/book-club/page.js [Server Component]
+
+  #3 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component Browser]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component Browser]
+    ./src/games/dotByDot/index.ts [Client Component Browser]
+    ./src/app/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component SSR]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component SSR]
+    ./src/games/dotByDot/index.ts [Client Component SSR]
+    ./src/app/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[     335ms] [ERROR] ./src/shared/uiKit/ButtonTool/ButtonTool.jsx:6:1
+Export PlusIcon doesn't exist in target module
+  4 | import PropTypes from 'prop-types';
+  5 | import { useTheme } from '@emotion/react';
+> 6 | import { PlusIcon } from '@/shared/icons';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const ButtonTool = memo(
+  9 |   forwardRef(
+
+The export PlusIcon was not found in module [project]/src/shared/icons/index.js [app-ssr] (ecmascript).
+Did you mean to import CrossIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/book-club/page.js [Server Component]
+
+  #2 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/book-club/page.js [Server Component]
+
+  #3 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component Browser]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component Browser]
+    ./src/games/dotByDot/index.ts [Client Component Browser]
+    ./src/app/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component SSR]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component SSR]
+    ./src/games/dotByDot/index.ts [Client Component SSR]
+    ./src/app/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[     417ms] [ERROR] ./src/shared/uiKit/ButtonTool/ButtonTool.jsx:6:1
+Export PlusIcon doesn't exist in target module
+  4 | import PropTypes from 'prop-types';
+  5 | import { useTheme } from '@emotion/react';
+> 6 | import { PlusIcon } from '@/shared/icons';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const ButtonTool = memo(
+  9 |   forwardRef(
+
+The export PlusIcon was not found in module [project]/src/shared/icons/index.js [app-client] (ecmascript).
+Did you mean to import CrossIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #2 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #3 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component Browser]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component Browser]
+    ./src/games/dotByDot/index.ts [Client Component Browser]
+    ./src/app/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component SSR]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component SSR]
+    ./src/games/dotByDot/index.ts [Client Component SSR]
+    ./src/app/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[     417ms] [ERROR] ./src/shared/uiKit/ButtonTool/ButtonTool.jsx:6:1
+Export PlusIcon doesn't exist in target module
+  4 | import PropTypes from 'prop-types';
+  5 | import { useTheme } from '@emotion/react';
+> 6 | import { PlusIcon } from '@/shared/icons';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  7 |
+  8 | export const ButtonTool = memo(
+  9 |   forwardRef(
+
+The export PlusIcon was not found in module [project]/src/shared/icons/index.js [app-ssr] (ecmascript).
+Did you mean to import CrossIcon?
+All exports of the module are statically known (It doesn't have dynamic exports). So it's known statically that the requested export doesn't exist.
+
+Import traces:
+  #1 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Client Component Browser]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #2 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Client Component SSR]
+    ./src/widgets/Header/Header.jsx [Server Component]
+    ./src/app/page.js [Server Component]
+
+  #3 [Client Component Browser]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component Browser]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component Browser]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component Browser]
+    ./src/games/dotByDot/index.ts [Client Component Browser]
+    ./src/app/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Client Component Browser]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component]
+
+  #4 [Client Component SSR]:
+    ./src/shared/uiKit/ButtonTool/ButtonTool.jsx [Client Component SSR]
+    ./src/shared/uiKit/Dialog/Dialog.jsx [Client Component SSR]
+    ./src/games/dotByDot/ui/Playground.jsx [Client Component SSR]
+    ./src/games/dotByDot/index.ts [Client Component SSR]
+    ./src/app/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Client Component SSR]
+    ./src/shared/providers/store/index.js [Server Component]
+    ./src/shared/providers/providers.jsx [Server Component]
+    ./src/app/layout.js [Server Component] @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1945
+[     484ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[   11290ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[   11506ms] [LOG] [Fast Refresh] done in 283ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[   11636ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[   11956ms] [LOG] [Fast Refresh] done in 421ms @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_0u_w_5s._.js:1226
+[   12608ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_next_dist_115brz8._.js:2431

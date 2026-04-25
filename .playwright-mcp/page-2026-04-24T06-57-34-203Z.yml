@@ -1,0 +1,38 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "logo" [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "logo" [ref=e7]
+      - generic [ref=e10]:
+        - link "Книжный клуб" [ref=e11] [cursor=pointer]:
+          - /url: /book-club
+          - paragraph [ref=e12]: Книжный клуб
+        - link "Игры" [ref=e13] [cursor=pointer]:
+          - /url: /games
+          - paragraph [ref=e14]: Игры
+        - link "Профориентация" [ref=e15] [cursor=pointer]:
+          - /url: /proforentation
+          - paragraph [ref=e16]: Профориентация
+  - generic [ref=e19]:
+    - generic [ref=e25]:
+      - paragraph [ref=e26]: Любовь к жизни • Джек Лондон
+      - paragraph [ref=e27]: Рассказ Любовь к жизни — это история о выживании, которая показывает, как человек принимает решения в критических условиях.
+    - generic [ref=e33]:
+      - paragraph [ref=e34]: Книга Пыли. Прекрасная дикарка • Филип Пулман
+      - paragraph [ref=e35]: это история о выборе, ответственности и взрослении в условиях опасности.
+    - generic [ref=e41]:
+      - paragraph [ref=e42]: Рождественская песнь в прозе • Чарльз Диккенс
+      - paragraph [ref=e43]: История о том, как человек может изменить своё отношение к жизни и людям
+    - generic [ref=e49]:
+      - paragraph [ref=e50]: Несуществующий причал • Нина Дашевская
+      - paragraph [ref=e51]: История о подростке, его внутреннем мире и поиске себя
+    - generic [ref=e57]:
+      - paragraph [ref=e58]: Моё дерево апельсина-лима • Жозе Мауру де Васконселус
+      - paragraph [ref=e59]: Моё дерево апельсина-лима — это история о детстве, боли и внутреннем мире ребёнка.
+    - generic [ref=e65]:
+      - paragraph [ref=e66]: Пёс по имени Мани • Бодо Шефер
+      - paragraph [ref=e67]: История, через которую подросток знакомится с базовыми принципами обращения с деньгами.
+    - generic [ref=e73]:
+      - paragraph [ref=e74]: Волшебные кеды моего друга Перси • Ульф Старк
+      - paragraph [ref=e75]: История о дружбе, воображении и том, как подросток меняет своё восприятие себя через отношения с другим человеком

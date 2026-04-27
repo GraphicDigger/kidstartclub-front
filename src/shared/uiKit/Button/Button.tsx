@@ -1,16 +1,18 @@
 'use client'
 
-/** @jsxImportSource @emotion/react */
 import React, { memo, forwardRef, useState, useCallback } from 'react';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
 import { shouldForwardProp } from './lib/shouldForwardProp';
 
+type Variant = 'filled' | 'lite' | 'blank';
+type Color = 'default' | 'primary' | 'success' | 'warning' | 'error';
+type Size = 'small' | 'medium' | 'large';
 
 interface ButtonProps {
-    variant?: 'filled' | 'lite' | 'blank';
-    color?: 'default' | 'primary' | 'success' | 'warning' | 'error';
-    size?: 'small' | 'medium' | 'large';
+    variant?: Variant;
+    color?: Color;
+    size?: Size;
     stretch?: boolean;
     startIcon?: React.ReactNode;
     endIcon?: React.ReactNode;
@@ -19,9 +21,20 @@ interface ButtonProps {
     isSelected?: boolean;
     focus?: boolean;
     children?: React.ReactNode;
-    onClick?: () => void;
+    onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
     disabled?: boolean;
     className?: string;
+}
+
+interface StyledButtonProps {
+    $variant: Variant;
+    $color: Color;
+    $size: Size;
+    $stretch: boolean;
+    $disabled: boolean;
+    $isHovered: boolean;
+    $isFocused: boolean;
+    $isSelected: boolean;
 }
 
 export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
@@ -43,8 +56,7 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
     disabled = false,
     className,
 }, ref) => {
-    const theme = useTheme()
-    const hasChildren = !!children;
+    const theme = useTheme();
 
     const [internalHovered, setInternalHovered] = useState(false);
     const [internalFocused, setInternalFocused] = useState(false);
@@ -52,43 +64,37 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
     const isHovered = typeof externalHovered === 'boolean' ? externalHovered : internalHovered;
     const isFocused = typeof externalFocused === 'boolean' ? externalFocused : internalFocused;
 
-    const btn = theme?.comp?.button?.[variant]?.[color];
+    const btn = (theme as any)?.comp?.button?.[variant]?.[color];
 
-    const handleClick = useCallback((e) => {
+    const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         if (!disabled && onClick) {
             onClick(e);
         }
     }, [disabled, onClick]);
 
-    // Объединенные обработчики для упрощения
     const handleMouseEnter = useCallback(() => {
-        if (!disabled && externalHovered === undefined) {
-            setInternalHovered(true);
-        }
-    }, [disabled, externalHovered, internalHovered]);
+        if (!disabled && externalHovered === undefined) setInternalHovered(true);
+    }, [disabled, externalHovered]);
 
     const handleMouseLeave = useCallback(() => {
-        if (!disabled && externalHovered === undefined) {
-            setInternalHovered(false);
-        }
-    }, [disabled, externalHovered, internalHovered]);
+        if (!disabled && externalHovered === undefined) setInternalHovered(false);
+    }, [disabled, externalHovered]);
 
-    const handleFocus = useCallback((e) => {
+    const handleFocus = useCallback((e: React.FocusEvent<HTMLButtonElement>) => {
         if (!disabled && externalFocused === undefined && focus) {
             setInternalFocused(true);
             e.stopPropagation();
         }
-    }, [disabled, externalFocused, focus, internalFocused]);
+    }, [disabled, externalFocused, focus]);
 
-    const handleBlur = useCallback((e) => {
+    const handleBlur = useCallback((e: React.FocusEvent<HTMLButtonElement>) => {
         if (!disabled && externalFocused === undefined && focus) {
-            if (!e.currentTarget.contains(e.relatedTarget)) {
+            if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
                 setInternalFocused(false);
             }
             e.stopPropagation();
         }
-    }, [disabled, externalFocused, focus, internalFocused]);
-
+    }, [disabled, externalFocused, focus]);
 
     return (
         <StyledButton
@@ -108,76 +114,43 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
             $isFocused={isFocused}
             $isSelected={isSelected}
         >
-            {startIcon && <StyledIcon $colors={btn?.default?.icon}>{startIcon}</StyledIcon>}
+            {startIcon && <StyledIcon>{startIcon}</StyledIcon>}
             {children && <StyledText>{children}</StyledText>}
-            {endIcon && <StyledIcon $colors={btn?.default?.icon}>{endIcon}</StyledIcon>}
+            {endIcon && <StyledIcon>{endIcon}</StyledIcon>}
         </StyledButton>
     );
 }));
 
-// Стилизованные компоненты
-const StyledButton = styled('button', { shouldForwardProp })(
-    ({
-        theme,
-        $variant,
-        $color,
-        $disabled,
-        $isHovered,
-        $isFocused,
-        $isSelected,
-        $size,
-        $stretch,
-    }) => {
-        const comp = theme?.comp?.button?.[$variant]?.[$color];
+Button.displayName = 'Button';
 
-        let bgColor = 'transparent';
-        if (comp) {
-            if ($disabled && comp.disabled?.background) bgColor = comp.disabled.background;
-            else if ($isSelected && comp.selected?.background) bgColor = comp.selected.background;
-            else if ($isFocused && comp.selected?.background) bgColor = comp.selected.background;
-            else if ($isHovered && comp.hover?.background) bgColor = comp.hover.background;
-            else bgColor = comp.default?.background || 'transparent';
-        }
+const StyledButton = styled('button', { shouldForwardProp })<StyledButtonProps>(
+    ({ theme, $variant, $color, $disabled, $isHovered, $isFocused, $isSelected, $size, $stretch }) => {
+        const comp: any = (theme as any)?.comp?.button?.[$variant]?.[$color];
 
-        let iconColor = 'inherit';
-        if (comp) {
-            if ($disabled && comp.disabled?.icon) iconColor = comp.disabled.icon;
-            else if ($isSelected && comp.selected?.icon) iconColor = comp.selected.icon;
-            else if ($isFocused && comp.selected?.icon) iconColor = comp.selected.icon;
-            else if ($isHovered && comp.hover?.icon) iconColor = comp.hover.icon;
-            else iconColor = comp.default?.icon || 'inherit';
-        }
+        const pickColor = (key: 'background' | 'text' | 'icon', fallback: string) => {
+            if (!comp) return fallback;
+            if ($disabled && comp.disabled?.[key]) return comp.disabled[key];
+            if (($isSelected || $isFocused) && comp.selected?.[key]) return comp.selected[key];
+            if ($isHovered && comp.hover?.[key]) return comp.hover[key];
+            return comp.default?.[key] ?? fallback;
+        };
 
-        let textColor = 'inherit';
-        if (comp) {
-            if ($disabled && comp.disabled?.text) textColor = comp.disabled.text;
-            else if ($isSelected && comp.selected?.text) textColor = comp.selected.text;
-            else if ($isFocused && comp.selected?.text) textColor = comp.selected.text;
-            else if ($isHovered && comp.hover?.text) textColor = comp.hover.text;
-            else textColor = comp.default?.text || 'inherit';
-        }
+        const bgColor = pickColor('background', 'transparent');
+        const textColor = pickColor('text', 'inherit');
+        const iconColor = pickColor('icon', 'inherit');
 
-        const height =
-            typeof $size === 'number' ? `${$size}px` : theme.sys.size[$size];
+        const sysSize = (theme as any)?.sys?.size ?? {};
+        const height = sysSize[$size] ?? '32px';
 
-        let fontSize = '14px';
-        switch ($size) {
-            case 'large':
-                fontSize = '16px';
-                break;
-            case 'small':
-            case 'medium':
-            default:
-                fontSize = '14px';
-        }
+        const fontSize = $size === 'large' ? '16px' : '14px';
 
         return {
             display: 'flex',
             alignItems: 'center',
             flexShrink: 0,
             justifyContent: 'center',
-            gap: theme.sys.spacing.small,
-            padding: `0 ${theme.sys.spacing.medium}`,
+            gap: (theme as any)?.sys?.spacing?.small,
+            padding: `0 ${(theme as any)?.sys?.spacing?.medium}`,
             width: $stretch ? '100%' : 'max-content',
             height,
             maxWidth: '100%',
@@ -188,16 +161,10 @@ const StyledButton = styled('button', { shouldForwardProp })(
             letterSpacing: '-0.1px',
             fontWeight: 600,
             fontSize,
-            borderRadius: theme.sys.borderRadius.small,
+            borderRadius: (theme as any)?.sys?.borderRadius?.small,
             cursor: $disabled ? 'not-allowed' : 'pointer',
-            '& [fill]:not([fill="none"])': {
-                fill: iconColor,
-                stroke: 'none',
-            },
-            '& [stroke]:not([stroke="none"])': {
-                stroke: iconColor,
-                fill: 'none',
-            },
+            '& [fill]:not([fill="none"])': { fill: iconColor, stroke: 'none' },
+            '& [stroke]:not([stroke="none"])': { stroke: iconColor, fill: 'none' },
             '& [fill][stroke]:not([fill="none"]):not([stroke="none"])': {
                 fill: iconColor,
                 stroke: iconColor,
@@ -207,83 +174,4 @@ const StyledButton = styled('button', { shouldForwardProp })(
 );
 
 const StyledIcon = styled('div')({ display: 'contents' });
-
 const StyledText = styled('div')({ whiteSpace: 'nowrap' });
-
-Button.propTypes = {
-    variant: PropTypes.oneOf(['filled', 'lite', 'blank']),
-    color: PropTypes.oneOf(['default', 'primary', 'success', 'warning', 'error']),
-    size: PropTypes.oneOf(['small', 'medium', 'large']),
-    disabled: PropTypes.bool,
-    children: PropTypes.node,
-    onClick: PropTypes.func,
-    startIcon: PropTypes.node,
-    endIcon: PropTypes.node,
-    stretch: PropTypes.bool,
-};
-
-
-
-
-
-
-
-
-
-// /** @jsxImportSource @emotion/react */
-// import React from 'react';
-// import PropTypes from 'prop-types';
-// import styles from './Button.module.scss';
-// import classNames from 'classnames';
-
-// export const Button = ({
-//     size = 'medium',
-//     style = 'filled',
-//     color = 'default',
-//     className = '',
-//     disabled = false,
-//     type = 'button',
-//     onClick,
-//     children,
-//     startIcon,
-//     endIcon,
-//     ...props
-// }) => {
-
-//     const buttonClass = classNames(
-//         styles[`button-${size}`],
-//         styles[`button-${style}-${color}`],
-//         startIcon && !children && styles['button-icon'],
-//         endIcon && !children && styles['button-icon'],
-//         className
-//       );
-
-//     return (
-//         <button
-//             className={buttonClass}
-//             type={type}
-//             disabled={disabled}
-//             onClick={disabled ? undefined : onClick}
-//             {...props}
-//         >
-//             {startIcon && startIcon}
-//             {children && <span className={styles.content}>{children}</span>}
-//             {endIcon && <span className={styles.icon}>{endIcon}</span>}
-//         </button>
-//     );
-// };
-
-// Button.propTypes = {
-//     size: PropTypes.oneOf(['large', 'medium', 'small']),
-//     style: PropTypes.oneOf(['filled', 'outlined', 'blank']),
-//     color: PropTypes.oneOf(['default', 'primary', 'secondary']),
-//     className: PropTypes.string,
-//     leftIcon: PropTypes.node,
-//     rightIcon: PropTypes.node,
-//     disabled: PropTypes.bool,
-//     type: PropTypes.string,
-//     onClick: PropTypes.func,
-//     children: PropTypes.node.isRequired
-// };
-
-// export default Button;

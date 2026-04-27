@@ -14,6 +14,8 @@ export interface Course {
     mood?: string;
     color?: string;
     db_date?: string;
+    skill?: string;
+    age?: string;
 }
 
 // Redux State Schemas

@@ -4,9 +4,8 @@ import Link from "next/link";
 import { Card } from "@/shared/uiKit/Card";
 import { Stack } from "@/shared/uiKit/Stack";
 import { BottomSlot } from "@/shared/uiKit/Card";
-import { Button } from "@/shared/uiKit/Button";
 import { Typography } from "@/shared/uiKit/Typography";
-import { Dialog, DialogTrigger, DialogContent } from "@/shared/uiKit/Dialog";
+import { SubscribeButton } from "@/widgets/SubscribeButton";
 import { isPast } from "@/shared/lib";
 
 
@@ -41,17 +40,7 @@ export const CourseCard = ({ course, href, ...props }: { course: any; href?: str
                         height="fit"
                     >
                         <Typography variant="body.small">{course.date + ' • ' + course.time}</Typography>
-                        <Dialog>
-                            <DialogTrigger asChild>
-                                <Button variant="filled" color="primary" size="small">Записаться</Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                                <Stack padding={4} gap={2}>
-                                    <Typography variant="headline.medium">Запись на занятие</Typography>
-                                    <Typography variant="body.medium">Заглушка формы записи</Typography>
-                                </Stack>
-                            </DialogContent>
-                        </Dialog>
+                        <SubscribeButton />
                     </Stack>
                 </BottomSlot>
             )}

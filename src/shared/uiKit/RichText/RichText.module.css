@@ -9,7 +9,9 @@
 /* у h2, если перед ним что-то есть — отступ */
 
 .root * + h2  { margin-top: 30px; }
+.root h2 + * { margin-top: 12px; }
 .root * + h3  { margin-top: 20px; }
+.root h3 + * { margin-top: 8px; }
 .root * + p   { margin-top: 10px; }
 .root * + ul  { margin-top: 10px; }
 

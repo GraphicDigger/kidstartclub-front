@@ -2,7 +2,6 @@
 
 /** @jsxImportSource @emotion/react */
 import React, { memo, forwardRef, useState, useCallback } from 'react';
-import PropTypes from 'prop-types';
 import styled from '@emotion/styled';
 import { useTheme } from '@emotion/react';
 import { shouldForwardProp } from './lib/shouldForwardProp';

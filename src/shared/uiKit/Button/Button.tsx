@@ -2,7 +2,6 @@
 
 import React, { memo, forwardRef, useState, useCallback } from 'react';
 import styled from '@emotion/styled';
-import { useTheme } from '@emotion/react';
 import { shouldForwardProp } from './lib/shouldForwardProp';
 
 type Variant = 'filled' | 'lite' | 'blank';
@@ -56,15 +55,11 @@ export const Button = memo(forwardRef<HTMLButtonElement, ButtonProps>(({
     disabled = false,
     className,
 }, ref) => {
-    const theme = useTheme();
-
     const [internalHovered, setInternalHovered] = useState(false);
     const [internalFocused, setInternalFocused] = useState(false);
 
     const isHovered = typeof externalHovered === 'boolean' ? externalHovered : internalHovered;
     const isFocused = typeof externalFocused === 'boolean' ? externalFocused : internalFocused;
-
-    const btn = (theme as any)?.comp?.button?.[variant]?.[color];
 
     const handleClick = useCallback((e: React.MouseEvent<HTMLButtonElement>) => {
         if (!disabled && onClick) {

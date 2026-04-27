@@ -35,10 +35,10 @@ const meta = {
     rounded: { control: 'select', options: ['none', 'all', 'left', 'right'] },
     onClick: { action: 'clicked' },
   },
-} satisfies Meta<typeof ButtonTool>;
+} satisfies Meta<ButtonToolProps>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj<ButtonToolProps>;
 
 export const Default: Story = {
   args: {

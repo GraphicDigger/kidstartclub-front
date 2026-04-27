@@ -2,7 +2,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import { Stack } from '@/shared/uiKit/Stack';
-import { Header } from '@/shared/uiKit/Header';
+import { Header } from '@/widgets/Header';
 import { Playground } from '@/games/dotByDot';
 
 const DotByDotGame = () => {

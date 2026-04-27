@@ -1,5 +1,5 @@
 // entities/course/model/store/selectors/base.ts
-import type { RootState } from '@/app/store';
+type RootState = any;
 import { courseAdapter } from '../slice';
 
 const selectCourseAdapterState = (state: RootState) =>

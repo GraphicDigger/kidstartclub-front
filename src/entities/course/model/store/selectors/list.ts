@@ -1,5 +1,5 @@
 // entities/course/model/store/selectors/list.ts
-import type { RootState } from '@/app/store';
+type RootState = any;
 import { createSelector } from '@reduxjs/toolkit';
 import { selectAllCourses, selectCourseEntities } from './base';
 

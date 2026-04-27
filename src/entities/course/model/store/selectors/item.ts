@@ -1,4 +1,4 @@
-import type { RootState } from '@/app/store';
+type RootState = any;
 import { selectSelectedCourseId, selectCourseById } from './base';
 
 export const selectSelectedCourse = (state: RootState) => {

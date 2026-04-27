@@ -10,6 +10,7 @@ export interface Course {
     time: string;
     image: string;
     about?: string;
+    value?: string;
     content?: string;
     mood?: string;
     color?: string;

@@ -26,7 +26,7 @@ export interface ButtonToolProps {
 
 const meta = {
   title: 'Atoms/ButtonTool',
-  component: ButtonTool,
+  component: ButtonTool as React.ComponentType<ButtonToolProps>,
   tags: ['autodocs'],
   argTypes: {
     color: { control: 'select', options: ['default', 'primary', 'success', 'warning', 'error'] },

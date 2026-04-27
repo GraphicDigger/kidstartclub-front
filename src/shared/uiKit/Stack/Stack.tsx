@@ -61,7 +61,7 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(({
     ...props
 }, ref) => {
 
-    const isNumeric = (value) => typeof value === 'number';
+    const isNumeric = (value: unknown): value is number => typeof value === 'number';
     const isColumn = direction === 'column';
 
     // 🔥 главное место

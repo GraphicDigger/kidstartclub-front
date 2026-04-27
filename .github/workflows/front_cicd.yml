@@ -20,10 +20,10 @@ jobs:
             chmod 600 ~/.ssh/github
             ssh-add ~/.ssh/github
 
-            cd deeplays/
+            cd ~/kidstartclub-front
 
             git reset --hard HEAD
-            git pull git@github.com:GraphicDigger/deeplays.git
+            git pull git@github.com:GraphicDigger/kidstartclub-front.git main
 
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
@@ -32,7 +32,8 @@ jobs:
             rm -rf .next
 
             npm ci
-            
+
             npm run build
 
-            echo ${{ secrets.SSH_SERVER_PASSWORD }} | sudo -S systemctl restart deeplays.service
+            pm2 restart kidstartclub --update-env || PORT=3002 pm2 start "npm run start" --name kidstartclub
+            pm2 save

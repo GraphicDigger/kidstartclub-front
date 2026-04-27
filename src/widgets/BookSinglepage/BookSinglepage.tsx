@@ -1,3 +1,4 @@
+import React from "react";
 import { Hero } from "@/widgets/Hero";
 import { CourseCard } from "@/widgets/CourseCard";
 import { Stack } from "@/shared/uiKit/Stack";
@@ -123,12 +124,19 @@ export const BookSinglepage = ({ course }: BookSinglepageProps) => {
 };
 
 
+interface ContainerProps {
+    children?: React.ReactNode;
+    color?: string;
+    divider?: boolean;
+    paddingV?: string | number;
+}
+
 const Container = ({
     children,
     color,
     divider = false,
     paddingV = '5%',
-}) => {
+}: ContainerProps) => {
     return (
         <Stack backgroundColor={color} >
             {divider && <Divider orientation='horizontal' top />}

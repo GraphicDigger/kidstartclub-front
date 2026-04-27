@@ -2,6 +2,19 @@
 import styles from './Divider.module.scss';
 import classNames from 'classnames';
 
+/**
+ * @param {{
+ *   orientation?: string,
+ *   color?: string,
+ *   margin?: any,
+ *   top?: any,
+ *   bottom?: any,
+ *   left?: any,
+ *   right?: any,
+ *   zIndex?: number,
+ *   css?: any,
+ * }} props
+ */
 export const Divider = ({
     orientation = 'horizontal',
     color = 'default',

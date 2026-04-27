@@ -8,6 +8,7 @@ interface SubscribeButtonProps {
     label?: string;
     title?: string;
     description?: string;
+    size?: 'small' | 'medium' | 'large';
 }
 
 export const SubscribeButton = ({

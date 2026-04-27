@@ -9,7 +9,13 @@ import { SubscribeButton } from "@/widgets/SubscribeButton";
 import { isPast } from "@/shared/lib";
 
 
-export const CourseCard = ({ course, href, ...props }: { course: any; href?: string }) => {
+interface CourseCardProps {
+    course: any;
+    href?: string;
+    [key: string]: any;
+}
+
+export const CourseCard = ({ course, href, ...props }: CourseCardProps) => {
 
     const past = isPast(course.db_date);
 

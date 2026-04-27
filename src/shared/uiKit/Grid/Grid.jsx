@@ -3,6 +3,22 @@ import React, { forwardRef } from 'react';
 import classNames from 'classnames';
 import styles from './Grid.module.scss';
 
+/**
+ * @param {{
+ *   width?: any,
+ *   gap?: number,
+ *   autoFill?: boolean,
+ *   autoFit?: boolean,
+ *   minCol?: number,
+ *   container?: boolean,
+ *   columns?: number,
+ *   item?: boolean,
+ *   span?: any,
+ *   children?: import('react').ReactNode,
+ *   className?: string,
+ *   [key: string]: any,
+ * }} props
+ */
 export const Grid = ({
     width,
     gap = 0,

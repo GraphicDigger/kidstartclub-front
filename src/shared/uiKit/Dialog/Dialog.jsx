@@ -9,6 +9,17 @@ import { CrossIcon } from "@/shared/icons"
 export const Dialog = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;
 
+/**
+ * @param {{
+ *   children?: import('react').ReactNode,
+ *   title?: import('react').ReactNode,
+ *   hasOverlay?: boolean,
+ *   hasCloseButton?: boolean,
+ *   fullscreen?: boolean,
+ *   onClose?: () => void,
+ *   [key: string]: any,
+ * }} props
+ */
 export const DialogContent = forwardRef(({
     children,
     title,

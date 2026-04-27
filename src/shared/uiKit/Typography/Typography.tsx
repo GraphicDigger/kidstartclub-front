@@ -31,6 +31,7 @@ interface TypographyProps extends Omit<React.HTMLAttributes<HTMLElement>, 'color
   size?: number | string;
   lineHeight?: number | string;
   weight?: number | 'medium' | 'semibold' | 'bold';
+  align?: 'left' | 'center' | 'right' | 'justify';
   children?: React.ReactNode;
 }
 

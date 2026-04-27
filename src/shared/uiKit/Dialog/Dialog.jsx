@@ -9,18 +9,15 @@ import { CrossIcon } from "@/shared/icons"
 export const Dialog = DialogPrimitive.Root;
 export const DialogTrigger = DialogPrimitive.Trigger;
 
-/**
- * @param {{
- *   children?: import('react').ReactNode,
- *   title?: import('react').ReactNode,
- *   hasOverlay?: boolean,
- *   hasCloseButton?: boolean,
- *   fullscreen?: boolean,
- *   onClose?: () => void,
- *   [key: string]: any,
- * }} props
- */
-export const DialogContent = forwardRef(({
+export const DialogContent = /** @type {import('react').ForwardRefExoticComponent<{
+    children?: import('react').ReactNode,
+    title?: import('react').ReactNode,
+    hasOverlay?: boolean,
+    hasCloseButton?: boolean,
+    fullscreen?: boolean,
+    onClose?: () => void,
+    [key: string]: any,
+} & import('react').RefAttributes<HTMLDivElement>>} */ (forwardRef(({
     children,
     title,
     hasOverlay = true,
@@ -45,7 +42,7 @@ export const DialogContent = forwardRef(({
             }
         </StyledDialogContent>
     </DialogPrimitive.Portal>
-));
+)));
 
 const StyledDialogOverlay = styled(DialogPrimitive.Overlay)`
     background-color: rgba(0, 0, 0, 0.8);

@@ -27,12 +27,11 @@ jobs:
 
             export NVM_DIR="$HOME/.nvm"
             [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-            nvm use 18.20.8
 
             rm -rf .next
 
             npm ci
-            
+
             npm run build
 
             pm2 restart kidstartclub --update-env || PORT=3002 pm2 start "npm run start" --name kidstartclub

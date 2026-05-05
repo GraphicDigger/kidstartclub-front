@@ -67,29 +67,45 @@ export const CardCover = ({
 
   useEffect(() => {
     setNatural(null)
-    const node = imgRef.current
-    if (!node) return
+    if (!src) return
     let cancelled = false
-    const apply = () => {
+    let rafId: number | null = null
+
+    const apply = (w: number, h: number) => {
       if (cancelled) return
-      if (node.naturalWidth > 0) {
-        setNatural({ w: node.naturalWidth, h: node.naturalHeight })
-      }
+      setNatural({ w, h })
     }
-    if (node.complete) {
-      apply()
-    } else {
-      // Mobile WebKit/Chrome: rely on the actually-rendered <img>.
-      // `decode()` resolves once the image is fully decoded — more reliable
-      // than the `load` event when combined with Next/Image `fill`.
-      if (typeof node.decode === 'function') {
-        node.decode().then(apply).catch(() => { /* fall back to onLoad */ })
-      }
-      node.addEventListener('load', apply)
+
+    // Independent probe — guaranteed to deliver natural dimensions even
+    // when the on-screen <img> does not fire `load` on mobile WebKit.
+    const probe = new window.Image()
+    probe.onload = () => apply(probe.naturalWidth, probe.naturalHeight)
+    probe.onerror = () => apply(5, 4)
+    probe.src = src
+    if (probe.complete && probe.naturalWidth > 0) {
+      apply(probe.naturalWidth, probe.naturalHeight)
+    } else if (typeof probe.decode === 'function') {
+      probe.decode().then(() => apply(probe.naturalWidth, probe.naturalHeight)).catch(() => {})
     }
+
+    // Also poll the actually-rendered image element — it may be the only
+    // path that succeeds in some mobile browsers.
+    const tick = () => {
+      if (cancelled) return
+      const node = imgRef.current
+      if (node && node.naturalWidth > 0) {
+        apply(node.naturalWidth, node.naturalHeight)
+        return
+      }
+      rafId = window.requestAnimationFrame(tick)
+    }
+    rafId = window.requestAnimationFrame(tick)
+
     return () => {
       cancelled = true
-      node.removeEventListener('load', apply)
+      probe.onload = null
+      probe.onerror = null
+      if (rafId !== null) window.cancelAnimationFrame(rafId)
     }
   }, [src])
 

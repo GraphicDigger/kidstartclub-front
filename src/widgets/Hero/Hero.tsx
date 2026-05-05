@@ -59,7 +59,7 @@ export const Hero = ({
             height="full"
             style={{ position: 'relative', overflow: 'hidden' }}
             gap={10}
-            padding={8}
+            padding={4}
         >
             <div
                 ref={imageRef}

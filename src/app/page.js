@@ -22,8 +22,8 @@ export default function Home() {
         key={currentCourse.id}
         src={currentCourse.mood}
         alt=""
-        title="Клуб Читателей"
-        subtitle="Где подростки пытаются понять и осмыслить себя через книги"
+        title="Клуб Мыслителей"
+        subtitle="Для подростков, где они смогут понять и осмыслить себя через книги"
       >
         <CourseCard
           course={currentCourse}

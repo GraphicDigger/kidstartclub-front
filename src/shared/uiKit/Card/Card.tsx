@@ -50,6 +50,7 @@ export interface CardProps {
   frame?: boolean;
   maxWidth?: 'fill' | 'fit' | 'full' | number;
   onClick?: () => void;
+  natural?: boolean;
 }
 
 export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
@@ -70,6 +71,7 @@ export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
   imageAlt = '',
   imagePriority = false,
   imageObjectFit,
+  natural,
 
   onClick,
   className,
@@ -109,6 +111,7 @@ export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
         aspectRatio={aspectRatio}
         objectFit={imageObjectFit}
         priority={imagePriority}
+        natural = {natural}
       />
       <ContentArea frame={frame}>
         <Area>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import styled from '@emotion/styled'
 import { Image } from '../Image'
 
@@ -41,38 +41,35 @@ export const CardCover = ({
   priority = false,
 }: CardCoverProps) => {
   const [natural, setNatural] = useState<{ w: number; h: number } | null>(null)
+  const imgRef = useRef<HTMLImageElement | null>(null)
 
   /** Явное fixed с родителя — только boolean true (не строка из старых данных) */
   const parentFixed = fixed === true
 
   const parentSlotAspect = parseAspectRatio(aspectRatio, 2)
 
-  useEffect(() => {
-    if (!src) return
-    const img = new window.Image()
-    let cancelled = false
-    const apply = () => {
-      if (cancelled) return
-      if (img.naturalWidth > 0) {
-        setNatural({ w: img.naturalWidth, h: img.naturalHeight })
-      } else {
-        setNatural({ w: 5, h: 4 })
+  const measure = useCallback(() => {
+    const node = imgRef.current
+    if (node && node.naturalWidth > 0) {
+      setNatural({ w: node.naturalWidth, h: node.naturalHeight })
+    }
+  }, [])
+
+  const captureRef = useCallback(
+    (node: HTMLImageElement | null) => {
+      imgRef.current = node
+      if (node && node.complete && node.naturalWidth > 0) {
+        setNatural({ w: node.naturalWidth, h: node.naturalHeight })
       }
-    }
-    img.onload = apply
-    img.onerror = () => {
-      if (!cancelled) setNatural({ w: 5, h: 4 })
-    }
-    img.src = src
-    // iOS Safari: cached images may finish decoding before listeners attach,
-    // so onload never fires. Check `complete` and use decode() as a fallback.
-    if (img.complete) {
-      apply()
-    } else if (typeof img.decode === 'function') {
-      img.decode().then(apply).catch(() => { /* onerror handles it */ })
-    }
-    return () => {
-      cancelled = true
+    },
+    []
+  )
+
+  useEffect(() => {
+    setNatural(null)
+    const node = imgRef.current
+    if (node && node.complete && node.naturalWidth > 0) {
+      setNatural({ w: node.naturalWidth, h: node.naturalHeight })
     }
   }, [src])
 
@@ -106,11 +103,14 @@ export const CardCover = ({
     return (
       <Root $bg={imageBgColor} $mode="fixed" $slotAspect={slotAspect}>
         <Image
+          ref={captureRef}
           src={src}
           alt={alt}
           fill
           priority={priority}
+          fadeBg={imageBgColor}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+          onLoad={measure}
           style={{
             objectFit,
             objectPosition: 'center',
@@ -123,12 +123,15 @@ export const CardCover = ({
   return (
     <Root $bg={imageBgColor} $mode="natural" $slotAspect={slotAspect}>
       <Image
+        ref={captureRef}
         src={src}
         alt={alt}
         width={natural.w}
         height={natural.h}
         priority={priority}
+        fadeBg={imageBgColor}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+        onLoad={measure}
         style={{
           width: '100%',
           height: 'auto',

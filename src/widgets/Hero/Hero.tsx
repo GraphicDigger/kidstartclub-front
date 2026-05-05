@@ -74,6 +74,7 @@ export const Hero = ({
                     alt={alt}
                     fill
                     priority
+                    fadeBg="transparent"
                     style={{ objectFit: 'cover' }}
                 />
             </div>

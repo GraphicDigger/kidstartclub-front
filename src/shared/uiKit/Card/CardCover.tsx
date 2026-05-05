@@ -92,50 +92,20 @@ export const CardCover = ({
       ? WIDE_SLOT_ASPECT
       : parentSlotAspect
 
-  /** Авто-широкая ячейка — cover; с родителя — портрет contain, иначе cover */
-  const objectFit: 'contain' | 'cover' = tooWideLow && !parentFixed
-    ? 'cover'
-    : parentFixed && natural && natural.h > natural.w
-      ? 'contain'
-      : 'cover'
-
-  if (!natural || effectiveFixed) {
-    return (
-      <Root $bg={imageBgColor} $mode="fixed" $slotAspect={slotAspect}>
-        <Image
-          ref={captureRef}
-          src={src}
-          alt={alt}
-          fill
-          priority={priority}
-          fadeBg={imageBgColor}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-          onLoad={measure}
-          style={{
-            objectFit,
-            objectPosition: 'center',
-          }}
-        />
-      </Root>
-    )
-  }
-
   return (
-    <Root $bg={imageBgColor} $mode="natural" $slotAspect={slotAspect}>
+    <Root $bg={imageBgColor} $mode="fixed" $slotAspect={slotAspect}>
       <Image
         ref={captureRef}
         src={src}
         alt={alt}
-        width={natural.w}
-        height={natural.h}
+        fill
         priority={priority}
         fadeBg={imageBgColor}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         onLoad={measure}
         style={{
-          width: '100%',
-          height: 'auto',
-          display: 'block',
+          objectFit: 'cover',
+          objectPosition: 'center',
         }}
       />
     </Root>

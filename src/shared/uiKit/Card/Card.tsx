@@ -40,6 +40,7 @@ export interface CardProps {
   width?: 'fill' | 'fit' | 'full' | number;
   imageSrc?: string;
   imageAlt?: string;
+  imagePriority?: boolean;
   subtitle?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;
@@ -68,6 +69,7 @@ export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
   aspectRatio,
   imageBgColor,
   imageAlt = '',
+  imagePriority = false,
 
   onClick,
   className,
@@ -106,6 +108,7 @@ export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
         imageBgColor={imageBgColor}
         fixed={imageFixed}
         aspectRatio={aspectRatio}
+        priority={imagePriority}
       />
       <ContentArea frame={frame}>
         <Area>

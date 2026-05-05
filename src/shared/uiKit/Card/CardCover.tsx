@@ -22,6 +22,7 @@ export interface CardCoverProps {
    */
   fixed?: boolean
   aspectRatio?: number | string
+  priority?: boolean
 }
 
 function parseAspectRatio(value: number | string | undefined, fallback: number) {
@@ -37,6 +38,7 @@ export const CardCover = ({
   imageBgColor = '#f2f2f2',
   fixed = true,
   aspectRatio,
+  priority = false,
 }: CardCoverProps) => {
   const [natural, setNatural] = useState<{ w: number; h: number } | null>(null)
 
@@ -49,15 +51,26 @@ export const CardCover = ({
     if (!src) return
     const img = new window.Image()
     let cancelled = false
-    img.onload = () => {
-      if (!cancelled && img.naturalWidth > 0) {
+    const apply = () => {
+      if (cancelled) return
+      if (img.naturalWidth > 0) {
         setNatural({ w: img.naturalWidth, h: img.naturalHeight })
+      } else {
+        setNatural({ w: 5, h: 4 })
       }
     }
+    img.onload = apply
     img.onerror = () => {
       if (!cancelled) setNatural({ w: 5, h: 4 })
     }
     img.src = src
+    // iOS Safari: cached images may finish decoding before listeners attach,
+    // so onload never fires. Check `complete` and use decode() as a fallback.
+    if (img.complete) {
+      apply()
+    } else if (typeof img.decode === 'function') {
+      img.decode().then(apply).catch(() => { /* onerror handles it */ })
+    }
     return () => {
       cancelled = true
     }
@@ -106,6 +119,8 @@ export const CardCover = ({
           src={src}
           alt={alt}
           fill
+          loading={priority ? 'eager' : 'lazy'}
+          fetchPriority={priority ? 'high' : 'auto'}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           style={{
             objectFit,
@@ -123,6 +138,8 @@ export const CardCover = ({
         alt={alt}
         width={natural.w}
         height={natural.h}
+        loading={priority ? 'eager' : 'lazy'}
+        fetchPriority={priority ? 'high' : 'auto'}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         style={{
           width: '100%',

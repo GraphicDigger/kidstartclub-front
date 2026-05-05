@@ -30,6 +30,7 @@ export default function Home() {
           href={`/book-club/${currentCourse.id}`}
           maxWidth={520}
           height='fit'
+          imagePriority
         />
       </Hero>
 

@@ -12,10 +12,11 @@ import { isPast } from "@/shared/lib";
 interface CourseCardProps {
     course: any;
     href?: string;
+    imagePriority?: boolean;
     [key: string]: any;
 }
 
-export const CourseCard = ({ course, href, ...props }: CourseCardProps) => {
+export const CourseCard = ({ course, href, imagePriority, ...props }: CourseCardProps) => {
 
     const past = isPast(course.db_date);
 
@@ -34,6 +35,7 @@ export const CourseCard = ({ course, href, ...props }: CourseCardProps) => {
             title={course.name}
             description={course.description}
             imageBgColor={course.color}
+            imagePriority={imagePriority}
             {...props}
         >
             {!past && (

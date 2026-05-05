@@ -36,7 +36,6 @@ export default function BookClub() {
                   subtitle={course.name + ' • ' + course.author}
                   description={course.description}
                   frame={false}
-                  imageFixed={false}
                 />
               </Link>
             ))}

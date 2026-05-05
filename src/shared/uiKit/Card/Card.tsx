@@ -34,13 +34,13 @@ function isBottomSlot(el: React.ReactElement) {
 export interface CardProps {
   children?: React.ReactNode;
   className?: string;
-  aspectRatio?: string | number;
-  imageFixed?: boolean;
+  aspectRatio?: number;
   height?: 'fill' | 'fit' | 'full' | number;
   width?: 'fill' | 'fit' | 'full' | number;
   imageSrc?: string;
   imageAlt?: string;
   imagePriority?: boolean;
+  imageObjectFit?: 'contain' | 'cover';
   subtitle?: React.ReactNode;
   title?: React.ReactNode;
   description?: React.ReactNode;
@@ -65,11 +65,11 @@ export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
   descriptionLines,
 
   imageSrc,
-  imageFixed,
   aspectRatio,
   imageBgColor,
   imageAlt = '',
   imagePriority = false,
+  imageObjectFit,
 
   onClick,
   className,
@@ -106,8 +106,8 @@ export const Card = memo(forwardRef<HTMLDivElement, CardProps>(({
         src={imageSrc}
         alt={imageAlt}
         imageBgColor={imageBgColor}
-        fixed={imageFixed}
         aspectRatio={aspectRatio}
+        objectFit={imageObjectFit}
         priority={imagePriority}
       />
       <ContentArea frame={frame}>

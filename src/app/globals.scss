@@ -32,6 +32,11 @@ html {
   -ms-text-size-adjust: 100%;
 }
 
+@keyframes coverFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* Сброс стилей для списков */
 ul, ol, ul[role="list"], ol[role="list"] {
   list-style: none;

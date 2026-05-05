@@ -8,6 +8,14 @@ export type ImageProps = NextImageProps & {
     fadeBg?: string
 }
 
+/**
+ * Safety fallback: even if onLoad never fires (mobile WebKit/Chrome have
+ * known bugs with `<img loading=lazy>` + `aspect-ratio` parents and with
+ * Next/Image `fill`), force the overlay to fade after this timeout so the
+ * image is never permanently hidden behind it.
+ */
+const OVERLAY_SAFETY_MS = 1200
+
 export const Image = forwardRef<HTMLImageElement, ImageProps>(
     ({ alt = '', onLoad, fadeBg = '#FFFFFF', ...props }, forwardedRef) => {
         const [loaded, setLoaded] = useState(false)
@@ -18,8 +26,6 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
                 localRef.current = node
                 if (typeof forwardedRef === 'function') forwardedRef(node)
                 else if (forwardedRef) forwardedRef.current = node
-                // Mobile WebKit / Chrome: cached images can finish decoding
-                // before onLoad attaches, so the load event never fires.
                 if (node && node.complete && node.naturalWidth > 0) {
                     setLoaded(true)
                 }
@@ -31,7 +37,10 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
             const node = localRef.current
             if (node && node.complete && node.naturalWidth > 0) {
                 setLoaded(true)
+                return
             }
+            const id = window.setTimeout(() => setLoaded(true), OVERLAY_SAFETY_MS)
+            return () => window.clearTimeout(id)
         }, [props.src])
 
         return (
@@ -52,9 +61,8 @@ export const Image = forwardRef<HTMLImageElement, ImageProps>(
                         inset: 0,
                         backgroundColor: fadeBg,
                         opacity: loaded ? 0 : 1,
-                        transition: 'opacity .3s ease',
+                        transition: 'opacity .4s ease',
                         pointerEvents: 'none',
-                        zIndex: 0,
                     }}
                 />
             </>

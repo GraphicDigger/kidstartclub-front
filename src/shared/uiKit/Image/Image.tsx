@@ -17,8 +17,8 @@ export const Image = ({
 
     const captureRef = useCallback((node: HTMLImageElement | null) => {
         imgRef.current = node
-        // iOS Safari: cached images can finish loading before onLoad attaches,
-        // so the load event never fires. Sync state from `complete` immediately.
+        // iOS Safari / mobile: cached images can finish loading before onLoad
+        // attaches, so the load event never fires. Sync state from `complete`.
         if (node && node.complete && node.naturalWidth > 0) {
             setLoaded(true)
         }
@@ -32,30 +32,21 @@ export const Image = ({
     }, [src])
 
     return (
-        <>
-            <NextImage
-                ref={captureRef}
-                src={src}
-                alt={alt}
-                onLoad={(e) => {
-                    setLoaded(true)
-                    onLoad?.(e)
-                }}
-                style={style}
-                {...props}
-            />
-            <span
-                aria-hidden
-                style={{
-                    position: 'absolute',
-                    inset: 0,
-                    backgroundColor: '#FFFFFF',
-                    opacity: loaded ? 0 : 1,
-                    transition: 'opacity .3s ease',
-                    pointerEvents: 'none',
-                }}
-            />
-        </>
+        <NextImage
+            ref={captureRef}
+            src={src}
+            alt={alt}
+            onLoad={(e) => {
+                setLoaded(true)
+                onLoad?.(e)
+            }}
+            style={{
+                ...style,
+                opacity: loaded ? 1 : 0,
+                transition: 'opacity .3s ease',
+            }}
+            {...props}
+        />
     )
 }
 

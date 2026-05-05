@@ -12,6 +12,7 @@ import styles from './Grid.module.scss';
  *   minCol?: number,
  *   container?: boolean,
  *   columns?: number,
+ *   equalRows?: boolean,
  *   item?: boolean,
  *   span?: any,
  *   children?: import('react').ReactNode,
@@ -28,6 +29,7 @@ export const Grid = ({
     // grid container
     container = false,
     columns = 12,
+    equalRows = false,
     // grid item
     item = false,
     span,
@@ -60,6 +62,8 @@ export const Grid = ({
     const style = {
         width: typeof width === 'number' ? `${width}px` : "100%",
         gridTemplateColumns: getGridTemplate(),
+        gridAutoRows: container && equalRows ? '1fr' : undefined,
+        alignItems: container && equalRows ? 'stretch' : undefined,
         gap: gap > 0 && typeof gap === 'number' ? `${gap * 4}px` : undefined,
         gridColumn: span && item ? `span ${span}` : undefined,
     };

@@ -29,6 +29,7 @@ export default function Home() {
           course={currentCourse}
           href={`/book-club/${currentCourse.id}`}
           maxWidth={520}
+          height='fit'
           imagePriority
         />
       </Hero>
@@ -40,6 +41,7 @@ export default function Home() {
           gap={6}
           minCol={300}
           autoFit
+          equalRows
         >
           {otherCourses.map((c) => (
             <CourseCard

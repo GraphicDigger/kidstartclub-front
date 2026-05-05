@@ -23,6 +23,7 @@ export const CourseCard = ({ course, href, imagePriority, ...props }: CourseCard
     const card = (
         <Card
             key={course.id}
+            height="fill"
             imageSrc={course.image}
             imageAlt=""
             subtitle={

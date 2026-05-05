@@ -29,7 +29,6 @@ export default function Home() {
           course={currentCourse}
           href={`/book-club/${currentCourse.id}`}
           maxWidth={520}
-          height='fit'
           imagePriority
         />
       </Hero>

@@ -68,8 +68,28 @@ export const CardCover = ({
   useEffect(() => {
     setNatural(null)
     const node = imgRef.current
-    if (node && node.complete && node.naturalWidth > 0) {
-      setNatural({ w: node.naturalWidth, h: node.naturalHeight })
+    if (!node) return
+    let cancelled = false
+    const apply = () => {
+      if (cancelled) return
+      if (node.naturalWidth > 0) {
+        setNatural({ w: node.naturalWidth, h: node.naturalHeight })
+      }
+    }
+    if (node.complete) {
+      apply()
+    } else {
+      // Mobile WebKit/Chrome: rely on the actually-rendered <img>.
+      // `decode()` resolves once the image is fully decoded — more reliable
+      // than the `load` event when combined with Next/Image `fill`.
+      if (typeof node.decode === 'function') {
+        node.decode().then(apply).catch(() => { /* fall back to onLoad */ })
+      }
+      node.addEventListener('load', apply)
+    }
+    return () => {
+      cancelled = true
+      node.removeEventListener('load', apply)
     }
   }, [src])
 
@@ -80,9 +100,6 @@ export const CardCover = ({
   const wh = natural ? natural.w / natural.h : 1
   const tooWideLow = !!natural && wh > WIDE_WH_THRESHOLD
 
-  /** Родительский `imageFixed` ИЛИ авто по широкому кадру (w/h > 1.5). `imageFixed={false}` не отключает авто-широкий режим. */
-  const effectiveFixed = parentFixed || tooWideLow
-
   /**
    * Слот: с родителя — всегда `aspectRatio`; иначе авто-широкая — 1.5∶1
    */
@@ -92,6 +109,14 @@ export const CardCover = ({
       ? WIDE_SLOT_ASPECT
       : parentSlotAspect
 
+  /** Авто-широкая ячейка — cover; с родителя — портрет contain, иначе cover */
+  const objectFit: 'contain' | 'cover' =
+    tooWideLow && !parentFixed
+      ? 'cover'
+      : parentFixed && natural && natural.h > natural.w
+        ? 'contain'
+        : 'cover'
+
   return (
     <Root $bg={imageBgColor} $mode="fixed" $slotAspect={slotAspect}>
       <Image
@@ -100,11 +125,10 @@ export const CardCover = ({
         alt={alt}
         fill
         priority={priority}
-        fadeBg={imageBgColor}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         onLoad={measure}
         style={{
-          objectFit: 'cover',
+          objectFit,
           objectPosition: 'center',
         }}
       />

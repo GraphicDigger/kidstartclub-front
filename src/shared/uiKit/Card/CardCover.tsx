@@ -80,18 +80,8 @@ export const CardCover = ({
     return null
   }
 
-  if (!natural) {
-    return (
-      <Root
-        $bg={imageBgColor}
-        $mode="loading"
-        $slotAspect={parentFixed ? parentSlotAspect : WIDE_SLOT_ASPECT}
-      />
-    )
-  }
-
-  const wh = natural.w / natural.h
-  const tooWideLow = wh > WIDE_WH_THRESHOLD
+  const wh = natural ? natural.w / natural.h : 1
+  const tooWideLow = !!natural && wh > WIDE_WH_THRESHOLD
 
   /** Родительский `imageFixed` ИЛИ авто по широкому кадру (w/h > 1.5). `imageFixed={false}` не отключает авто-широкий режим. */
   const effectiveFixed = parentFixed || tooWideLow
@@ -108,19 +98,18 @@ export const CardCover = ({
   /** Авто-широкая ячейка — cover; с родителя — портрет contain, иначе cover */
   const objectFit: 'contain' | 'cover' = tooWideLow && !parentFixed
     ? 'cover'
-    : parentFixed && natural.h > natural.w
+    : parentFixed && natural && natural.h > natural.w
       ? 'contain'
       : 'cover'
 
-  if (effectiveFixed) {
+  if (!natural || effectiveFixed) {
     return (
       <Root $bg={imageBgColor} $mode="fixed" $slotAspect={slotAspect}>
         <Image
           src={src}
           alt={alt}
           fill
-          loading={priority ? 'eager' : 'lazy'}
-          fetchPriority={priority ? 'high' : 'auto'}
+          priority={priority}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
           style={{
             objectFit,
@@ -138,8 +127,7 @@ export const CardCover = ({
         alt={alt}
         width={natural.w}
         height={natural.h}
-        loading={priority ? 'eager' : 'lazy'}
-        fetchPriority={priority ? 'high' : 'auto'}
+        priority={priority}
         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
         style={{
           width: '100%',

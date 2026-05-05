@@ -47,8 +47,8 @@ export const Stack = forwardRef<HTMLDivElement, StackProps>(({
 
     backgroundColor,
     width = 'fill',
-    height = 'fill',
     maxWidth = 'fill',
+    height = 'fill',
 
     wrap = false,
     overflow = 'visible',

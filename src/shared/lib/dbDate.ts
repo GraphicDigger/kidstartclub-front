@@ -1,19 +1,30 @@
 export interface WithDbDate {
-    db_date?: string;
+    date_start?: string;
+    date_end?: string;
 }
 
-export function getUpcoming<T extends WithDbDate>(items: T[], today: string = new Date().toISOString().slice(0, 10)): T[] {
+export function getUpcoming<T extends WithDbDate>(items: T[], now: Date = new Date()): T[] {
     return items
-        .filter((item): item is T & { db_date: string } => Boolean(item.db_date) && item.db_date! >= today)
-        .sort((a, b) => a.db_date.localeCompare(b.db_date));
+        .filter((item) => {
+            if (!item.date_start) return false;
+            const end = item.date_end ?? item.date_start;
+            return new Date(end) >= now;
+        })
+        .sort((a, b) => new Date(a.date_start!).getTime() - new Date(b.date_start!).getTime());
 }
 
-export function getPast<T extends WithDbDate>(items: T[], today: string = new Date().toISOString().slice(0, 10)): T[] {
+export function getPast<T extends WithDbDate>(items: T[], now: Date = new Date()): T[] {
     return items
-        .filter((item): item is T & { db_date: string } => Boolean(item.db_date) && item.db_date! < today)
-        .sort((a, b) => b.db_date.localeCompare(a.db_date));
+        .filter((item) => {
+            if (!item.date_start) return false;
+            const end = item.date_end ?? item.date_start;
+            return new Date(end) < now;
+        })
+        .sort((a, b) => new Date(b.date_start!).getTime() - new Date(a.date_start!).getTime());
 }
 
-export function isPast(dbDate: string | undefined, today: string = new Date().toISOString().slice(0, 10)): boolean {
-    return Boolean(dbDate) && dbDate! < today;
+export function isPast(date_end?: string, date_start?: string, now: Date = new Date()): boolean {
+    if (!date_start) return false;
+    const end = date_end ?? date_start;
+    return new Date(end) < now;
 }

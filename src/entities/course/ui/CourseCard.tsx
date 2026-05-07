@@ -18,21 +18,21 @@ interface CourseCardProps {
 
 export const CourseCard = ({ course, href, imagePriority, ...props }: CourseCardProps) => {
 
-    const past = isPast(course.db_date);
+    const past = isPast(course.date_end, course.date_start);
 
     const card = (
         <Card
             key={course.id}
             height="fill"
-            imageSrc={course.image}
+            imageSrc={course.cover}
             imageAlt=""
             subtitle={
                 <span style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', gap: 8 }}>
-                    <span>{course.author}</span>
+                    <span>{course.subtitle}</span>
                     {course.age && <span>{course.age}</span>}
                 </span>
             }
-            title={course.name}
+            title={course.title}
             description={course.description}
             imageBgColor={course.color}
             imagePriority={imagePriority}

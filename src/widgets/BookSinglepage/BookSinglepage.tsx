@@ -1,12 +1,11 @@
 import React from "react";
 import { Hero } from "@/widgets/Hero";
-import { CourseCard } from "@/widgets/CourseCard";
+import { CourseCard } from "@/entities/course";
 import { Stack } from "@/shared/uiKit/Stack";
 import { RichText, RichTextColumns } from "@/shared/uiKit/RichText";
 import type { Course } from "@/entities/course/types";
 import { Grid } from "@/shared/uiKit/Grid";
 import { Typography } from "@/shared/uiKit/Typography";
-import { courses } from "@/entities/course/api/course.data";
 import { getUpcoming } from "@/shared/lib";
 import { Divider } from "@/shared/uiKit/Divider";
 import { SubscribeButton } from "@/widgets/SubscribeButton";
@@ -17,15 +16,16 @@ const how_work = '<h3>Ищем символы</h3><p>Раковина, огон�
 
 interface BookSinglepageProps {
     course: Course;
+    allCourses?: Course[];
 }
 
-export const BookSinglepage = ({ course }: BookSinglepageProps) => {
+export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps) => {
 
-    const upcomingCourses = getUpcoming(courses);
+    const upcomingCourses = getUpcoming(allCourses).filter(c => c.id !== course.id);
 
     return (
         <>
-            <Hero src={course.mood ?? ''} alt="">
+            <Hero src={course.gallery?.[0]?.image ?? ''} alt="">
                 <CourseCard
                     course={course}
                     maxWidth={520}
@@ -48,8 +48,8 @@ export const BookSinglepage = ({ course }: BookSinglepageProps) => {
                         gap={4}
                     >
                         <Typography variant="headline.small"> О книге </Typography>
-                        {course.about && (
-                            <RichText dangerouslySetInnerHTML={{ __html: course.about }} />
+                        {course.description && (
+                            <RichText dangerouslySetInnerHTML={{ __html: course.description }} />
                         )}
                     </Stack>
                     <Stack
@@ -68,7 +68,7 @@ export const BookSinglepage = ({ course }: BookSinglepageProps) => {
 
             <Container color='#F4EBFF'>
                 <Typography tag="h2" variant="headline.medium">
-                    Чему учит книга «{course.name}»
+                    Чему учит книга «{course.title}»
                 </Typography>
                 <Typography variant="body.medium">
                     Книга дает материал для размышлений, а не готовые ответы
@@ -91,7 +91,7 @@ export const BookSinglepage = ({ course }: BookSinglepageProps) => {
             </Container>
 
             <Container divider paddingV="10%" >
-                <SubscribeButton label={`Записаться на «${course.name}»`} size="large" />
+                <SubscribeButton label={`Записаться на «${course.title}»`} size="large" />
             </Container>
 
             <Container color='#F6F6F6'>
@@ -112,7 +112,7 @@ export const BookSinglepage = ({ course }: BookSinglepageProps) => {
                         <CourseCard
                             key={c.id}
                             course={c}
-                            href={`/book-club/${c.id}`}
+                            href={`/${c.category_slug}/${c.id}`}
                             maxWidth={520}
                         />
                     ))}

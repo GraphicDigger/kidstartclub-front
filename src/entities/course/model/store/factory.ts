@@ -6,8 +6,10 @@ export const createCourse = (input: Partial<Course>): Course => ({
   author: input.author ?? '',
   name: input.name ?? 'New Course',
   description: input.description ?? '',
-  date: input.date ?? '',
+  date_start: input.date_start,
+  date_end: input.date_end,
+  month: input.month ?? '',
   time: input.time ?? '',
-  image: input.image ?? '',
+  cover: input.cover ?? '',
   ...input,
 });

@@ -1,6 +1,6 @@
 import type { Course } from '../types';
 
-const API_URL = process.env.DJANGO_API_URL ?? 'http://127.0.0.1:8000';
+const API_URL = process.env.NEXT_PUBLIC_DJANGO_API_URL ?? process.env.DJANGO_API_URL ?? 'http://127.0.0.1:8000';
 
 function mediaUrl(path: string | null): string | undefined {
     if (!path) return undefined;

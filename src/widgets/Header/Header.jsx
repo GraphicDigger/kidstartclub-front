@@ -8,11 +8,12 @@ import { Stack } from '@/shared/uiKit/Stack';
 import { ButtonTool } from '@/shared/uiKit/ButtonTool';
 import { BurgerIcon } from '@/shared/icons';
 import { Dialog, DialogTrigger, DialogContent } from '@/shared/uiKit/Dialog';
+import { COURSE_CATEGORIES } from '@/shared/const';
 
 const list = [
     {
         title: "Книжный клуб",
-        href: "/book-club"
+        href: `/${COURSE_CATEGORIES.BOOK_CLUB}`
     },
     {
         title: "Игры",
@@ -20,7 +21,7 @@ const list = [
     },
     {
         title: "Профориентация",
-        href: "/proforentation"
+        href: `/${COURSE_CATEGORIES.CAREER}`
     }
 ]
 

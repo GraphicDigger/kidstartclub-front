@@ -19,7 +19,7 @@ export interface Course {
     category_slug: string;
     subcategory_slug: string;
     value?: string;
-    content?: string;
+    full_description?: string;
     color?: string;
     skill?: string;
     age?: string;

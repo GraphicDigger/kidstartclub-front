@@ -48,8 +48,8 @@ export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps)
                         gap={4}
                     >
                         <Typography variant="headline.small"> О книге </Typography>
-                        {course.description && (
-                            <RichText dangerouslySetInnerHTML={{ __html: course.description }} />
+                        {course.full_description && (
+                            <RichText dangerouslySetInnerHTML={{ __html: course.full_description }} />
                         )}
                     </Stack>
                     <Stack
@@ -69,9 +69,6 @@ export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps)
             <Container color='#F4EBFF'>
                 <Typography tag="h2" variant="headline.medium">
                     Чему учит книга «{course.title}»
-                </Typography>
-                <Typography variant="body.medium">
-                    Книга дает материал для размышлений, а не готовые ответы
                 </Typography>
                 {course.skill && (
                     <RichTextColumns html={course.skill} splitOn="h3" minColWidth={200} />

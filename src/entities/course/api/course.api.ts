@@ -50,7 +50,7 @@ function mapApiCourse(apiCourse: ApiCourse): Course {
         color: apiCourse.color,
         category_slug: apiCourse.category_slug,
         subcategory_slug: apiCourse.subcategory_slug,
-        content: apiCourse.full_description ?? undefined,
+        full_description: apiCourse.full_description ?? undefined,
         skill: apiCourse.skill,
         value: apiCourse.value,
         gallery: apiCourse.gallery?.map(g => ({

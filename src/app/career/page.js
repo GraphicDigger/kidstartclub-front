@@ -13,7 +13,6 @@ export default function CareerPage() {
         paddingTop="10%"
         paddingBottom="10%"
       >
-        <Typography variant="headline.medium">Профориентация</Typography>
         <Typography variant="body.medium">Скоро здесь появится информация</Typography>
       </Stack>
     </>

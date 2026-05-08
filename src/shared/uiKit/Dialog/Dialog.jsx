@@ -1,5 +1,5 @@
 'use client';
-import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, forwardRef, useCallback, useContext, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
@@ -32,10 +32,9 @@ export const Dialog = ({ children, open: controlledOpen = undefined, onOpenChang
 };
 
 // Кастомный триггер: не использует Radix DialogTrigger (он использует onPointerDown).
-// Вместо этого слушает onTouchEnd (iOS) и onClick (desktop).
-// e.preventDefault() на touchend блокирует синтетический click,
-// который иначе мог бы сразу закрыть только что открытый диалог.
-export const DialogTrigger = ({ children, asChild = false }) => {
+// Оборачиваем в span[display:contents] — layout-нейтральный, события всплывают из дочернего.
+// Не используем cloneElement/asChild: дочерние компоненты (ButtonTool) не форвардят onTouchEnd.
+export const DialogTrigger = ({ children }) => {
     const setOpen = useContext(DialogSetOpenContext);
 
     const handleOpen = useCallback((e) => {
@@ -43,17 +42,10 @@ export const DialogTrigger = ({ children, asChild = false }) => {
         setOpen?.(true);
     }, [setOpen]);
 
-    if (asChild && React.isValidElement(children)) {
-        return React.cloneElement(children, {
-            onTouchEnd: composeHandlers(children.props.onTouchEnd, handleOpen),
-            onClick: composeHandlers(children.props.onClick, handleOpen),
-        });
-    }
-
     return (
-        <button type="button" onTouchEnd={handleOpen} onClick={handleOpen} style={{ display: 'contents' }}>
+        <span onTouchEnd={handleOpen} onClick={handleOpen} style={{ display: 'contents' }}>
             {children}
-        </button>
+        </span>
     );
 };
 
@@ -117,9 +109,6 @@ export const DialogContent = /** @type {import('react').ForwardRefExoticComponen
 
 DialogContent.displayName = 'DialogContent';
 
-function composeHandlers(...fns) {
-    return (e) => fns.forEach(fn => fn?.(e));
-}
 
 const StyledDialogOverlay = styled(DialogPrimitive.Overlay)`
     background-color: rgba(0, 0, 0, 0.8);

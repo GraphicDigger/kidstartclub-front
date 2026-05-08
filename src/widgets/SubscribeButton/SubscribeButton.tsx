@@ -19,7 +19,7 @@ export const SubscribeButton = ({
 }: SubscribeButtonProps) => {
     return (
         <Dialog>
-            <DialogTrigger asChild>
+            <DialogTrigger>
                 <Button variant="filled" color="primary" size={size}>{label}</Button>
             </DialogTrigger>
             <DialogContent>

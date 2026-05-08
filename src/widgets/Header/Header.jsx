@@ -16,13 +16,13 @@ const list = [
         href: `/${COURSE_CATEGORIES.BOOK_CLUB}`
     },
     {
+        title: "Профориентация",
+        href: `/${COURSE_CATEGORIES.CAREER}`
+    },
+    {
         title: "Игры",
         href: "/games"
     },
-    {
-        title: "Профориентация",
-        href: `/${COURSE_CATEGORIES.CAREER}`
-    }
 ]
 
 export const Header = () => {
@@ -89,7 +89,7 @@ const BurgerMenuStyled = styled.div`
 `;
 
 const StyledHeader = styled.header`
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
     right: 0;

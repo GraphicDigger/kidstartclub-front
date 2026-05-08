@@ -1,5 +1,5 @@
 import React from "react";
-import { Hero } from "@/widgets/Hero";
+import { Hero } from "@/shared/uiKit/Hero";
 import { CourseCard } from "@/entities/course";
 import { Stack } from "@/shared/uiKit/Stack";
 import { RichText, RichTextColumns } from "@/shared/uiKit/RichText";

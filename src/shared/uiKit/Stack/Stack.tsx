@@ -26,7 +26,7 @@ interface StackProps {
     overflow?: 'visible' | 'hidden' | 'scroll';
 
     children?: React.ReactNode;
-    onClick?: () => void;
+    onClick?: React.MouseEventHandler<HTMLDivElement>;
     className?: string;
     style?: React.CSSProperties;
     zIndex?: number;

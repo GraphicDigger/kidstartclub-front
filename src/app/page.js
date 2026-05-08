@@ -1,10 +1,11 @@
 import React from "react";
 import { getCategories } from "@/entities/course_category";
 import { getSubcategories, CourseSubcategoryCard } from "@/entities/course_subcategory";
-import { Hero } from "@/widgets/Hero";
+import { Hero } from "@/shared/uiKit/Hero";
 import { Header } from "@/widgets/Header";
 import { Grid } from "@/shared/uiKit/Grid";
 import { Stack } from "@/shared/uiKit/Stack";
+import { Typography } from "@/shared/uiKit/Typography";
 
 
 export default async function Home() {
@@ -18,7 +19,12 @@ export default async function Home() {
       {categories.map((category) => {
         const subs = subcategories.filter((s) => s.category_slug === category.slug);
         return (
-          <Hero key={category.id} src={category.cover} alt="" title={category.name}>
+          <Hero
+            key={category.id}
+            src={category.cover}
+            alt=""
+            title={category.name}
+          >
             <Container>
               <Grid container columns={3} gap={6} minCol={300} autoFit equalRows>
                 {subs.map((sub) => (
@@ -41,18 +47,14 @@ export default async function Home() {
 
 const Container = ({ children }) => {
   return (
-    <Stack>
-      <Stack
-        maxWidth={800}
-        height="fit"
-        alignY="start"
-        alignX="start"
-        gap={7}
-        paddingLeft={4}
-        paddingRight={4}
-      >
-        {children}
-      </Stack>
+
+    <Stack
+      maxWidth={800}
+      height="fit"
+    >
+      {children}
     </Stack>
+
   )
 }
+

@@ -1,0 +1,30 @@
+.heroContainer {
+    position: relative;
+    overflow: hidden;
+}
+
+.imageWrapper {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.heroImage {
+    object-fit: cover;
+    animation: slowScale 16s ease-in-out infinite alternate;
+}
+
+@keyframes slowScale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.content {
+    position: relative;
+    z-index: 1;
+}

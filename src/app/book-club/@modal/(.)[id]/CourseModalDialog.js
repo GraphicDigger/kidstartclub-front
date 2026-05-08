@@ -2,7 +2,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Dialog, DialogContent } from "@/shared/uiKit/Dialog";
-import { Scroll } from "@/shared/uiKit/Scroll";
+import { ScrollArea } from "@/shared/uiKit/ScrollArea";
 import { BookSinglepage } from "@/widgets/BookSinglepage";
 
 export default function CourseModalDialog({ course, id }) {
@@ -20,9 +20,9 @@ export default function CourseModalDialog({ course, id }) {
   return (
     <Dialog key={id} open onOpenChange={handleChange}>
       <DialogContent fullscreen>
-        <Scroll>
+        <ScrollArea>
           <BookSinglepage course={course} />
-        </Scroll>
+        </ScrollArea>
       </DialogContent>
     </Dialog>
   );

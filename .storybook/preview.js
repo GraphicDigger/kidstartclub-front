@@ -1,4 +1,4 @@
-/** @type { import('@storybook/react').Preview } */
+/** @type { import('@storybook/nextjs').Preview } */
 import '../src/app/globals.scss';
 import { withProviders } from './provider'; // Импортируем декоратор
 

@@ -3,7 +3,12 @@ import { Grid } from './Grid';
 import { Box } from '../Box';
 import styled from '@emotion/styled';
 import { Card } from '../Card';
-import { courses } from '../../../entities/course/api/course.data';
+const courses = [
+    { id: 1, image: 'https://picsum.photos/seed/1/400/300', name: 'Курс 1', description: 'Описание курса 1', date: '01.06.2024', time: '10:00' },
+    { id: 2, image: 'https://picsum.photos/seed/2/400/300', name: 'Курс 2', description: 'Описание курса 2', date: '05.06.2024', time: '12:00' },
+    { id: 3, image: 'https://picsum.photos/seed/3/400/300', name: 'Курс 3', description: 'Описание курса 3', date: '10.06.2024', time: '14:00' },
+    { id: 4, image: 'https://picsum.photos/seed/4/400/300', name: 'Курс 4', description: 'Описание курса 4', date: '15.06.2024', time: '11:00' },
+];
 
 export default {
     title: 'uiKit/Grid',

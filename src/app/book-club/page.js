@@ -4,11 +4,13 @@ import { Stack } from "@/shared/uiKit/Stack";
 import { Grid } from "@/shared/uiKit/Grid";
 import { Tabs } from "@/shared/uiKit/Tabs";
 import { Header } from "@/widgets/Header";
+import { ServiceHero } from "@/widgets/ServiceHero";
 import { getPast, getUpcoming } from "@/shared/lib";
 import { CourseCard } from "@/entities/course";
 import { getCourses } from "@/entities/course/api/course.api";
 import { getSubcategories } from "@/entities/course_subcategory";
 import { COURSE_CATEGORIES } from "@/shared/const";
+import { ScrollArea } from "@/shared/uiKit/ScrollArea";
 
 export default async function BookClub({ searchParams }) {
 
@@ -17,11 +19,18 @@ export default async function BookClub({ searchParams }) {
 
   const bookClubSubs = subcategories.filter((s) => s.category_slug === COURSE_CATEGORIES.BOOK_CLUB);
 
-  const tabs = bookClubSubs.map((s) => ({
-    label: s.name,
-    value: s.slug,
-    href: `/book-club?subcategory=${s.slug}`,
-  }));
+  const tabs = [
+    {
+      label: "Все",
+      value: COURSE_CATEGORIES.BOOK_CLUB,
+      href: `/${COURSE_CATEGORIES.BOOK_CLUB}`,
+    },
+    ...bookClubSubs.map((s) => ({
+      label: s.name,
+      value: s.slug,
+      href: `/${COURSE_CATEGORIES.BOOK_CLUB}?subcategory=${s.slug}`,
+    }))
+  ];
 
   const filtered = subcategory
     ? courses.filter((c) => c.subcategory_slug === subcategory)
@@ -33,14 +42,20 @@ export default async function BookClub({ searchParams }) {
   return (
     <>
       <Header />
-      <Stack
-        paddingTop="5%"
-        paddingBottom="5%"
-        paddingLeft="16px"
-        paddingRight="16px"
-      >
+      <ServiceHero
+        title="Клуб мыслителей"
+        description="Группа мальчиков оказывается на необитаемом острове после авиакатастрофы. Сначала они пытаются создать порядок: выбирают лидера, договариваются о правилах, поддерживают огонь как сигнал спасения. Постепенно страх и борьба за власть разрушают эту систему. Возникает «зверь» — нечто, чего никто не видел, но во что начинают верить."
+        alt="Book Club Hero"
+      />
+      <ScrollArea orientation="horizontal">
+        <Stack height="fill" paddingTop={4}>
+          <Container>
+            <Tabs tabs={tabs} activeValue={subcategory || COURSE_CATEGORIES.BOOK_CLUB} />
+          </Container>
+        </Stack>
+      </ScrollArea>
+      <Stack >
         <Container>
-          <Tabs tabs={tabs} activeValue={subcategory} />
           <Grid
             container
             columns={3}
@@ -87,7 +102,7 @@ export default async function BookClub({ searchParams }) {
   );
 }
 
-const Container = ({ children }) => {
+const Container = ({ children, ...props }) => {
   return (
     <Stack
       maxWidth={1200}
@@ -95,10 +110,10 @@ const Container = ({ children }) => {
       alignY="start"
       alignX="start"
       gap={7}
-      paddingTop="5%"
-      paddingBottom="5%"
+      padding={4}
+      {...props}
     >
       {children}
-    </Stack>
+    </Stack >
   )
 }

@@ -15,7 +15,13 @@ interface TabsProps {
 
 export const Tabs = ({ tabs, activeValue }: TabsProps) => {
     return (
-        <Stack direction="row" gap={2} alignY="center" height="fit">
+        <Stack
+            direction="row"
+            gap={2}
+            alignY="center"
+            height="fit"
+            width="fit"
+        >
             {tabs.map((tab) => (
                 <Link key={tab.value} href={tab.href} style={{ display: 'contents' }}>
                     <Button color={activeValue === tab.value ? 'primary' : 'default'}>

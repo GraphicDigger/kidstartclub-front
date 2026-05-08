@@ -14,8 +14,8 @@ const disabled = {
 
 export const buttonIntents = {
   default: {
-    main: sys.color.primary,
-    on: sys.color.onPrimary,
+    main: sys.color.surfaceContainer.low,
+    on: sys.typography.color.default,
     container: sys.color.primaryContainer,
     onContainer: sys.color.onPrimaryContainer,
   },

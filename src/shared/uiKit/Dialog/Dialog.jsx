@@ -6,7 +6,21 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ButtonTool } from "../ButtonTool"
 import { CrossIcon } from "@/shared/icons"
 
-export const Dialog = DialogPrimitive.Root;
+export const Dialog = ({ onOpenChange, ...props }) => (
+    <DialogPrimitive.Root
+        onOpenChange={(open) => {
+            if (!open) {
+                // Workaround for radix-ui #1241: pointer-events: none stuck on body after close on iOS
+                requestAnimationFrame(() => {
+                    document.body.style.pointerEvents = '';
+                });
+            }
+            onOpenChange?.(open);
+        }}
+        {...props}
+    />
+);
+
 export const DialogTrigger = DialogPrimitive.Trigger;
 
 export const DialogContent = /** @type {import('react').ForwardRefExoticComponent<{

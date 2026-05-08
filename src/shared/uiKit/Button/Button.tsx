@@ -158,6 +158,8 @@ const StyledButton = styled('button', { shouldForwardProp })<StyledButtonProps>(
             fontSize,
             borderRadius: (theme as any)?.sys?.borderRadius?.small,
             cursor: $disabled ? 'not-allowed' : 'pointer',
+            touchAction: 'manipulation',
+            WebkitTapHighlightColor: 'transparent',
             '& [fill]:not([fill="none"])': { fill: iconColor, stroke: 'none' },
             '& [stroke]:not([stroke="none"])': { stroke: iconColor, fill: 'none' },
             '& [fill][stroke]:not([fill="none"]):not([stroke="none"])': {

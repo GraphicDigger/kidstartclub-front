@@ -49,7 +49,7 @@ export const Header = () => {
                     </MenuSlyled>
                     <BurgerMenuStyled>
                         <Dialog>
-                            <DialogTrigger>
+                            <DialogTrigger asChild>
                                 <ButtonTool color="primary">
                                     <BurgerIcon size="m" />
                                 </ButtonTool>

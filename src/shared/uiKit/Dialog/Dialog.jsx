@@ -84,7 +84,7 @@ function useFocusTrap(ref, enabled) {
 
 // ─── Dialog ───────────────────────────────────────────────────────────────
 
-export const Dialog = ({ children, open: controlledOpen, onOpenChange, modal = true, defaultOpen = false }) => {
+export const Dialog = ({ children, open: controlledOpen = undefined, onOpenChange = undefined, modal = true, defaultOpen = false }) => {
     const [innerOpen, setInnerOpen] = useState(defaultOpen);
     const isControlled = controlledOpen !== undefined;
     const open = isControlled ? controlledOpen : innerOpen;

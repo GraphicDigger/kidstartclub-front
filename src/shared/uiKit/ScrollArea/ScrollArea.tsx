@@ -11,6 +11,7 @@ interface ScrollAreaProps {
     orientation?: "vertical" | "horizontal" | "both";
     type?: "auto" | "always" | "scroll" | "hover";
     showScrollbar?: boolean;
+    contentPadding?: string;
 }
 
 export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(({
@@ -19,37 +20,96 @@ export const ScrollArea = forwardRef<HTMLDivElement, ScrollAreaProps>(({
     maxWidth,
     className,
     orientation = "vertical",
-    type = "scroll",
     showScrollbar = false,
+    contentPadding,
+    type = "scroll",
     ...props
-}, ref) => (
-    <StyledRoot
-        $maxHeight={maxHeight}
-        $maxWidth={maxWidth}
-        $orientation={orientation}
-        className={className}
-        ref={ref}
-        type={type}
-        {...props}
-    >
-        <StyledViewport $orientation={orientation}>
-            {children}
-        </StyledViewport>
-        {(orientation === "vertical" || orientation === "both") && (
-            <StyledScrollbar orientation="vertical" $hidden={!showScrollbar}>
-                <StyledThumb />
-            </StyledScrollbar>
-        )}
-        {(orientation === "horizontal" || orientation === "both") && (
-            <StyledScrollbar orientation="horizontal" $hidden={!showScrollbar}>
-                <StyledThumb />
-            </StyledScrollbar>
-        )}
-        {orientation === "both" && <StyledCorner />}
-    </StyledRoot>
-));
+}, ref) => {
+    // Без скроллбара — нативный CSS scroll. Работает на всех iOS включая 15.
+    if (!showScrollbar) {
+        return (
+            <NativeScroll
+                ref={ref}
+                $orientation={orientation}
+                $maxHeight={maxHeight}
+                $maxWidth={maxWidth}
+                className={className}
+                {...props}
+            >
+                {contentPadding
+                    ? <div style={{ padding: contentPadding }}>{children}</div>
+                    : children
+                }
+            </NativeScroll>
+        );
+    }
+
+    // С видимым скроллбаром — Radix для кастомного UI.
+    return (
+        <StyledRoot
+            $maxHeight={maxHeight}
+            $maxWidth={maxWidth}
+            $orientation={orientation}
+            className={className}
+            ref={ref}
+            type={type}
+            {...props}
+        >
+            <StyledViewport $orientation={orientation}>
+                {children}
+            </StyledViewport>
+            {(orientation === "vertical" || orientation === "both") && (
+                <StyledScrollbar orientation="vertical">
+                    <StyledThumb />
+                </StyledScrollbar>
+            )}
+            {(orientation === "horizontal" || orientation === "both") && (
+                <StyledScrollbar orientation="horizontal">
+                    <StyledThumb />
+                </StyledScrollbar>
+            )}
+            {orientation === "both" && <RadixScrollArea.Corner />}
+        </StyledRoot>
+    );
+});
 
 ScrollArea.displayName = "ScrollArea";
+
+// ─── Native scroll (showScrollbar=false) ─────────────────────────────────
+
+const NativeScroll = styled.div<{
+    $orientation?: string;
+    $maxHeight?: string;
+    $maxWidth?: string;
+}>`
+    width: 100%;
+    scrollbar-width: none;
+    &::-webkit-scrollbar { display: none; }
+    -webkit-overflow-scrolling: touch;
+
+    ${({ $maxHeight }) => $maxHeight && `max-height: ${$maxHeight};`}
+    ${({ $maxWidth }) => $maxWidth && `max-width: ${$maxWidth};`}
+
+    ${({ $orientation }) => $orientation === "horizontal" ? `
+        overflow-x: auto;
+        overflow-y: hidden;
+        touch-action: pan-x;
+    ` : $orientation === "both" ? `
+        overflow: auto;
+        touch-action: pan-x pan-y;
+        flex: 1;
+        min-height: 0;
+    ` : `
+        overflow-y: auto;
+        overflow-x: hidden;
+        touch-action: pan-y;
+        flex: 1;
+        min-height: 0;
+        height: 100%;
+    `}
+`;
+
+// ─── Radix scroll (showScrollbar=true) ───────────────────────────────────
 
 const StyledRoot = styled(RadixScrollArea.Root, {
     shouldForwardProp: (prop) => !['$maxHeight', '$maxWidth', '$orientation'].includes(prop as string),
@@ -87,38 +147,23 @@ const StyledViewport = styled(RadixScrollArea.Viewport, {
     `}
 `;
 
-const StyledScrollbar = styled(RadixScrollArea.Scrollbar, {
-    shouldForwardProp: (prop) => prop !== '$hidden',
-})<{ $hidden?: boolean }>`
+const StyledScrollbar = styled(RadixScrollArea.Scrollbar)`
     display: flex;
     user-select: none;
     touch-action: none;
     padding: 2px;
     background-color: transparent;
+    opacity: 0;
+    pointer-events: none;
     transition: opacity 0.2s ease;
 
-    ${({ $hidden }) => $hidden ? `
-        opacity: 0;
-        pointer-events: none;
-        touch-action: auto !important;
-    ` : `
-        opacity: 0;
-        pointer-events: none;
-
-        &[data-state="visible"] {
-            opacity: 1;
-            pointer-events: auto;
-        }
-    `}
-
-    &[data-orientation="vertical"] {
-        width: 6px;
+    &[data-state="visible"] {
+        opacity: 1;
+        pointer-events: auto;
     }
 
-    &[data-orientation="horizontal"] {
-        flex-direction: column;
-        height: 6px;
-    }
+    &[data-orientation="vertical"] { width: 6px; }
+    &[data-orientation="horizontal"] { flex-direction: column; height: 6px; }
 `;
 
 const StyledThumb = styled(RadixScrollArea.Thumb)`
@@ -138,8 +183,4 @@ const StyledThumb = styled(RadixScrollArea.Thumb)`
         min-width: 44px;
         min-height: 44px;
     }
-`;
-
-const StyledCorner = styled(RadixScrollArea.Corner)`
-    pointer-events: auto;
 `;

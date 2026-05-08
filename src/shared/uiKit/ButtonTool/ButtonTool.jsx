@@ -133,6 +133,7 @@ export const ButtonTool = memo(
           onMouseLeave={handleMouseLeave}
           onFocus={handleFocus}
           onBlur={handleBlur}
+          onTouchStart={() => {}}
           onClick={handleClick}
           isHovered={isHovered}
           isFocused={isFocused}

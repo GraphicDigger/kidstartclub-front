@@ -49,6 +49,7 @@ a, input, button {
   color: inherit;
   touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
+  cursor: pointer; /* iOS 15: без cursor: pointer div/span не получают click */
 }
 
 /* Сброс стилей для кнопок */

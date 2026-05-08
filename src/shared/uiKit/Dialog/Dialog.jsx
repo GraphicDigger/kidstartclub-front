@@ -44,11 +44,11 @@ export const DialogTrigger = ({ children }) => {
 
 export const DialogContent = ({
     children,
-    title,
+    title = undefined,
     hasOverlay = true,
     hasCloseButton = true,
     fullscreen = false,
-    onClose,
+    onClose = undefined,
     ...props
 }) => {
     const { open, setOpen } = useContext(DialogCtx);

@@ -36,7 +36,16 @@ export const DialogTrigger = ({ children }) => {
     }, [setOpen]);
 
     return (
-        <span onTouchEnd={handleOpen} onClick={handleOpen} style={{ display: 'contents' }}>
+        <span
+            onTouchEnd={handleOpen}
+            onClick={handleOpen}
+            style={{
+                display: 'inline-flex',
+                cursor: 'pointer',
+                touchAction: 'manipulation',
+                WebkitTapHighlightColor: 'transparent',
+            }}
+        >
             {children}
         </span>
     );

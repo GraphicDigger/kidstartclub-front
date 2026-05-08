@@ -6,7 +6,7 @@ import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ButtonTool } from "../ButtonTool"
 import { CrossIcon } from "@/shared/icons"
 
-export const Dialog = ({ onOpenChange, ...props }) => (
+export const Dialog = ({ onOpenChange = undefined, ...props }) => (
     <DialogPrimitive.Root
         onOpenChange={(open) => {
             if (!open) {

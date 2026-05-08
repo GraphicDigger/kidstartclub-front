@@ -1,17 +1,20 @@
 import "./globals.scss";
 import { Providers } from '../shared/providers/providers';
 
-export default function RootLayout({ children }) {
-  // console.log('Рендерится на:', typeof window === 'undefined' ? 'сервере' : 'клиенте');
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+};
 
+export const metadata = {
+  description: 'Описание вашего приложения',
+  keywords: 'ключевые слова, для поиска',
+  other: { google: 'notranslate' },
+};
+
+export default function RootLayout({ children }) {
   return (
     <html lang="en" data-theme="light">
-      <head>
-        <meta name="description" content="Описание вашего приложения" />
-        <meta name="keywords" content="ключевые слова, для поиска" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="google" content="notranslate" />
-      </head>
       <body>
         <Providers>
           {children}

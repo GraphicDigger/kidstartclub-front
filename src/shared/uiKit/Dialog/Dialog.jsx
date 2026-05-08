@@ -127,11 +127,11 @@ export const DialogTrigger = ({ children, asChild = false }) => {
 
 export const DialogContent = ({
     children,
-    title,
+    title = undefined,
     hasOverlay = true,
     hasCloseButton = true,
     fullscreen = false,
-    onClose,
+    onClose = undefined,
     ...rest
 }) => {
     const { open, setOpen, modal } = useDialog();

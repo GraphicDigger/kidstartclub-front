@@ -47,7 +47,8 @@ a, input, button {
   text-decoration: none;
   outline: none;
   color: inherit;
-
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Сброс стилей для кнопок */

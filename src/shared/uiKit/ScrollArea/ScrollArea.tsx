@@ -78,9 +78,12 @@ const StyledViewport = styled(RadixScrollArea.Viewport, {
     -webkit-overflow-scrolling: touch;
     overscroll-behavior: contain;
 
-    ${({ $orientation }) => ($orientation === 'vertical' || $orientation === 'both') && `
+    ${({ $orientation }) => ($orientation === 'vertical' || $orientation === 'both') ? `
         flex: 1;
         min-height: 0;
+        touch-action: pan-y;
+    ` : `
+        touch-action: pan-x;
     `}
 `;
 
@@ -97,6 +100,7 @@ const StyledScrollbar = styled(RadixScrollArea.Scrollbar, {
     ${({ $hidden }) => $hidden ? `
         opacity: 0;
         pointer-events: none;
+        touch-action: auto !important;
     ` : `
         opacity: 0;
         pointer-events: none;

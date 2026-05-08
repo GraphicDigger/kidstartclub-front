@@ -199,6 +199,8 @@ const StyledButton = styled.button`
 
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   outline: none;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 `;
 
 ButtonTool.propTypes = {

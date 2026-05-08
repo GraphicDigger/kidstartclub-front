@@ -89,10 +89,13 @@ const BurgerMenuStyled = styled.div`
 `;
 
 const StyledHeader = styled.header`
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
     background-color: ${({ theme }) => theme.sys.color.surface};
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 `;

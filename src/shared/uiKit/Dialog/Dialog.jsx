@@ -104,7 +104,7 @@ export const DialogContent = ({
             {hasOverlay && (
                 <StyledOverlay onTouchEnd={handleOverlay} onClick={handleOverlay} />
             )}
-            <StyledContent ref={ref} $fullscreen={fullscreen} role="dialog" aria-modal="true" {...props}>
+            <StyledContent $fullscreen={fullscreen} role="dialog" aria-modal="true" {...props}>
                 {children}
                 {hasCloseButton && (
                     <StyledClose>
@@ -117,9 +117,7 @@ export const DialogContent = ({
         </StyledPortal>,
         document.body
     );
-});
-
-DialogContent.displayName = 'DialogContent';
+};
 
 const StyledPortal = styled.div`
     position: fixed;

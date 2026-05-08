@@ -11,7 +11,7 @@ const DialogSetOpenContext = createContext(null);
 
 // Обёртка над Radix Root: управляем состоянием сами,
 // чтобы DialogTrigger мог открывать диалог напрямую через onTouchEnd
-export const Dialog = ({ children, open: controlledOpen, onOpenChange, ...props }) => {
+export const Dialog = ({ children, open: controlledOpen = undefined, onOpenChange = undefined, ...props }) => {
     const [innerOpen, setInnerOpen] = useState(false);
     const isControlled = controlledOpen !== undefined;
     const open = isControlled ? controlledOpen : innerOpen;

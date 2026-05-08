@@ -54,7 +54,7 @@ ScrollArea.displayName = "ScrollArea";
 const StyledRoot = styled(RadixScrollArea.Root, {
     shouldForwardProp: (prop) => !['$maxHeight', '$maxWidth', '$orientation'].includes(prop as string),
 })<{ $maxHeight?: string; $maxWidth?: string; $orientation?: string }>`
-    // overflow: hidden;
+    overflow: hidden;
     width: 100%;
     ${({ $maxHeight }) => $maxHeight && `max-height: ${$maxHeight};`}
     ${({ $maxWidth }) => $maxWidth && `max-width: ${$maxWidth};`}
@@ -75,6 +75,8 @@ const StyledViewport = styled(RadixScrollArea.Viewport, {
 })<{ $orientation?: string }>`
     width: 100%;
     border-radius: inherit;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
 
     ${({ $orientation }) => ($orientation === 'vertical' || $orientation === 'both') && `
         flex: 1;

@@ -120,3 +120,18 @@ p, li {
   background: none;
 }
 
+/* Radix UI mobile / iOS Safari fixes */
+body[data-scroll-locked] {
+  overscroll-behavior: none;
+}
+
+[data-radix-scroll-area-viewport] {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+[data-radix-dialog-content],
+[data-radix-dialog-overlay] {
+  touch-action: auto;
+}
+

@@ -1,13 +1,61 @@
 'use client';
-import React, { forwardRef } from "react";
+import React, { createContext, forwardRef, useCallback, useContext, useEffect, useRef, useState } from "react";
 import styled from "@emotion/styled";
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { ButtonTool } from "../ButtonTool"
 import { CrossIcon } from "@/shared/icons"
 
-export const Dialog = DialogPrimitive.Root;
-export const DialogTrigger = DialogPrimitive.Trigger;
+// Контекст для управления состоянием диалога из DialogTrigger
+const DialogSetOpenContext = createContext(null);
+
+// Обёртка над Radix Root: управляем состоянием сами,
+// чтобы DialogTrigger мог открывать диалог напрямую через onTouchEnd
+export const Dialog = ({ children, open: controlledOpen, onOpenChange, ...props }) => {
+    const [innerOpen, setInnerOpen] = useState(false);
+    const isControlled = controlledOpen !== undefined;
+    const open = isControlled ? controlledOpen : innerOpen;
+
+    const setOpen = useCallback((val) => {
+        const next = typeof val === 'function' ? val(open) : val;
+        if (!isControlled) setInnerOpen(next);
+        onOpenChange?.(next);
+    }, [isControlled, open, onOpenChange]);
+
+    return (
+        <DialogSetOpenContext.Provider value={setOpen}>
+            <DialogPrimitive.Root open={open} onOpenChange={setOpen} {...props}>
+                {children}
+            </DialogPrimitive.Root>
+        </DialogSetOpenContext.Provider>
+    );
+};
+
+// Кастомный триггер: не использует Radix DialogTrigger (он использует onPointerDown).
+// Вместо этого слушает onTouchEnd (iOS) и onClick (desktop).
+// e.preventDefault() на touchend блокирует синтетический click,
+// который иначе мог бы сразу закрыть только что открытый диалог.
+export const DialogTrigger = ({ children, asChild = false }) => {
+    const setOpen = useContext(DialogSetOpenContext);
+
+    const handleOpen = useCallback((e) => {
+        if (e.type === 'touchend') e.preventDefault();
+        setOpen?.(true);
+    }, [setOpen]);
+
+    if (asChild && React.isValidElement(children)) {
+        return React.cloneElement(children, {
+            onTouchEnd: composeHandlers(children.props.onTouchEnd, handleOpen),
+            onClick: composeHandlers(children.props.onClick, handleOpen),
+        });
+    }
+
+    return (
+        <button type="button" onTouchEnd={handleOpen} onClick={handleOpen} style={{ display: 'contents' }}>
+            {children}
+        </button>
+    );
+};
 
 export const DialogContent = /** @type {import('react').ForwardRefExoticComponent<{
     children?: import('react').ReactNode,
@@ -25,24 +73,53 @@ export const DialogContent = /** @type {import('react').ForwardRefExoticComponen
     fullscreen = false,
     onClose,
     ...props
-}, ref) => (
-    <DialogPrimitive.Portal>
-        {hasOverlay && <StyledDialogOverlay />}
-        <StyledDialogContent $fullscreen={fullscreen} {...props} ref={ref}>
-            <VisuallyHidden asChild>
-                <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
-            </VisuallyHidden>
-            {children}
-            {hasCloseButton &&
-                <StyledDialogClose asChild>
-                    <ButtonTool color="primary">
-                        <CrossIcon size="m" />
-                    </ButtonTool>
-                </StyledDialogClose>
-            }
-        </StyledDialogContent>
-    </DialogPrimitive.Portal>
-)));
+}, ref) => {
+    // iOS 15: тот же тап что открыл диалог может сразу его закрыть через overlay.
+    // Блокируем закрытие на 200ms после монтирования (= после открытия).
+    const canCloseRef = useRef(false);
+    useEffect(() => {
+        canCloseRef.current = false;
+        const t = setTimeout(() => { canCloseRef.current = true; }, 200);
+        return () => clearTimeout(t);
+    }, []);
+
+    return (
+        <DialogPrimitive.Portal>
+            {hasOverlay && <StyledDialogOverlay />}
+            <StyledDialogContent
+                $fullscreen={fullscreen}
+                {...props}
+                ref={ref}
+                onPointerDownOutside={(e) => {
+                    if (!canCloseRef.current) e.preventDefault();
+                    props.onPointerDownOutside?.(e);
+                }}
+                onInteractOutside={(e) => {
+                    if (!canCloseRef.current) e.preventDefault();
+                    props.onInteractOutside?.(e);
+                }}
+            >
+                <VisuallyHidden asChild>
+                    <DialogPrimitive.Title>{title}</DialogPrimitive.Title>
+                </VisuallyHidden>
+                {children}
+                {hasCloseButton &&
+                    <StyledDialogClose asChild>
+                        <ButtonTool color="primary" onClick={onClose}>
+                            <CrossIcon size="m" />
+                        </ButtonTool>
+                    </StyledDialogClose>
+                }
+            </StyledDialogContent>
+        </DialogPrimitive.Portal>
+    );
+}));
+
+DialogContent.displayName = 'DialogContent';
+
+function composeHandlers(...fns) {
+    return (e) => fns.forEach(fn => fn?.(e));
+}
 
 const StyledDialogOverlay = styled(DialogPrimitive.Overlay)`
     background-color: rgba(0, 0, 0, 0.8);
@@ -87,5 +164,3 @@ const StyledDialogClose = styled(DialogPrimitive.Close)`
     top: 10px;
     right: 10px;
 `;
-
-DialogContent.displayName = 'DialogContent';

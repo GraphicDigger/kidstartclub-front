@@ -1,5 +1,5 @@
 'use client';
-import { createContext, forwardRef, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styled from "@emotion/styled";
 import { ButtonTool } from "../ButtonTool";
@@ -42,7 +42,7 @@ export const DialogTrigger = ({ children }) => {
     );
 };
 
-export const DialogContent = forwardRef(({
+export const DialogContent = ({
     children,
     title,
     hasOverlay = true,
@@ -50,7 +50,7 @@ export const DialogContent = forwardRef(({
     fullscreen = false,
     onClose,
     ...props
-}, ref) => {
+}) => {
     const { open, setOpen } = useContext(DialogCtx);
     const canCloseRef = useRef(false);
 

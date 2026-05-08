@@ -121,22 +121,9 @@ p, li {
   background: none;
 }
 
-/* Radix UI mobile / iOS Safari fixes */
-body[data-scroll-locked] {
-  overscroll-behavior: none;
-  /* iOS: position: fixed prevents rubber-band scroll breaking the lock */
-  position: fixed;
-  width: 100%;
-  overflow-y: scroll;
-}
-
+/* Radix UI ScrollArea mobile fix */
 [data-radix-scroll-area-viewport] {
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
-}
-
-[data-radix-dialog-content],
-[data-radix-dialog-overlay] {
-  touch-action: auto;
 }
 

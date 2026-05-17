@@ -2,15 +2,14 @@ import Link from "next/link";
 import { Card } from "@/shared/uiKit/Card";
 import { Stack } from "@/shared/uiKit/Stack";
 import { Grid } from "@/shared/uiKit/Grid";
-import { Tabs } from "@/shared/uiKit/Tabs";
 import { Header } from "@/widgets/Header";
 import { ServiceHero } from "@/widgets/ServiceHero";
+import { BookClubTabs } from "@/widgets/BookClubTabs";
 import { getPast, getUpcoming } from "@/shared/lib";
 import { CourseCard } from "@/entities/course";
 import { getCourses } from "@/entities/course/api/course.api";
 import { getSubcategories } from "@/entities/course_subcategory";
 import { COURSE_CATEGORIES } from "@/shared/const";
-import { ScrollArea } from "@/shared/uiKit/ScrollArea";
 
 export default async function BookClub({ searchParams }) {
 
@@ -52,16 +51,10 @@ export default async function BookClub({ searchParams }) {
       <ServiceHero
         title={activeTab.name}
         description={activeTab.description}
-        // src={activeTab.src}
         alt={activeTab.name}
+        style={{ marginBottom: "16px" }}
       />
-      <ScrollArea orientation="horizontal">
-        <Stack height="fill" paddingTop={4}>
-          <Container>
-            <Tabs tabs={tabs} activeValue={subcategory || COURSE_CATEGORIES.BOOK_CLUB} />
-          </Container>
-        </Stack>
-      </ScrollArea>
+      <BookClubTabs tabs={tabs} activeValue={subcategory || COURSE_CATEGORIES.BOOK_CLUB} />
       <Stack >
         <Container>
           <Grid
@@ -88,7 +81,7 @@ export default async function BookClub({ searchParams }) {
             columns={4}
             gap={6}
             minCol={250}
-            autoFit
+            autoFill
           >
             {pastCourses.map((course) => (
               <Link key={course.id} href={`/${course.category_slug}/${course.id}`} scroll={false} prefetch={false}>
@@ -125,3 +118,4 @@ const Container = ({ children, ...props }) => {
     </Stack >
   )
 }
+

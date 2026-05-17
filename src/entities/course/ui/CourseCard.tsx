@@ -6,19 +6,19 @@ import { Stack } from "@/shared/uiKit/Stack";
 import { BottomSlot } from "@/shared/uiKit/Card";
 import { Typography } from "@/shared/uiKit/Typography";
 import { SubscribeButton } from "@/widgets/SubscribeButton";
-import { isPast } from "@/shared/lib";
+
+import { Button } from "@/shared/uiKit/Button";
 
 
 interface CourseCardProps {
     course: any;
     href?: string;
     imagePriority?: boolean;
+    isPast?: boolean
     [key: string]: any;
 }
 
-export const CourseCard = ({ course, href, imagePriority, ...props }: CourseCardProps) => {
-
-    const past = isPast(course.date_end, course.date_start);
+export const CourseCard = ({ course, href, imagePriority, isPast, ...props }: CourseCardProps) => {
 
     const card = (
         <Card
@@ -38,7 +38,7 @@ export const CourseCard = ({ course, href, imagePriority, ...props }: CourseCard
             imagePriority={imagePriority}
             {...props}
         >
-            {!past && (
+            {!isPast && (
                 <BottomSlot>
                     <Stack
                         direction="row"
@@ -47,8 +47,9 @@ export const CourseCard = ({ course, href, imagePriority, ...props }: CourseCard
                         alignY="center"
                         height="fit"
                     >
-                        <Typography variant="body.small">{course.date + ' • ' + course.time}</Typography>
-                        {/* <SubscribeButton /> */}
+                        <Typography variant="body.small">{course.month}</Typography>
+                        {/* <Typography variant="body.small">{course.month + ' • ' + course.time}</Typography> */}
+                        {href && <Button size="medium">Подробнее</Button>}
                     </Stack>
                 </BottomSlot>
             )}
@@ -61,9 +62,6 @@ export const CourseCard = ({ course, href, imagePriority, ...props }: CourseCard
         <Link
             href={href}
             style={{ display: 'contents' }}
-            onClick={(e) => {
-                if ((e.target as HTMLElement).closest('button')) e.preventDefault();
-            }}
         >
             {card}
         </Link>

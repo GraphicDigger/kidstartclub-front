@@ -11,6 +11,7 @@ import { Divider } from "@/shared/uiKit/Divider";
 import { SubscribeButton } from "@/widgets/SubscribeButton";
 import { MessengersLinks } from "@/shared/uiKit/MessengersLinks";
 import { GradientContainer } from '@/shared/uiKit/MessengersLinks/GradientContainer';
+import { isPast } from "@/shared/lib";
 
 
 const how_work = '<h3>Ищем символы</h3><p>Раковина, огонь, «зверь», голова свиньи — это не детали сюжета, а смысловые опоры. Подросток учится видеть, что за предметом стоит идея.</p><h3>Читаем между строк</h3><p>Мы обсуждаем не только «что произошло», но и «почему автор это показывает именно так».</p><h3>Связываем с контекстом автора</h3><p>Разбираем, когда Уильям Голдинг написал роман и почему тема распада общества была для него важна (опыт войны, наблюдение за людьми).</p><h3>Разбираем героев как людей</h3><p>Даже в жёстких персонажах ищем человеческие черты: страх, желание быть принятым, стремление к власти.</p><h3>Учимся видеть метафоры</h3><p>«Зверь» — это не существо, а образ. Подросток начинает отличать буквальный уровень от смыслового.</p><h3>Соотносим с собой</h3><p>Главный вопрос: «А как бы я повёл себя в этой ситуации?» Это переводит книгу из теории в личный опыт.</p>';
@@ -24,6 +25,7 @@ interface BookSinglepageProps {
 export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps) => {
 
     const upcomingCourses = getUpcoming(allCourses).filter(c => c.id !== course.id);
+    const past = isPast(course.date_end, course.date_start);
 
     return (
         <>
@@ -33,8 +35,9 @@ export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps)
                         course={course}
                         width="fill"
                         height="fit"
+                        isPast = {past}
                     />
-                    <MessengersLinks />
+                    {!past && <MessengersLinks />}
                 </Stack>
             </Hero>
 
@@ -151,7 +154,14 @@ const Container = ({
     width = 1000
 }: ContainerProps) => {
     return (
-        <Stack backgroundColor={color} >
+        <Stack
+            backgroundColor={color}
+            height="fit"
+            paddingTop={paddingV}
+            paddingBottom={paddingV}
+            paddingLeft={4}
+            paddingRight={4}
+        >
             {divider && <Divider orientation='horizontal' top />}
             <Stack
                 maxWidth={width}
@@ -159,10 +169,6 @@ const Container = ({
                 alignY="start"
                 alignX="start"
                 gap={10}
-                paddingTop={paddingV}
-                paddingBottom={paddingV}
-                paddingLeft={4}
-                paddingRight={4}
             >
                 {children}
             </Stack>

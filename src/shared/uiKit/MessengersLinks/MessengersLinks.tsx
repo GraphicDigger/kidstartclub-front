@@ -34,7 +34,7 @@ export const MessengersLinks = memo(({
             className={className}
             style={{
                 borderRadius: "9999px",
-                border: "1px solid #1D9FE0",
+                // border: "2px solid #1D9FE0",
                 backgroundColor: "white",
                 paddingLeft: "24px"
 
@@ -55,13 +55,16 @@ export const MessengersLinks = memo(({
                         backgroundColor="#1D9FE0"
                         width="fill"
                         style={{ borderRadius: "999px" }}
-
                     >
                         <TelegramIcon size="24" color="#FFFFFF" />
                     </Stack>
 
                 </Link>
-                <Link href={whatsAppUrl} target="_blank" style={{ width: "100%", height: "100%" }}>
+                <Link
+                    href={whatsAppUrl}
+                    target="_blank"
+                    style={{ width: "100%", height: "100%" }}
+                >
                     <Stack
                         backgroundColor="#42BD46"
                         width="fill"

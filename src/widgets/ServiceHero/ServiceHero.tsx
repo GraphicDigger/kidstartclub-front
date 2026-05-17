@@ -16,7 +16,8 @@ export const ServiceHero = ({
     alt,
     title,
     description,
-    children
+    children,
+    ...props
 }: ServiceHeroProps) => {
     return (
         <Hero
@@ -32,6 +33,7 @@ export const ServiceHero = ({
                 width="fill"
                 alignX="start"
                 gap={6}
+                {...props}
             >
                 <Typography
                     variant="display.small"

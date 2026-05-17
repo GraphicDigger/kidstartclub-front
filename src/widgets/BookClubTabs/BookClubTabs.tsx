@@ -13,54 +13,48 @@ interface BookClubTabsProps {
 
 export const BookClubTabs = ({ tabs, activeValue }: BookClubTabsProps) => {
     const activeTabRef = useRef<HTMLDivElement>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
+    const scrollAreaRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (activeTabRef.current) {
-            const scroll = () => {
-                const el = activeTabRef.current;
-                if (!el) return;
+        const performScroll = (behavior: 'auto' | 'smooth' = 'smooth') => {
+            const el = activeTabRef.current;
+            const container = scrollAreaRef.current;
+            
+            if (!el || !container) return;
 
-                // Находим ближайший скролл-контейнер
-                let parent = el.parentElement;
-                while (parent) {
-                    const style = window.getComputedStyle(parent);
-                    if (style.overflowX === 'auto' || style.overflowX === 'scroll') {
-                        break;
-                    }
-                    parent = parent.parentElement;
-                }
+            const elRect = el.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
 
-                if (parent) {
-                    const parentWidth = parent.clientWidth;
-                    const elWidth = el.offsetWidth;
-                    const elLeft = el.offsetLeft;
-                    const targetScrollLeft = elLeft - (parentWidth / 2) + (elWidth / 2);
-                    
-                    parent.scrollTo({
-                        left: targetScrollLeft,
-                        behavior: 'smooth'
-                    });
-                } else {
-                    // Fallback если не нашли родителя (маловероятно)
-                    el.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'nearest',
-                        inline: 'center'
-                    });
-                }
-            };
+            // Расчет: текущий скролл + смещение элемента относительно контейнера - половина ширины контейнера + половина ширины элемента
+            const targetScrollLeft = container.scrollLeft + (elRect.left - containerRect.left) - (containerRect.width / 2) + (elRect.width / 2);
 
-            // Для iOS 15 и медленных устройств увеличиваем задержку
-            const timer = setTimeout(scroll, 300);
-            return () => clearTimeout(timer);
-        }
+            if (container.scrollTo) {
+                container.scrollTo({
+                    left: targetScrollLeft,
+                    behavior
+                });
+            } else {
+                container.scrollLeft = targetScrollLeft;
+            }
+        };
+
+        // На iOS 15 часто случаются race conditions с лайаутом.
+        // Мы делаем несколько попыток: одну мгновенную и пару с задержкой.
+        const timer1 = setTimeout(() => performScroll('auto'), 100);
+        const timer2 = setTimeout(() => performScroll('smooth'), 400);
+        const timer3 = setTimeout(() => performScroll('smooth'), 1000);
+
+        return () => {
+            clearTimeout(timer1);
+            clearTimeout(timer2);
+            clearTimeout(timer3);
+        };
     }, [activeValue]);
 
     return (
         <StyledSticky>
-            <ScrollArea orientation="horizontal">
-                <Stack height="fill" >
+            <ScrollArea orientation="horizontal" ref={scrollAreaRef}>
+                <Stack height="fill" alignX="start">
                     <Container>
                         <Stack
                             direction="row"
@@ -68,8 +62,6 @@ export const BookClubTabs = ({ tabs, activeValue }: BookClubTabsProps) => {
                             alignY="center"
                             height="fit"
                             width="fit"
-                            style={{ position: 'relative' }} // Важно для корректного offsetLeft
-                            ref={containerRef}
                         >
                             {tabs.map((tab) => {
                                 const isActive = activeValue === tab.value;
@@ -77,6 +69,7 @@ export const BookClubTabs = ({ tabs, activeValue }: BookClubTabsProps) => {
                                     <div
                                         key={tab.value}
                                         ref={isActive ? activeTabRef : null}
+                                        style={{ display: 'flex' }}
                                     >
                                         <Link href={tab.href} style={{ display: 'contents' }}>
                                             <Button color={isActive ? 'primary' : 'default'}>

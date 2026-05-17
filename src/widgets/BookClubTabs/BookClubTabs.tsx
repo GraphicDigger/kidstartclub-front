@@ -13,16 +13,46 @@ interface BookClubTabsProps {
 
 export const BookClubTabs = ({ tabs, activeValue }: BookClubTabsProps) => {
     const activeTabRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         if (activeTabRef.current) {
-            const timer = setTimeout(() => {
-                activeTabRef.current?.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center'
-                });
-            }, 100);
+            const scroll = () => {
+                const el = activeTabRef.current;
+                if (!el) return;
+
+                // Находим ближайший скролл-контейнер
+                let parent = el.parentElement;
+                while (parent) {
+                    const style = window.getComputedStyle(parent);
+                    if (style.overflowX === 'auto' || style.overflowX === 'scroll') {
+                        break;
+                    }
+                    parent = parent.parentElement;
+                }
+
+                if (parent) {
+                    const parentWidth = parent.clientWidth;
+                    const elWidth = el.offsetWidth;
+                    const elLeft = el.offsetLeft;
+                    const targetScrollLeft = elLeft - (parentWidth / 2) + (elWidth / 2);
+                    
+                    parent.scrollTo({
+                        left: targetScrollLeft,
+                        behavior: 'smooth'
+                    });
+                } else {
+                    // Fallback если не нашли родителя (маловероятно)
+                    el.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'nearest',
+                        inline: 'center'
+                    });
+                }
+            };
+
+            // Для iOS 15 и медленных устройств увеличиваем задержку
+            const timer = setTimeout(scroll, 300);
             return () => clearTimeout(timer);
         }
     }, [activeValue]);
@@ -38,6 +68,8 @@ export const BookClubTabs = ({ tabs, activeValue }: BookClubTabsProps) => {
                             alignY="center"
                             height="fit"
                             width="fit"
+                            style={{ position: 'relative' }} // Важно для корректного offsetLeft
+                            ref={containerRef}
                         >
                             {tabs.map((tab) => {
                                 const isActive = activeValue === tab.value;

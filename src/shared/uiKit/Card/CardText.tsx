@@ -60,6 +60,8 @@ const TitleStyled = styled(Typography)(({ theme }) => ({
 
 const SubheadlineStyled = styled(Typography)(({ theme }) => ({
     width: '100%',
+    color: theme.sys.color.onSurfaceVariant,
+
     ... theme.sys.typography.body?.medium,
     '@container (max-width: 400px)': {
         ... theme.sys.typography.body?.small,
@@ -69,7 +71,6 @@ const SubheadlineStyled = styled(Typography)(({ theme }) => ({
 const DescriptionStyled = styled(Typography, { shouldForwardProp: (prop) => prop !== '$lines' })<{ $lines: number }>(({ theme, $lines }) => ({
     ... theme.sys.typography.body?.medium,
     display: '-webkit-box',
-    color: theme.sys.color.onSurfaceVariant,
     WebkitLineClamp: $lines,
     WebkitBoxOrient: 'vertical',
     overflow: 'hidden',

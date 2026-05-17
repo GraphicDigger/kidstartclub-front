@@ -48,7 +48,7 @@ export const CourseCard = ({ course, href, imagePriority, ...props }: CourseCard
                         height="fit"
                     >
                         <Typography variant="body.small">{course.date + ' • ' + course.time}</Typography>
-                        <SubscribeButton />
+                        {/* <SubscribeButton /> */}
                     </Stack>
                 </BottomSlot>
             )}

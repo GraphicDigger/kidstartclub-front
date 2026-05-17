@@ -10,3 +10,5 @@ export { ArrowLeftCloseIcon } from './ArrowLeftCloseIcon';
 export { ArrowRightCloseIcon } from './ArrowRightCloseIcon';
 export { HomeIcon } from './HomeIcon';
 export { BurgerIcon } from './BurgerIcon';
+export { TelegramIcon } from './TelegramIcon';
+export { WhatsAppIcon } from './WhatsAppIcon';

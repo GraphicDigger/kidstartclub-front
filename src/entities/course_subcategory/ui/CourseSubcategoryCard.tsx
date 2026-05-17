@@ -36,7 +36,6 @@ export const CourseSubcategoryCard = ({ subcategory, href, imagePriority, ...pro
                     alignY="center"
                     height="fill"
                 >
-                    <Typography variant="body.small">{subcategory.age}</Typography>
                     <SubscribeButton label="Подробнее" size="small" />
                 </Stack>
             </BottomSlot>

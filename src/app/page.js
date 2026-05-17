@@ -10,13 +10,15 @@ import { Typography } from "@/shared/uiKit/Typography";
 
 export default async function Home() {
 
-  const [categories, subcategories] = await Promise.all([getCategories(), getSubcategories()]);
+  const [categoriesData, subcategories] = await Promise.all([getCategories(), getSubcategories()]);
+  const categories = categoriesData[0] ? [categoriesData[0]] : [];
 
   return (
     <>
       <Header />
 
       {categories.map((category) => {
+        if (!category) return null;
         const subs = subcategories.filter((s) => s.category_slug === category.slug);
         return (
           <Hero
@@ -49,7 +51,7 @@ const Container = ({ children }) => {
   return (
 
     <Stack
-      maxWidth={800}
+      maxWidth={1000}
       height="fit"
     >
       {children}

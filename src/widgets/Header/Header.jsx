@@ -12,17 +12,17 @@ import { COURSE_CATEGORIES } from '@/shared/const';
 
 const list = [
     {
-        title: "Книжный клуб",
+        title: "Выбрать книгу",
         href: `/${COURSE_CATEGORIES.BOOK_CLUB}`
     },
-    {
-        title: "Профориентация",
-        href: `/${COURSE_CATEGORIES.CAREER}`
-    },
-    {
-        title: "Игры",
-        href: "/games"
-    },
+    // {
+    //     title: "Профориентация",
+    //     href: `/${COURSE_CATEGORIES.CAREER}`
+    // },
+    // {
+    //     title: "Игры",
+    //     href: "/games"
+    // },
 ]
 
 export const Header = () => {
@@ -47,7 +47,7 @@ export const Header = () => {
                             ))}
                         </Stack>
                     </MenuSlyled>
-                    <BurgerMenuStyled>
+                    {/* <BurgerMenuStyled>
                         <Dialog>
                             <DialogTrigger asChild>
                                 <ButtonTool color="primary">
@@ -66,7 +66,7 @@ export const Header = () => {
                                 </Stack>
                             </DialogContent>
                         </Dialog>
-                    </BurgerMenuStyled>
+                    </BurgerMenuStyled> */}
 
                 </RightSlot>
             </SlotBar>
@@ -76,9 +76,9 @@ export const Header = () => {
 
 const MenuSlyled = styled.div`
     display: block;
-    @media (max-width: 768px) {
-        display: none;
-    }
+    // @media (max-width: 768px) {
+    //     display: none;
+    // }
 `;
 
 const BurgerMenuStyled = styled.div`

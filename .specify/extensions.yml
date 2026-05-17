@@ -1,0 +1,148 @@
+installed: []
+settings:
+  auto_execute_hooks: true
+hooks:
+  before_constitution:
+  - extension: git
+    command: speckit.git.initialize
+    enabled: true
+    optional: false
+    prompt: Инициализировать Git-репозиторий?
+    description: Инициализация Git-репозитория перед настройкой конституции
+    condition: null
+  before_specify:
+  - extension: git
+    command: speckit.git.feature
+    enabled: true
+    optional: false
+    prompt: Создать feature-ветку?
+    description: Создание feature-ветки перед написанием спецификации
+    condition: null
+  before_clarify:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения перед уточнением?
+    description: Автокоммит перед уточнением спецификации
+    condition: null
+  before_plan:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения перед планированием?
+    description: Автокоммит перед планированием реализации
+    condition: null
+  before_tasks:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения перед генерацией задач?
+    description: Автокоммит перед генерацией задач
+    condition: null
+  before_implement:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения перед реализацией?
+    description: Автокоммит перед реализацией
+    condition: null
+  before_checklist:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения перед генерацией чеклиста?
+    description: Автокоммит перед генерацией чеклиста
+    condition: null
+  before_analyze:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения перед анализом?
+    description: Автокоммит перед анализом
+    condition: null
+  before_taskstoissues:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения перед синхронизацией задач?
+    description: Автокоммит перед конвертацией задач в issues
+    condition: null
+  after_constitution:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения конституции?
+    description: Автокоммит после обновления конституции
+    condition: null
+  after_specify:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить спецификацию?
+    description: Автокоммит после написания спецификации
+    condition: null
+  after_clarify:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить изменения после уточнения?
+    description: Автокоммит после уточнения спецификации
+    condition: null
+  after_plan:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить план?
+    description: Автокоммит после планирования реализации
+    condition: null
+  after_tasks:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить задачи?
+    description: Автокоммит после генерации задач
+    condition: null
+  after_implement:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить реализацию?
+    description: Автокоммит после реализации
+    condition: null
+  after_checklist:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить чеклист?
+    description: Автокоммит после генерации чеклиста
+    condition: null
+  after_analyze:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить результаты анализа?
+    description: Автокоммит после анализа
+    condition: null
+  after_taskstoissues:
+  - extension: git
+    command: speckit.git.commit
+    enabled: true
+    optional: true
+    prompt: Закоммитить после синхронизации issues?
+    description: Автокоммит после конвертации задач в issues
+    condition: null

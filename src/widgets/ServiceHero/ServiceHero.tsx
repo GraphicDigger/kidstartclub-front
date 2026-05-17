@@ -34,13 +34,13 @@ export const ServiceHero = ({
                 gap={6}
             >
                 <Typography
-                    variant="display.medium"
+                    variant="display.small"
                     tag="h1"
                 >
                     {title}
                 </Typography>
                 {description && (
-                    <Stack maxWidth={600}>
+                    <Stack maxWidth={700}>
                         <Typography
                             variant="body.medium"
                             tag="p"

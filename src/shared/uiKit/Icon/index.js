@@ -1,1 +1,1 @@
-export { Icon } from './Icon';
+export { Icon, SIZE_MAP } from './Icon';

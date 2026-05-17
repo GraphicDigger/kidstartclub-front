@@ -9,6 +9,8 @@ import { Typography } from "@/shared/uiKit/Typography";
 import { getUpcoming } from "@/shared/lib";
 import { Divider } from "@/shared/uiKit/Divider";
 import { SubscribeButton } from "@/widgets/SubscribeButton";
+import { MessengersLinks } from "@/shared/uiKit/MessengersLinks";
+import { GradientContainer } from '@/shared/uiKit/MessengersLinks/GradientContainer';
 
 
 const how_work = '<h3>Ищем символы</h3><p>Раковина, огонь, «зверь», голова свиньи — это не детали сюжета, а смысловые опоры. Подросток учится видеть, что за предметом стоит идея.</p><h3>Читаем между строк</h3><p>Мы обсуждаем не только «что произошло», но и «почему автор это показывает именно так».</p><h3>Связываем с контекстом автора</h3><p>Разбираем, когда Уильям Голдинг написал роман и почему тема распада общества была для него важна (опыт войны, наблюдение за людьми).</p><h3>Разбираем героев как людей</h3><p>Даже в жёстких персонажах ищем человеческие черты: страх, желание быть принятым, стремление к власти.</p><h3>Учимся видеть метафоры</h3><p>«Зверь» — это не существо, а образ. Подросток начинает отличать буквальный уровень от смыслового.</p><h3>Соотносим с собой</h3><p>Главный вопрос: «А как бы я повёл себя в этой ситуации?» Это переводит книгу из теории в личный опыт.</p>';
@@ -26,11 +28,14 @@ export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps)
     return (
         <>
             <Hero src={course.gallery?.[0]?.image ?? ''} alt="">
-                <CourseCard
-                    course={course}
-                    maxWidth={520}
-                    height="fit"
-                />
+                <Stack gap={4} maxWidth={520} width="fill">
+                    <CourseCard
+                        course={course}
+                        width="fill"
+                        height="fit"
+                    />
+                    <MessengersLinks />
+                </Stack>
             </Hero>
 
             <Container>
@@ -67,7 +72,7 @@ export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps)
             </Container>
 
             <Container color='#F4EBFF'>
-                <Typography tag="h2" variant="headline.medium">
+                <Typography tag="h2" variant="headline.large">
                     Чему учит книга «{course.title}»
                 </Typography>
                 {course.skill && (
@@ -76,7 +81,7 @@ export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps)
             </Container>
 
             <Container>
-                <Typography variant="headline.medium">
+                <Typography variant="headline.large">
                     Как разбираем книги
                 </Typography>
                 <Typography variant="body.medium">
@@ -87,9 +92,18 @@ export const BookSinglepage = ({ course, allCourses = [] }: BookSinglepageProps)
                 )}
             </Container>
 
-            <Container divider paddingV="10%" >
-                <SubscribeButton label={`Записаться на «${course.title}»`} size="large" />
-            </Container>
+            <Hero
+                src={course.gallery?.[1]?.image ?? ''}
+                alt=""
+                height="fit"
+            >
+                <Container
+                    paddingV="10%"
+                    width={500}
+                >
+                    <MessengersLinks />
+                </Container>
+            </Hero>
 
             <Container color='#F6F6F6'>
                 <Typography variant="headline.medium">
@@ -126,6 +140,7 @@ interface ContainerProps {
     color?: string;
     divider?: boolean;
     paddingV?: string | number;
+    width?: number;
 }
 
 const Container = ({
@@ -133,16 +148,17 @@ const Container = ({
     color,
     divider = false,
     paddingV = '5%',
+    width = 1000
 }: ContainerProps) => {
     return (
         <Stack backgroundColor={color} >
             {divider && <Divider orientation='horizontal' top />}
             <Stack
-                maxWidth={1000}
+                maxWidth={width}
                 height="fit"
                 alignY="start"
                 alignX="start"
-                gap={8}
+                gap={10}
                 paddingTop={paddingV}
                 paddingBottom={paddingV}
                 paddingLeft={4}

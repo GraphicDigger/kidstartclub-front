@@ -152,7 +152,7 @@ const Area = styled('div')({
 
 const StyledCard = styled(Stack, { shouldForwardProp: (prop) => prop !== 'frame' })<{ frame?: boolean }>(({ theme, frame }) => ({
   containerType: 'inline-size',
-  borderRadius: frame ? theme.sys.borderRadius.medium : 0,
+  borderRadius: frame ? theme.sys.borderRadius.large : 0,
   border: frame ? `1px solid ${theme.sys.outline.default}` : 'none',
   backgroundColor: frame ? theme.sys.color.surface : 'transparent',
 }));

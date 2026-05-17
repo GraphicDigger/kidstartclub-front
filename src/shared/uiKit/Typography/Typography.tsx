@@ -84,15 +84,13 @@ const StyledTypography = styled('span', { shouldForwardProp })<
     const raw = theme.sys.typography.color[color];
     const tc = typeof color === 'string' && color.startsWith('#') ? color : raw;
 
+    const fontWeightMap = { medium: 500, semibold: 600, bold: 700 } as const
     const fw =
       typeof weight === 'number'
         ? weight
         : weight != null
-          ? theme.sys.typography.fontWeight[weight] ??
-          variantStyle?.fontWeight ??
-          theme.sys.typography.fontWeight.medium
-          : variantStyle?.fontWeight ??
-          theme.sys.typography.fontWeight.medium
+          ? fontWeightMap[weight] ?? variantStyle?.fontWeight ?? 500
+          : variantStyle?.fontWeight ?? 500
 
     const fs = size
       ? typeof size === 'number'

@@ -24,13 +24,20 @@ export default async function BookClub({ searchParams }) {
       label: "Все",
       value: COURSE_CATEGORIES.BOOK_CLUB,
       href: `/${COURSE_CATEGORIES.BOOK_CLUB}`,
+      name: "Клуб мыслителей",
+      description: "Группа мальчиков оказывается на необитаемом острове после авиакатастрофы. Сначала они пытаются создать порядок: выбирают лидера, договариваются о правилах, поддерживают огонь как сигнал спасения. Постепенно страх и борьба за власть разрушают эту систему. Возникает «зверь» — нечто, чего никто не видел, но во что начинают верить."
     },
     ...bookClubSubs.map((s) => ({
       label: s.name,
       value: s.slug,
+      name: s.name,
+      description: s.description,
       href: `/${COURSE_CATEGORIES.BOOK_CLUB}?subcategory=${s.slug}`,
+      src: s.cover
     }))
   ];
+
+  const activeTab = tabs.find((t) => t.value === (subcategory || COURSE_CATEGORIES.BOOK_CLUB)) || tabs[0];
 
   const filtered = subcategory
     ? courses.filter((c) => c.subcategory_slug === subcategory)
@@ -43,9 +50,10 @@ export default async function BookClub({ searchParams }) {
     <>
       <Header />
       <ServiceHero
-        title="Клуб мыслителей"
-        description="Группа мальчиков оказывается на необитаемом острове после авиакатастрофы. Сначала они пытаются создать порядок: выбирают лидера, договариваются о правилах, поддерживают огонь как сигнал спасения. Постепенно страх и борьба за власть разрушают эту систему. Возникает «зверь» — нечто, чего никто не видел, но во что начинают верить."
-        alt="Book Club Hero"
+        title={activeTab.name}
+        description={activeTab.description}
+        // src={activeTab.src}
+        alt={activeTab.name}
       />
       <ScrollArea orientation="horizontal">
         <Stack height="fill" paddingTop={4}>

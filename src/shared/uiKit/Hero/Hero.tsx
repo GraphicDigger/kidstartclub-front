@@ -25,7 +25,7 @@ export const Hero = ({
     alt,
     title,
     subtitle,
-    backgroundColor = '#e0e0e0',
+    backgroundColor = '#F4EBFF',
     height = 'full',
     width = 'full',
     align = 'center',

@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { Card } from "@/shared/uiKit/Card";
 import { Stack } from "@/shared/uiKit/Stack";
+import { Typography } from "@/shared/uiKit/Typography";
+import { TelegramButton } from "@/shared/uiKit/MessengersLinks";
 import { Grid } from "@/shared/uiKit/Grid";
 import { Header } from "@/widgets/Header";
 import { ServiceHero } from "@/widgets/ServiceHero";
@@ -57,47 +59,69 @@ export default async function BookClub({ searchParams }) {
       <BookClubTabs tabs={tabs} activeValue={subcategory || COURSE_CATEGORIES.BOOK_CLUB} />
       <Stack >
         <Container>
-          <Grid
-            container
-            columns={3}
-            gap={6}
-            minCol={300}
-            autoFit
-            equalRows
-          >
-            {upcoming.map((c) => (
-              <CourseCard
-                key={c.id}
-                course={c}
-                href={`/${c.category_slug}/${c.id}`}
-                maxWidth={520}
-              />
-            ))}
-          </Grid>
-        </Container>
-        <Container>
-          <Grid
-            container
-            columns={4}
-            gap={6}
-            minCol={250}
-            autoFill
-          >
-            {pastCourses.map((course) => (
-              <Link key={course.id} href={`/${course.category_slug}/${course.id}`} scroll={false} prefetch={false}>
-                <Card
-                  height="fit"
-                  imageSrc={course.cover}
-                  imageAlt=""
-                  subtitle={course.title}
-                  description={course.description}
-                  frame={false}
-                  natural
+          {upcoming.length !== 0
+            ?
+            <Grid
+              container
+              columns={3}
+              gap={6}
+              minCol={300}
+              autoFit
+              equalRows
+            >
+              {upcoming.map((c) => (
+                <CourseCard
+                  key={c.id}
+                  course={c}
+                  href={`/${c.category_slug}/${c.id}`}
+                  maxWidth={520}
                 />
-              </Link>
-            ))}
-          </Grid>
+              ))}
+            </Grid>
+            :
+            <Stack
+              direction="row"
+              gap={4}
+              style={{ border: "1px solid #1D9FE0", padding: "32px", borderRadius: "16px", color: "#1D9FE0" }}
+            >
+              Подпишитесь, чтобы получать анонсы книг
+              <TelegramButton height={40} width={150} />
+            </Stack>
+          }
         </Container>
+        {pastCourses.length !== 0 &&
+          <Container>
+            <Container style={{ padding: "0", marginTop: "16px" }}>
+              <Typography
+                variant="headline.small"
+                tag="p"
+              >
+                Архив прочитанного
+              </Typography>
+            </Container>
+            <Grid
+              container
+              columns={4}
+              gap={6}
+              minCol={250}
+              autoFill
+            >
+              {pastCourses.map((course) => (
+                <Link key={course.id} href={`/${course.category_slug}/${course.id}`} scroll={false} prefetch={false}>
+                  <Card
+                    height="fit"
+                    imageSrc={course.cover}
+                    imageAlt=""
+                    subtitle={course.title}
+                    description={course.description}
+                    frame={false}
+                    natural
+                  />
+                </Link>
+              ))}
+            </Grid>
+          </Container>
+        }
       </Stack>
     </>
   );

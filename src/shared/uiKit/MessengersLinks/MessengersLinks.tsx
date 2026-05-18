@@ -3,8 +3,8 @@
 import React, { memo } from 'react';
 import { Stack } from '../Stack';
 import { Typography } from '../Typography';
-import { TelegramIcon, WhatsAppIcon } from '../../icons';
-import Link from "next/link";
+import { TelegramButton } from './TelegramButton';
+import { WhatsAppButton } from './WhatsAppButton';
 
 
 interface MessengersLinksProps {
@@ -16,8 +16,8 @@ interface MessengersLinksProps {
 }
 
 export const MessengersLinks = memo(({
-    telegramUrl = 'https://t.me/kidstartclub',
-    whatsAppUrl = 'https://wa.me/79000000000',
+    telegramUrl,
+    whatsAppUrl,
     title = 'Записаться',
     className,
     border = true,
@@ -50,29 +50,8 @@ export const MessengersLinks = memo(({
                 maxWidth={250}
                 style={{ color: "white", padding: "8px" }}
             >
-                <Link href={telegramUrl} target="_blank" style={{ width: "100%", height: "100%" }}>
-                    <Stack
-                        backgroundColor="#1D9FE0"
-                        width="fill"
-                        style={{ borderRadius: "999px" }}
-                    >
-                        <TelegramIcon size="24" color="#FFFFFF" />
-                    </Stack>
-
-                </Link>
-                <Link
-                    href={whatsAppUrl}
-                    target="_blank"
-                    style={{ width: "100%", height: "100%" }}
-                >
-                    <Stack
-                        backgroundColor="#42BD46"
-                        width="fill"
-                        style={{ borderRadius: "999px", }}
-                    >
-                        <WhatsAppIcon size="24" color="#FFFFFF" />
-                    </Stack>
-                </Link>
+                <TelegramButton url={telegramUrl} />
+                <WhatsAppButton url={whatsAppUrl} />
             </Stack>
         </Stack>
     );

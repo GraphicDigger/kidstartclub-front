@@ -33,7 +33,7 @@ export const CardText = ({
                 alignY="start"
             >
                 {subheadline && (
-                    <SubheadlineStyled tag="p">{subheadline}</SubheadlineStyled>
+                    <SubheadlineStyled tag="h2">{subheadline}</SubheadlineStyled>
                 )}
                 {headline && (
                     <TitleStyled tag="h3">{headline}</TitleStyled>
